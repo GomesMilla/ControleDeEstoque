@@ -90,7 +90,7 @@ python manage.py runserver
 ---
 
 
- <img style="border-radius: 50%;" src="https://avatars3.githubusercontent.com/u/GomesMilla" width="100px;" alt=""/>
+ <img style="border-radius: 50%;" src="https://avatars3.githubusercontent.com/u/GomesMilla.png" width="100px;" alt=""/>
  <sub><b>Camila Adriana</b></sub></a> <a href="www.linkedin.com/in/camila-adriana-gomes-de-jesus-04767b1ba" title="Foto de perfil">🚀</a>
 Feito com ❤️ por Camila Adriana 👋🏽 Entre em contato!
 
