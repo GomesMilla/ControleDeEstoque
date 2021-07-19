@@ -52,9 +52,7 @@ Este é um projeto totalmente grátis!
 
 ```
 git init
-
 https://github.com/GomesMilla/ControleDeEstoque.git
-python -m pip install --upgrade pip
 cd cd ControleDeEstoque
 
 ```
