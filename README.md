@@ -43,10 +43,6 @@ Este é um projeto totalmente grátis!
 
 - [Controle-de-estoque](https://github.com/GomesMilla/Controle-de-estoque)
 
-<blockquote>
-Acima encontra o link do repositório.
-</blockquote>
-
 <h1>Rodando o projeto</h1>
 <h4>Clonando o projeto</h4>
 <p>Dentro da pasta onde o projeto ficará armazenado, abra o terminal.</p>
@@ -61,5 +57,6 @@ Acima encontra o link do repositório.
   Observação: Foi utilizado a distro Linux Mint(versão 20.1), caso ocorra algum problema na instalação, pesquise por conta própria a resolução do mesmo!
 </blockquote>
 <h4>Linux</h4>
+- [x] Cadastro de Usuário
 ```sudo apt-get install python3-venv```
 
