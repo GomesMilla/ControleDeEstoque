@@ -107,17 +107,17 @@ class Pessoa(AbstractBaseUser,PermissionsMixin):
 
 
 
-# class Gerente(models.Model):
-#     pessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE)
+class Gerente(models.Model):
+    pessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE)
 
-#     class Meta:
-#         verbose_name = "Gerente"
-#         verbose_name_plural = "Gerentes"
-#         ordering = ['pessoa']
-#         db_table = "Gerente"
+    class Meta:
+        verbose_name = "Gerente"
+        verbose_name_plural = "Gerentes"
+        ordering = ['pessoa']
+        db_table = "Gerente"
 
-#     def __str__(self):
-#         return self.pessoa.nome
+    def __str__(self):
+        return self.pessoa.nome
 
 
 # class Empresa(models.Model):
