@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import( BaseUserManager, AbstractBaseUser, PermissionsMixin)
+from django.urls import reverse
+
 
 STATUS_GENERO = [
     ("FEMININO", "Feminino"),
@@ -105,52 +107,48 @@ class Pessoa(AbstractBaseUser,PermissionsMixin):
     def __str__(self):
         return self.Nome
 
-
-
 class Gerente(models.Model):
     pessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = "Gerente"
         verbose_name_plural = "Gerentes"
-        ordering = ['pessoa']
         db_table = "Gerente"
 
     def __str__(self):
         return self.pessoa.nome
 
+class Empresa(models.Model):
+    Nome = models.CharField('Nome da empresa', max_length=194)
+    Email = models.EmailField('E-mail', unique=True)
+    cep = models.CharField('CEP', max_length=194)
+    Pais = models.CharField('País',max_length=194)
+    estado = models.CharField('Estado', max_length=30)
+    cidade = models.CharField('Cidade', max_length=194)
+    bairro = models.CharField('Bairro', max_length=194)
+    logradouro = models.CharField('Logradouro', max_length=194)
+    Cnpj = models.CharField('CNPJ da empresa', max_length=194, unique=True)
+    Telefone = models.CharField('Contato da empresa', max_length=194, blank=True, null=True)
+    DataCadastro = models.DateTimeField('Data do cadastro',  auto_now_add=True, null=False)
 
-# class Empresa(models.Model):
-#     Nome = models.CharField('Nome da empresa', max_length=194)
-#     Email = models.EmailField('E-mail', unique=True)
-#     cep = models.CharField('CEP', max_length=194)
-#     pais = models.CharField('País',max_length=194)
-#     estado = models.CharField('Estado', max_length=30)
-#     cidade = models.CharField('Cidade', max_length=194)
-#     bairro = models.CharField('Bairro', max_length=194)
-#     logradouro = models.CharField('Logradouro', max_length=194)
-#     Cnpj = models.CharField('CNPJ da empresa', max_length=194, unique=True)
-#     Telefone = models.CharField('Contato da empresa', max_length=194, blank=True, null=True)
-#     DataCadastro = models.DateTimeField('Data do cadastro',  auto_now_add=True, null=False)
+    class Meta:
+        verbose_name = "Empresa"
+        verbose_name_plural = "Empresas"
+        ordering = ['Nome']
+        db_table = "empresa"
 
-#     class Meta:
-#         verbose_name = "Empresa"
-#         verbose_name_plural = "Empresas"
-#         db_table = "empresa"
-
-#     def __str__(self):
-#         return self.nome
+    def __str__(self):
+        return self.nome
 
 
-# class Vendedor(models.Model):
-#     pessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE)
-#     empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE)
+class Vendedor(models.Model):
+    pessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE)
+    empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE)
 
-#     class Meta:
-#         verbose_name = "Vendedor"
-#         verbose_name_plural = "Vendedores"
-#         db_table = "vendedor"
+    class Meta:
+        verbose_name = "Vendedor"
+        verbose_name_plural = "Vendedores"
+        db_table = "vendedor"
 
-#     def __str__(self):
-#         return self.pessoa.nome
-
+    def __str__(self):
+        return self.pessoa.nome

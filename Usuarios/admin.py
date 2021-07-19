@@ -11,14 +11,23 @@ class PessoaAdmin(admin.ModelAdmin):
     search_fields = ['Nome']#Campo de pesquisa por nome
     view_on_site = False
 
-
 # class GerenteAdmin(admin.ModelAdmin):
-#     list_display = ('Nome', 'Email', 'Cpf','estado')
-#     list_filter = ('is_active','is_superuser','is_staff')
-#     date_hierarchy = 'DataCadastro'
-#     readonly_fields = ('DataCadastro','Nascimento','Cpf')
+#     list_display = ('Nome', 'Email')
+    # date_hierarchy = 'DataCadastro'
+    # readonly_fields = ('DataCadastro','Nascimento','Cpf')
 
-admin.site.register(Pessoa,PessoaAdmin)
-# admin.site.register(Gerente)
-# admin.site.register(Empresa)
-# admin.site.register(Vendedor)
+class EmpresaAdmin(admin.ModelAdmin):
+    list_display = ('Nome', 'Email', 'Cnpj','estado') 
+    list_filter = ('estado','cep')
+    date_hierarchy = 'DataCadastro'
+    readonly_fields = ('Cnpj','DataCadastro')
+    search_fields = ['Nome']
+    view_on_site = False
+
+
+
+# Registrando a classe admin e acrescentando o novo modelo sobrescrevido
+admin.site.register(Pessoa,PessoaAdmin) 
+admin.site.register(Gerente)
+admin.site.register(Empresa, EmpresaAdmin)
+admin.site.register(Vendedor)
