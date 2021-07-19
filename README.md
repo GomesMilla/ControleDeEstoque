@@ -49,14 +49,13 @@ Acima encontra o link do repositório.
 
 <h1>Rodando o projeto</h1>
 <h4>Clonando o projeto</h4>
-<blockquote>
-  Observação: Caso não tenha configurado chave SSH, clone o projeto via HTTPS:
-</blockquote>
 <p>Dentro da pasta onde o projeto ficará armazenado, abra o terminal.</p>
 <h5>Clonando via HTTPS:</h5>
-- [x] git init
-- [x] https://github.com/GomesMilla/ControleDeEstoque.git
-- [x] cd ControleDeEstoque
+  <blockquote>
+    <p>git init</p>
+    <p>https://github.com/GomesMilla/ControleDeEstoque.git</p>
+    <p> cd cd ControleDeEstoque</p>
+  </blockquote>
 <h4>Linux</h4>
 <blockquote>
   Observação: Foi utilizado a distro Linux Mint(versão 20.1), caso ocorra algum problema na instalação, pesquise por conta própria a resolução do mesmo!
