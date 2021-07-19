@@ -59,6 +59,9 @@ Este é um projeto totalmente grátis!
 <h4>Linux</h4>
 - sudo apt-get install python3-venv
 <h4>Preparando o Projeto</h4>
+
+
+```
 python3 -m venv env
 source env/bin/activate
 python -m pip install --upgrade pip
@@ -69,4 +72,5 @@ python manage.py makemigrations home
 python manage.py migrate
 python manage.py createsuperuser
 python manage.py runserver
+```
 
