@@ -57,8 +57,12 @@ Este é um projeto totalmente grátis!
   Observação: Foi utilizado a distro Linux Mint(versão 20.1), caso ocorra algum problema na instalação, pesquise por conta própria a resolução do mesmo!
 </blockquote>
 <h4>Linux</h4>
-``` sudo apt-get install python3-venv```
+``` 
+sudo apt-get install python3-venv
+
+```
 <h4>Preparando o Projeto</h4>
+
 ```
 python3 -m venv env
 source env/bin/activate
@@ -70,5 +74,6 @@ python manage.py makemigrations home
 python manage.py migrate
 python manage.py createsuperuser
 python manage.py runserver
+
 ```
 
