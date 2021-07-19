@@ -46,26 +46,19 @@ Este é um projeto totalmente grátis!
 <h1>Rodando o projeto</h1>
 <h4>Clonando o projeto</h4>
 <p>Dentro da pasta onde o projeto ficará armazenado, abra o terminal.</p>
+
 <h5>Clonando via HTTPS:</h5>
 
 
 ```
-    <p>git init</p>
+git init
 
-source env/bin/activate
+https://github.com/GomesMilla/ControleDeEstoque.git
 python -m pip install --upgrade pip
-pip install -r requirements.txt
-python manage.py makemigrations administracao
-python manage.py makemigrations cadastro
-python manage.py makemigrations home
-python manage.py migrate
-python manage.py createsuperuser
-python manage.py runserver
+cd cd ControleDeEstoque
 
 ```
 
-    <p>https://github.com/GomesMilla/ControleDeEstoque.git</p>
-    <p> cd cd ControleDeEstoque</p>
 
 
 
