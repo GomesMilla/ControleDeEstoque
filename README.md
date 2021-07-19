@@ -47,11 +47,28 @@ Este é um projeto totalmente grátis!
 <h4>Clonando o projeto</h4>
 <p>Dentro da pasta onde o projeto ficará armazenado, abra o terminal.</p>
 <h5>Clonando via HTTPS:</h5>
-  <blockquote>
+
+
+```
     <p>git init</p>
+
+source env/bin/activate
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+python manage.py makemigrations administracao
+python manage.py makemigrations cadastro
+python manage.py makemigrations home
+python manage.py migrate
+python manage.py createsuperuser
+python manage.py runserver
+
+```
+
     <p>https://github.com/GomesMilla/ControleDeEstoque.git</p>
     <p> cd cd ControleDeEstoque</p>
-  </blockquote>
+
+
+
 <h4>Linux</h4>
 <blockquote>
   Observação: Foi utilizado a distro Linux Mint(versão 20.1), caso ocorra algum problema na instalação, pesquise por conta própria a resolução do mesmo!
