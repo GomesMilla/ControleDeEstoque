@@ -57,10 +57,11 @@ Este é um projeto totalmente grátis!
   Observação: Foi utilizado a distro Linux Mint(versão 20.1), caso ocorra algum problema na instalação, pesquise por conta própria a resolução do mesmo!
 </blockquote>
 <h4>Linux</h4>
+
 ``` 
 sudo apt-get install python3-venv
-
 ```
+
 <h4>Preparando o Projeto</h4>
 
 ```
