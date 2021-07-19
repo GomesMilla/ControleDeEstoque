@@ -97,5 +97,4 @@ python manage.py runserver
 
 Feito com ❤️ por Camila Adriana 👋🏽 Entre em contato!
 
-[![Twitter Badge]](https://twitter.com/CamilaA58109563?s=09) 
-[![Linkedin Badge]](https://www.linkedin.com/in/camila-adriana-gomes-de-jesus-04767b1ba/) 
+[![Twitter Badge](https://img.shields.io/badge/-@tgmarinho-1ca0f1?style=flat-square&labelColor=1ca0f1&logo=twitter&logoColor=white&link=https://twitter.com/Camila)](https://twitter.com/CamilaA58109563?s=09) [![Linkedin Badge](https://img.shields.io/badge/-Thiago-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/tgmarinho/)](https://www.linkedin.com/in/camila-adriana-gomes-de-jesus-04767b1ba/) 
