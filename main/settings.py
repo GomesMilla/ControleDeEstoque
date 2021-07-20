@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-6w23%li%v2=dkbe_#sahsag0zw*p96-o3nt4t@$_x$5$vgd-ak'
 
@@ -18,7 +19,14 @@ INSTALLED_APPS = [
     'Estoque',
     'Transacao',
     'Usuarios',
+    'easy_mask',
+    'crispy_forms',
+    'bootstrapform',
+
+
 ]
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -50,7 +58,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'main.wsgi.application'
 
-# Configurações de Banco
+# Configurações do Banco
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -60,7 +68,7 @@ DATABASES = {
 
 #Configurações para login declaração de user 
 AUTH_USER_MODEL = "Usuarios.Pessoa" # Declarando nas configurações qual é o novo padrão de User
-LOGIN_REDIRECT_URL = 'Index' # Redirecionando para a pagina inicial depois de logar
+LOGIN_REDIRECT_URL = 'ViewIndex' # Redirecionando para a pagina inicial depois de logar
 LOGIN_URL = 'Login' # Definindo a view padrão do Django de login
 
 
@@ -95,8 +103,12 @@ USE_TZ = True
 #Definir a rota dos arquivos estaticos
 
 STATIC_URL = '/static/'
-STATIC_ROOT = 'static/' 
 
+# STATIC_ROOT = 'static'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static")
+] 
 
 # Configurações do Django
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

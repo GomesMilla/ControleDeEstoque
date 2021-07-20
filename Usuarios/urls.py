@@ -3,5 +3,7 @@ from .views import *
 
 
 urlpatterns =[
-    # path('Criar-Conta/', CriarConta, name="CriarConta")
+    path('Criar-Conta/', ViewCriarConta, name="ViewCriarConta"),
+    path('Início/', ViewIndex, name="ViewIndex"),
+
 ]

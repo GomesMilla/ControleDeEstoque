@@ -1,0 +1,188 @@
+{% extends 'principal/baselogin.html' %}
+{% load bootstrap %}
+{% block conteudo %}
+<script>
+    $('document').ready(function() {        
+        $("#id_nascimento").attr("type", "date");
+        $("#id_telefone_celular").mask("(99) 9 9999-9999");
+        $("#id_cpf").mask("999.999.999-99");
+        $("#id_cep").mask("00000-000");
+})
+</script>             
+<body class="my-login-page">
+	<section class="h-100">
+		<div class="container h-100">
+			<div class="row justify-content-md-center h-100">
+				<div class="card-wrapper">
+					<div class="card fat">
+						<div class="card-body">
+							<h4 class="card-title">Criar conta gratuitamente</h4>
+							<form method="POST" class="my-login-validation" novalidate="">
+                                {% csrf_token %}
+								<div class="form-group">
+									<label for="id_Nome">Nome</label>
+									<input id="id_Nome" type="text" class="form-control" name="Nome" required autofocus>
+									<div class="invalid-feedback">
+										Qual seu nome?
+									</div>
+								</div>
+                                <div class="form-group">
+                                    <label for="id_Naturalidade">Naturalidade</label>
+                                    <input id="id_Naturalidade" type="text" class="form-control" name="Naturalidade" required autofocus>
+                                    <div class="invalid-feedback">
+                                        Qual sua naturalidade?
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="id_Pais">País</label>
+                                    <input id="id_Pais" type="text" class="form-control" name="Pais" required autofocus>
+                                    <div class="invalid-feedback">
+                                        Qual seu país?
+                                    </div>
+                                </div>
+                                <div>
+                                    {{ FormularioVazio.Status|bootstrap }}
+                                </div> 
+                                <div>
+                                    {{ FormularioVazio.Escolaridade|bootstrap }}
+                                </div>                                   
+                                <div class="form-group">
+                                    <label for="id_Telefone_celular">Número do celular</label>
+                                    <input id="id_Telefone_celular" type="number" class="form-control" name="Telefone_celular" required autofocus>
+                                    <div class="invalid-feedback">
+                                        Número do celular do não específicado!
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="id_Cpf">CPF</label>
+                                    <input id="id_Cpf" type="text" class="form-control" name="Cpf" required autofocus>
+                                    <div class="invalid-feedback">
+                                        CPF Inválido!
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="id_Nascimento">Nascimento</label>
+                                    <input id="id_Nascimento" type="date" class="form-control" name="Nascimento" required autofocus>
+                                    <div class="invalid-feedback">
+                                        Nascimento Inválido!
+                                    </div>
+                                </div>
+                                <div>
+                                    {{ FormularioVazio.EstadoCivil|bootstrap }}
+                                </div> 
+                                <div class="form-group">
+                                    <label for="id_Profissao">Profissão</label>
+                                    <input id="id_Profissao" type="text" class="form-control" name="Profissao" required autofocus>
+                                    <div class="invalid-feedback">
+                                        Profissão não específicada!
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="id_cep">CEP</label>
+                                    <input id="id_cep" type="number" class="form-control" name="cep" required autofocus>
+                                    <div class="invalid-feedback">
+                                        CEP Inválido!
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="id_estado">Estado</label>
+                                    <input id="id_estado" type="text" class="form-control" name="estado" required autofocus>
+                                    <div class="invalid-feedback">
+                                        Estado não específicado!
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="id_cidade">Cidade</label>
+                                    <input id="id_cidade" type="text" class="form-control" name="cidade" required autofocus>
+                                    <div class="invalid-feedback">
+                                        Cidade não específicado!
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="id_bairro">Bairro</label>
+                                    <input id="id_bairro" type="text" class="form-control" name="bairro" required autofocus>
+                                    <div class="invalid-feedback">
+                                        Bairro não específicado!
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="id_logradouro">Logradouro</label>
+                                    <input id="id_logradouro" type="text" class="form-control" name="logradouro" required autofocus>
+                                    <div class="invalid-feedback">
+                                        Logradouro não específicado!
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="id_Numero">Número</label>
+                                    <input id="id_Numero" type="number" class="form-control" name="Numero" required autofocus>
+                                    <div class="invalid-feedback">
+                                        Número não específicado!
+                                    </div>
+                                </div>                               
+								<div class="form-group">
+									<label for="id_Email">E-Mail</label>
+									<input id="id_Email" type="email" class="form-control" name="Email" required>
+									<div class="invalid-feedback">
+										Email Inválido
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="id_password">Senha</label>
+									<input id="id_password" type="password" class="form-control" name="password" required data-eye>
+									<div class="invalid-feedback">
+										Password is required
+									</div>
+								</div>
+                                <br>
+								<div class="d-grid gap-2 col-6 mx-auto">
+                                    <button class="btn btn-outline-primary" type="submit">Cadastrar</button>
+                                </div>
+								<div class="mt-4 text-center">
+									Já tem uma conta? <a href="{% url 'Login' %}">Login</a>
+								</div>
+							</form>
+						</div>
+					</div>
+                    <div class="footer">
+						Copyright &copy; 2021 &mdash; Camila Adriana|GomesMilla
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+<script>
+        $("#id_cep").focusout(function(){
+            //Início do Comando AJAX
+            $.ajax({
+                //O campo URL diz o caminho de onde virá os dados
+                //É importante concatenar o valor digitado no CEP
+                url: 'https://viacep.com.br/ws/'+$(this).val().replace(".","").replace("-","")+'/json/unicode/',
+                //Aqui você deve preencher o tipo de dados que será lido,
+                //no caso, estamos lendo JSON.
+                dataType: 'json',
+                //SUCESS é referente a função que será executada caso
+                //ele consiga ler a fonte de dados com sucesso.
+                //O parâmetro dentro da função se refere ao nome da variável
+                //que você vai dar para ler esse objeto.
+                success: function(resposta){
+                    //Agora basta definir os valores que você deseja preencher
+                    //automaticamente nos campos acima.
+                    if (resposta.erro) {
+                        $("#id_cep").removeClass('valid');
+                        $("#id_cep").addClass('invalid');
+                    }
+                    $("#id_logradouro").val(resposta.logradouro);                    
+                    $("#id_bairro").val(resposta.bairro);
+                    $("#id_cidade").val(resposta.localidade);
+                    $("#id_estado").val(resposta.uf);
+                    
+                    //Vamos incluir para que o Número seja focado automaticamente
+                    //melhorando a experiência do usuário
+                    
+                    $("#id_numero").focus();
+                }
+            });
+        });
+    </script>
+{% endblock %}

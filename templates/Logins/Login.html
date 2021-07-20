@@ -1,52 +1,42 @@
-<body class="my-login-page">
-	<section class="h-100">
-		<div class="container h-100">
-			<div class="row justify-content-md-center h-100">
-				<div class="card-wrapper">
-					<div class="brand">
-						<img src="img/logo.jpg" alt="logo">
-					</div>
-					<div class="card fat">
-						<div class="card-body">
-							<h4 class="card-title">Login</h4>
-							<form method="POST" class="my-login-validation" novalidate="">
-								<div class="form-group">
-									<label for="email">E-Mail</label>
-									<input id="email" type="email" class="form-control" name="email" value="" required autofocus>
-									<div class="invalid-feedback">
-										Email inválido!
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="password">Senha
-										<a href="#" class="float-right">
-											Esqueceu a senha?
-										</a>
-									</label>
-									<input id="password" type="password" class="form-control" name="password" required data-eye>
-                                        <div class="invalid-feedback">
-                                            Senha Obrigatória!
+{% extends 'principal/baselogin.html' %}
+{% block conteudo %}
+    <body class="my-login-page">
+        <section class="h-100">
+            <div class="container h-100">
+                <div class="row justify-content-md-center h-100">
+                    <div class="card-wrapper">
+                        <div class="card fat">
+                            <div class="card-body">
+                                <h4 class="card-title">Login</h4>
+                                <form method="POST" class="my-login-validation" novalidate="">
+                                    {% csrf_token %}
+                                        <div class="form-group">
+                                            <label for="id_username">E-Mail</label>
+                                            <input id="id_username" type="email" class="form-control" name="username" value="" required autofocus>
+                                            <div class="invalid-feedback">
+                                                Email inválido!
+                                            </div>
                                         </div>
-								</div>
-								<div class="form-group">
-									<div class="custom-checkbox custom-control">
-										<input type="checkbox" name="remember" id="remember" class="custom-control-input">
-										<label for="remember" class="custom-control-label">Lembrar-me!</label>
-									</div>
-								</div>
-								<div class="form-group m-0">
-									<button type="submit" class="btn btn-primary btn-block">
-										Entrar
-									</button>
-								</div>
-								<div class="mt-4 text-center">
-									Não tem conta? <a href="#">Criar</a>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-</body>
+                                        <div class="form-group">
+                                            <label for="id_password">Senha</label>
+                                            <input id="id_password" type="password" class="form-control" name="password" value="" required autofocus>
+                                            <div class="invalid-feedback">
+                                                Senha inválida!
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="d-grid gap-2 col-6 mx-auto">
+                                            <button class="btn btn-outline-primary" type="submit">Entrar</button>
+                                        </div>
+                                        <div class="mt-4 text-center">
+                                            Não tem conta? <a href="{% url 'ViewCriarConta' %}">Criar</a>
+                                        </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+{% endblock %}

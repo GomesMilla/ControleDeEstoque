@@ -1,10 +1,14 @@
 html,body {
 	height: 100%;
+	margin-top: 10px;
+	font-size: 20px;
+
+
 }
 
 body.my-login-page {
-	background-color: #f7f9fb;
-	font-size: 14px;
+	background-image: linear-gradient(to right, rgb(202, 224, 248),rgb(209, 231, 252),rgb(171, 194, 243),rgb(168, 219, 248),rgb(194, 211, 247),rgb(167, 207, 233),rgb(190, 210, 253));
+	font-size: 18px;
 }
 
 .my-login-page .brand {
@@ -23,7 +27,7 @@ body.my-login-page {
 }
 
 .my-login-page .card-wrapper {
-	width: 400px;
+	width: 700px;
 }
 
 .my-login-page .card {
@@ -32,7 +36,7 @@ body.my-login-page {
 }
 
 .my-login-page .card.fat {
-	padding: 10px;
+	padding: 20px;
 }
 
 .my-login-page .card .card-title {
@@ -40,7 +44,7 @@ body.my-login-page {
 }
 
 .my-login-page .form-control {
-	border-width: 2.3px;
+	border-width: 3px;
 }
 
 .my-login-page .form-group label {
