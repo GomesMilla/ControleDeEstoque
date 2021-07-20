@@ -110,6 +110,8 @@ class Pessoa(AbstractBaseUser,PermissionsMixin):
 class Gerente(models.Model):
     pessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE)
 
+    def get_nomePessoa(self):
+        return self.Pessoa.Nome
     class Meta:
         verbose_name = "Gerente"
         verbose_name_plural = "Gerentes"

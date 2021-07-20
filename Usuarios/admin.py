@@ -12,7 +12,7 @@ class PessoaAdmin(admin.ModelAdmin):
     view_on_site = False
 
 # class GerenteAdmin(admin.ModelAdmin):
-#     list_display = ('Nome', 'Email')
+#     list_display = ['Pessoa', 'get_nomePessoa']
     # date_hierarchy = 'DataCadastro'
     # readonly_fields = ('DataCadastro','Nascimento','Cpf')
 

@@ -1,0 +1,170 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#F2BD24"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.compat.css" />
+    <!-- importando arquivos CSS  -->
+    <link type="text/css" rel="stylesheet" href="{% static 'CSS/bootstrap.min.css' %}" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="{% static 'CSS/styles.css' %}">
+    <link href="{% static 'CSS/HoldOn.min.css'%}" rel="stylesheet">
+    <!-- Importando arquivos JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="{% static 'JS/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'JS/Dinamizar.js'%}"></script>
+    <script type="text/javascript" src="{% static 'JS/HoldOn.min.js'%}"></script>
+    <!-- Importando icones -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="shortcut icon" href="{% static 'Imagem.png' %}">
+    <title>{{nome_pagina}}</title>
+</head>
+
+<body>
+    {% if messages %}
+    {% for message in messages %} 
+    {% if message.tags == 'success' %}
+    <script type="text/javascript">
+        var toastHTML = '{{ message }}';
+        M.toast({
+            html: toastHTML,
+            displayLength: 6000,
+            classes: 'rounded green lighten-2 black-text text-black'
+        });
+    </script>
+    {%elif message.tags == 'error'%}
+    <script type="text/javascript">
+        var toastHTML = '{{ message }}';
+        M.toast({
+            html: toastHTML,
+            displayLength: 6000,
+            classes: 'rounded red black-text text-black'
+        });
+    </script>
+    {%elif message.tags == 'warning'%}
+    <script type="text/javascript">
+        var toastHTML = '{{ message }}';
+        M.toast({
+            html: toastHTML,
+            displayLength: 6000,
+            classes: 'rounded  red darken-4 white-text text-white'
+        });
+    </script>
+    {%elif message.tags == 'info'%}
+    <script type="text/javascript">
+        var toastHTML = '{{ message }}';
+        M.toast({
+            html: toastHTML,
+            displayLength: 6000,
+            classes: 'rounded  teal lighten-4 black-text text-black'
+        });
+    </script>
+    {% else %}
+    <script type="text/javascript">
+        var toastHTML = '{{ message }}';
+        M.toast({
+            html: toastHTML,
+            displayLength: 6000,
+            classes: 'rounded yellow black-text text-black'
+        });
+    </script>
+    {%endif%} 
+    {% endfor %} 
+    {% endif %}
+    
+    
+    <header>
+
+    </header>
+
+    <main>        
+        {%block conteudo%} 
+        {%endblock conteudo%}
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="page-footer font-small blue pt-4">
+        <div class="container-fluid text-center text-md-left"> <!-- Footer Links -->
+            <div class="row"> <!-- Grid row -->
+                <div class="col-md-6 mt-md-0 mt-3"><!-- Grid column -->
+                    <h5 class="text-uppercase">Footer Content</h5>
+                    <p>Here you can use rows and columns to organize your footer content.</p>
+                </div>
+                    <hr class="clearfix w-100 d-md-none pb-3"><!-- Grid column -->
+                <div class="col-md-3 mb-md-0 mb-3">
+                    <h5 class="text-uppercase">Links</h5><!-- Links -->
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#!">Link 1</a>
+                        </li>
+                        <li>
+                            <a href="#!">Link 2</a>
+                        </li>
+                        <li>
+                            <a href="#!">Link 3</a>
+                        </li>
+                        <li>
+                            <a href="#!">Link 4</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-md-0 mb-3">
+                    <h5 class="text-uppercase">Links</h5>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#!">Link 1</a>
+                        </li>
+                        <li>
+                            <a href="#!">Link 2</a>
+                        </li>
+                        <li>
+                            <a href="#!">Link 3</a>
+                        </li>
+                        <li>
+                            <a href="#!">Link 4</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright text-center py-3">© 2020 Copyright:<!-- Copyright -->
+            <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+        </div>
+    </footer>
+
+    <script>
+        $(document).ready(function() {
+            
+            
+            // Função de carregamento
+            $(window).bind('beforeunload', function() {
+                var options = {
+                    theme: "sk-circle",
+                    message: 'Por favor, aguarde...',
+                    backgroundColor: "#black",
+                    textColor: "white"
+                };
+                HoldOn.open(options);
+            });
+            $(window).load(function() {
+                HoldOn.close();
+            });
+            // Fim da função de carregamento        
+            
+    });
+        
+    </script>
+    {% block scripts %} 
+    {% endblock %}
+
+</body>
+</html>
