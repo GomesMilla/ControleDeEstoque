@@ -128,3 +128,4 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "michel.lemes@unincor.edu.br"
 EMAIL_HOST_PASSWORD = "87028399dd"
+# Falta configurar para um email pessoal
