@@ -26,9 +26,9 @@ ESCOLARIDADE = [
 
 class UsuarioManager(BaseUserManager):
 
-    def create_user(self,Email,password=None):
+    def create_user(self,email,password=None):
         usuario = self.model(
-            Email = Email
+            email = email
         )
 
         usuario.is_active = True
@@ -42,10 +42,10 @@ class UsuarioManager(BaseUserManager):
         
         return usuario
     
-    def create_superuser(self,Email,password):
+    def create_superuser(self,email,password):
         usuario = self.create_user(
 
-            Email = Email,
+            email = email,
             password = password,
         )
 
@@ -66,7 +66,7 @@ class Pessoa(AbstractBaseUser,PermissionsMixin):
     Pais = models.CharField('País', max_length=194)
     Escolaridade = models.CharField('Escolaridade', max_length=30, choices=ESCOLARIDADE)
     Status = models.CharField('Genero', max_length=10, choices=STATUS_GENERO)
-    Email = models.EmailField('E-mail', unique=True)
+    email = models.EmailField('E-mail', unique=True)
     Telefone_celular = models.CharField('Número de telefone', max_length=19, unique=True)
     Cpf = models.CharField(verbose_name='CPF', max_length=14, unique=True)
     Nascimento = models.DateField('Data de nascimento', auto_now=False, auto_now_add=False, blank=True, null=True)
@@ -94,7 +94,7 @@ class Pessoa(AbstractBaseUser,PermissionsMixin):
         default=False,
     )
 
-    USERNAME_FIELD = "Email"
+    USERNAME_FIELD = "email"
 
     objects = UsuarioManager()
 
@@ -122,7 +122,7 @@ class Gerente(models.Model):
 
 class Empresa(models.Model):
     Nome = models.CharField('Nome da empresa', max_length=194)
-    Email = models.EmailField('E-mail', unique=True)
+    email = models.EmailField('E-mail', unique=True)
     cep = models.CharField('CEP', max_length=194)
     Pais = models.CharField('País',max_length=194)
     estado = models.CharField('Estado', max_length=30)

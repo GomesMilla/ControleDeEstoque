@@ -4,7 +4,7 @@ from Usuarios.models import *
 # Sobrescrevendo a classe admin padrão!
 
 class PessoaAdmin(admin.ModelAdmin):
-    list_display = ('Nome', 'Email', 'Cpf','estado','id') #Dentro do admin na class Pessoas, é esses atributos que será mostrado
+    list_display = ('Nome', 'email', 'Cpf','estado','id') #Dentro do admin na class Pessoas, é esses atributos que será mostrado
     list_filter = ('is_active','is_superuser','is_staff')#Filtrar Pessoas por esses atributos
     date_hierarchy = 'DataCadastro'
     readonly_fields = ('DataCadastro','Nascimento','Cpf')#Altera aqueles campos, deixando somente para leitura
@@ -18,7 +18,7 @@ class PessoaAdmin(admin.ModelAdmin):
 #     save_as = True
 
 class EmpresaAdmin(admin.ModelAdmin):
-    list_display = ('Nome', 'Email', 'Cnpj','estado', 'id') 
+    list_display = ('Nome', 'email', 'Cnpj','estado', 'id') 
     list_filter = ('estado','cep')
     date_hierarchy = 'DataCadastro'
     readonly_fields = ('Cnpj','DataCadastro')

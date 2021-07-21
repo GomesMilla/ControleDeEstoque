@@ -1,0 +1,89 @@
+{% extends 'principal/baselogin.html' %}
+{% block conteudo %}
+<body class="my-login-page">
+	<section class="h-100">
+		<div class="container h-100">
+			<div class="row justify-content-md-center align-items-center h-100">
+				<div class="card-wrapper">
+					<div class="card fat">
+						<div class="card-body">
+							<h4 class="card-title">Configurações de nova Senha</h4>
+							<form method="POST" class="my-login-validation" novalidate="">
+								<div class="form-group">
+									<label for="id_new_password1">Nova Senha</label>
+									<input id="id_new_password1" type="password" class="form-control" name="new_password1" autocomplete="new-password" required autofocus data-eye>
+									<div class="invalid-feedback">
+										Password is required
+									</div>
+									<div class="form-check">
+										<input type="checkbox" class="form-check-input" id="Senha1">
+										<label class="form-check-label" for="dropdownCheck2">
+											Mostrar Senha
+										</label>
+									</div>
+									<!-- <div class="form-text text-muted">
+										<ul>
+											<li>
+												Sua senha não pode ser muito com o resto das suas informações pessoais.
+											</li>
+											<li>
+												Sua senha não pode ser uma senha comumente utilizada.
+											</li>
+											<li>
+												Sua senha precisa conter pelo menos 8 caracteres.
+											</li>
+											<li>
+												Sua senha não pode ser inteiramente numérica.
+											</li>
+										</ul>
+									</div> -->
+								</div>
+								<div class="form-group">
+									<label for="id_new_password2">Confirme a nova senha</label>
+									<input id="id_new_password2" type="password" class="form-control" name="new_password2" autocomplete="new-password" required autofocus data-eye>
+									<div class="invalid-feedback">
+										Password is required
+									</div>
+									<div class="form-check">
+										<input type="checkbox" class="form-check-input" id="Senha2">
+										<label class="form-check-label" for="dropdownCheck2">
+											Mostrar Senha
+										</label>
+									</div>
+								</div><br>
+								<div class="d-grid gap-2 col-6 mx-auto">
+									<button type="submit" class="btn btn-outline-primary">
+										Atualizar Senha
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="footer">
+						Copyright &copy; 2021 &mdash; Camila Adriana|GomesMilla
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>
+<script>
+    $('#Senha1').click(function () {
+        if($(this).is(':checked')){
+            $("#id_new_password1").attr("type", "text");
+        }
+        else {
+            $("#id_new_password1").attr("type", "password");
+        }
+    })
+	$('#Senha2').click(function () {
+        if($(this).is(':checked')){
+            $("#id_new_password2").attr("type", "text");
+        }
+        else {
+            $("#id_new_password2").attr("type", "password");
+        }
+    })
+</script>
+{% endblock %}

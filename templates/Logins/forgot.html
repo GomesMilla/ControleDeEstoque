@@ -1,0 +1,41 @@
+{% extends 'principal/baselogin.html' %}
+{% block conteudo %}
+<body class="my-login-page">
+	<section class="h-100">
+		<div class="container h-100">
+			<div class="row justify-content-md-center align-items-center h-100">
+				<div class="card-wrapper">
+					<div class="card fat">
+						<div class="card-body">
+							<h4 class="card-title">Recuperar Senha</h4>
+							<form method="POST" class="my-login-validation" novalidate="">
+								{% csrf_token %} 
+								<div class="form-group">
+									<label for="id_email">E-Mail</label>
+									<input id="id_email" type="email" class="form-control" name="email" value="" autocomplete="email" required autofocus>
+									<div class="invalid-feedback">
+										Email is invalid
+									</div>
+									<div class="form-text text-muted">
+										Ao clicar em "Redefinir senha", enviaremos um link de redefinição de senha
+									</div>
+								</div>
+								<br>
+								<div class="d-grid gap-2 col-6 mx-auto">
+									<button type="submit" class="btn btn-outline-primary">
+										Recuperar senha
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="footer">
+						Copyright &copy; 2021 &mdash; Camila Adriana|GomesMilla
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>
+{% endblock %}

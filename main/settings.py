@@ -113,3 +113,18 @@ STATICFILES_DIRS = [
 # Configurações do Django
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
+# Configurações de envio do e-mail
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = "GomesMillaTeste.gmail.com"
+# EMAIL_HOST_PASSWORD = "GomesMillateste1"
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "michel.lemes@unincor.edu.br"
+EMAIL_HOST_PASSWORD = "87028399dd"

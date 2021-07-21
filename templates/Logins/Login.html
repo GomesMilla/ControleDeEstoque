@@ -31,7 +31,7 @@
                                                     </label>
                                                 </div>
                                             </div>
-                                            Esqueci minha senha <a href="{% url 'ViewCriarConta' %}">Recuperar</a>
+                                            Esqueci minha senha <a href="{% url 'reset_password' %}">Recuperar</a>
                                         </div>
                                         <br>
                                         <div class="d-grid gap-2 col-6 mx-auto">
@@ -48,4 +48,15 @@
             </div>
         </section>
     </body>
+
+<script>
+    $('#dropdownCheck2').click(function () {
+        if($(this).is(':checked')){
+            $("#id_password").attr("type", "text");
+        }
+        else {
+            $("#id_password").attr("type", "password");
+        }
+    })
+</script>
 {% endblock %}

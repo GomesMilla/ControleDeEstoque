@@ -8,7 +8,58 @@
         $("#id_cpf").mask("999.999.999-99");
         $("#id_cep").mask("00000-000");
 })
-</script>             
+</script>
+<!-- Modal com as informações de termos e condições descritas -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Termos e condições</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p style="text-align: justify;">
+                1.1. De acordo com o presente Contrato, o Âmbito Jurídico proverá ao Usuário serviços gratuitos e 
+                pagos de informação via internet (“Serviço”), tais como Notícias do Âmbito Jurídico, Revista Âmbito 
+                Jurídico, Classificados, Diretório de Links e outros que o Âmbito Jurídico possa vir 
+                a disponibilizar. O uso do Serviço implica na aceitação, pelo Usuário, dos termos deste Contrato.
+                </p>
+                <p style="text-align: justify;">
+                    1.2. O Serviço estará disponível 24 horas por dia, 7 dias por semana.
+                </p>
+                <p style="text-align: justify;">
+                    1.3. Não haverá limite de tempo de uso do Serviço Gratuito pelo Usuário, salvo 
+                    interrupções ocasionadas por serviços de manutenção no sistema, falhas operacionais das 
+                    empresas fornecedoras de energia elétrica e serviços de telecomunicações, caso fortuito ou força maior, 
+                    pelos quais o Âmbito Jurídico não se responsabilizará sob nenhuma circunstância.
+                </p>
+                <p style="text-align: justify;">
+                    1.3.1 O Serviço Pago terá duração de tempo de acordo com o tempo de assinatura contratada
+                    pelo Usuário.
+                </p>
+                <p style="text-align: justify;">
+                    1.3.2 Entende-se por Serviço Pago, aquele que for assim instituído, a conveniência do 
+                    Âmbito Jurídico, para o qual deve o Usuário aderir mediante cadastro específico 
+                    (além do cadastro gratuito no portal) e prévio pagamento. São pagos os seguintes 
+                    serviços: Assessoria em Cálculos Judiciais e Extrajudicias, Programa de Rádio Âmbito 
+                    Jurídico, Cursos a Distância, Seminários Virtuais (apenas quando o usuário quiser receber 
+                    certificado de participação), Simulados virtuais e o acesso ao sistema de processo eletrônico 
+                    do Âmbito Jurídico.
+                </p>
+                <p style="text-align:justify;">
+                    1.4. O Serviço poderá ser alterado ou cancelado a qualquer tempo unilateralmente pelo 
+                    Âmbito Jurídico, independentemente de notificação ao Usuário e sem que qualquer multa ou 
+                    indenização seja devida pela mesma ao Usuário. Neste caso, Âmbito Jurídico avisará com 
+                    antecedência de 15 dias, através do e-mail do Usuário, cadastrado no Serviço.
+                </p>          
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-outline-primary">Entendi</button>
+            </div>
+        </div>
+    </div>
+</div>             
 <body class="my-login-page">
 	<section class="h-100">
 		<div class="container h-100">
@@ -120,8 +171,8 @@
                                     </div>
                                 </div>                               
 								<div class="form-group">
-									<label for="id_Email">E-Mail</label>
-									<input id="id_Email" type="email" class="form-control" name="Email" required>
+									<label for="id_email">E-Mail</label>
+									<input id="id_email" type="email" class="form-control" name="email" required>
 									<div class="invalid-feedback">
 										Email Inválido
 									</div>
@@ -134,14 +185,20 @@
 									</div>
 								</div>
                                 <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="Senha">
+                                    <label class="form-check-label" for="Senha">
+                                        Mostrar Senha
+                                    </label>
+                                </div>
+                                <div class="form-check">
                                     <input type="checkbox" class="form-check-input" id="dropdownCheck2">
                                     <label class="form-check-label" for="dropdownCheck2">
-                                        Li e concordo com os <a href="{% url 'Login' %}">Termos e condições</a> descritos
+                                        Li e concordo com os <a href="#staticBackdrop" data-bs-toggle="modal"  data-bs-target="#staticBackdrop">Termos e condições</a> descritos
                                     </label>
                                 </div>
                                 <br>
 								<div class="d-grid gap-2 col-6 mx-auto">
-                                    <button class="btn btn-outline-primary" type="submit">Cadastrar</button>
+                                    <button class="btn btn-outline-primary" id="botao" type="submit">Cadastrar</button>
                                 </div>
 								<div class="mt-4 text-center">
 									Já tem uma conta? <a href="{% url 'Login' %}">Login</a>
@@ -158,6 +215,24 @@
 	</section>
 
 <script>
+$( document ).ready(function() {
+        $("#botao").attr("disabled", "true");
+
+        $('#Senha').click(function () {
+            if($(this).is(':checked')){
+                $("#id_password").attr("type", "text");
+            }
+            else {
+                $("#id_password").attr("type", "password");
+            }
+        })
+        $( "#dropdownCheck2" ).click(function() {
+            if($(this).is(':checked')){
+                $("#botao").removeAttr("disabled", "");
+            }else {
+                $("#botao").attr("disabled", "true");
+            }
+        });
         $("#id_cep").focusout(function(){
             //Início do Comando AJAX
             $.ajax({
@@ -190,5 +265,12 @@
                 }
             });
         });
-    </script>
+
+
+
+
+
+    });    
+    
+</script>
 {% endblock %}
