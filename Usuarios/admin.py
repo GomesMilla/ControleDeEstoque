@@ -16,6 +16,7 @@ class PessoaAdmin(admin.ModelAdmin):
 #     search_fields = ['Nome']
 #     save_on_top = True
 #     save_as = True
+# Entender o modelo ReadOnly.ModelAdmin
 
 class EmpresaAdmin(admin.ModelAdmin):
     list_display = ('Nome', 'email', 'Cnpj','estado', 'id') 
