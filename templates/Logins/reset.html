@@ -9,6 +9,7 @@
 						<div class="card-body">
 							<h4 class="card-title">Configurações de nova Senha</h4>
 							<form method="POST" class="my-login-validation" novalidate="">
+								{% csrf_token %}
 								<div class="form-group">
 									<label for="id_new_password1">Nova Senha</label>
 									<input id="id_new_password1" type="password" class="form-control" name="new_password1" autocomplete="new-password" required autofocus data-eye>
