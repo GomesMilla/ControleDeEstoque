@@ -28,6 +28,7 @@ Este é um projeto totalmente grátis!
 - [ ] Deletar Empresa
 - [ ] Deletar Vendedor
 - [x] Login
+- [x] Reset de senha
 - [ ] PDF com as informações das movimentações do mês
 - [ ] Acessando Informações Filtradas
 
