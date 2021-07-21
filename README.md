@@ -77,9 +77,9 @@ python3 -m venv env
 source env/bin/activate
 python -m pip install --upgrade pip
 pip install -r requirements.txt
-python manage.py makemigrations administracao
-python manage.py makemigrations cadastro
-python manage.py makemigrations home
+python manage.py makemigrations Usuarios
+python manage.py makemigrations Estoque
+python manage.py makemigrations Transacao
 python manage.py migrate
 python manage.py createsuperuser
 python manage.py runserver
