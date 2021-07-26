@@ -119,7 +119,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 # EMAIL_HOST = 'smtp.gmail.com'
 # EMAIL_PORT = 587
 # EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = "GomesMillaTeste.gmail.com"
+# EMAIL_HOST_USER = "gomesmillateste@gmail.com"
 # EMAIL_HOST_PASSWORD = "GomesMillateste1"
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -128,4 +128,5 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "michel.lemes@unincor.edu.br"
 EMAIL_HOST_PASSWORD = "87028399dd"
+
 # Falta configurar para um email pessoal

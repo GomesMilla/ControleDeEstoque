@@ -5,5 +5,6 @@ from .views import *
 urlpatterns =[
     path('Criar-Conta/', ViewCriarConta, name="ViewCriarConta"),
     path('Início/', ViewIndex, name="ViewIndex"),
+    path('Cadastrar-Empresa', ViewCadastrarEmpresa, name="ViewCadastrarEmpresa"),
 
 ]

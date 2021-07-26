@@ -140,7 +140,7 @@ class Empresa(models.Model):
         db_table = "empresa"
 
     def __str__(self):
-        return self.nome
+        return self.Nome
 
 
 class Vendedor(models.Model):

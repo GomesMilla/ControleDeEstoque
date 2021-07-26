@@ -31,54 +31,48 @@
 
 <body>
     {% if messages %}
-    {% for message in messages %} 
-    {% if message.tags == 'success' %}
-    <script type="text/javascript">
-        var toastHTML = '{{ message }}';
-        M.toast({
-            html: toastHTML,
-            displayLength: 6000,
-            classes: 'rounded green lighten-2 black-text text-black'
-        });
-    </script>
-    {%elif message.tags == 'error'%}
-    <script type="text/javascript">
-        var toastHTML = '{{ message }}';
-        M.toast({
-            html: toastHTML,
-            displayLength: 6000,
-            classes: 'rounded red black-text text-black'
-        });
-    </script>
-    {%elif message.tags == 'warning'%}
-    <script type="text/javascript">
-        var toastHTML = '{{ message }}';
-        M.toast({
-            html: toastHTML,
-            displayLength: 6000,
-            classes: 'rounded  red darken-4 white-text text-white'
-        });
-    </script>
-    {%elif message.tags == 'info'%}
-    <script type="text/javascript">
-        var toastHTML = '{{ message }}';
-        M.toast({
-            html: toastHTML,
-            displayLength: 6000,
-            classes: 'rounded  teal lighten-4 black-text text-black'
-        });
-    </script>
-    {% else %}
-    <script type="text/javascript">
-        var toastHTML = '{{ message }}';
-        M.toast({
-            html: toastHTML,
-            displayLength: 6000,
-            classes: 'rounded yellow black-text text-black'
-        });
-    </script>
-    {%endif%} 
-    {% endfor %} 
+        {% for message in messages %} 
+            {% if message.tags == 'success' %}
+            <div class="alert alert-success" role="alert">
+                <button type="button" class="btn-close position-absolute top-0 end-0" data-bs-dismiss="alert" aria-label="Close"></button>
+                <h4 class="alert-heading">Sucesso!</h4>
+                    <p>A empresa foi cadastrada com sucesso!!</p>
+                <hr>
+                <p class="mb-0">Horário do cadastro: {{now}}</p>
+            </div>
+            {%elif message.tags == 'error'%}
+                <div class="p-3 mb-2 bg-danger text-white" role="alert">
+                    <li>{{ message }}</li>
+                </div>
+            {%elif message.tags == 'warning'%}
+                <script type="text/javascript">
+                    var toastHTML = '{{ message }}';
+                    M.toast({
+                        html: toastHTML,
+                        displayLength: 6000,
+                        classes: 'rounded  red darken-4 white-text text-white'
+                    });
+                </script>
+            {%elif message.tags == 'info'%}
+                <script type="text/javascript">
+                    var toastHTML = '{{ message }}';
+                    M.toast({
+                        html: toastHTML,
+                        displayLength: 6000,
+                        classes: 'rounded  teal lighten-4 black-text text-black'
+                    });
+                </script>
+            {% else %}
+            <script type="text/javascript">
+                var toastHTML = '{{ message }}';
+                M.toast({
+                    html: toastHTML,
+                    displayLength: 6000,
+                    classes: 'rounded yellow black-text text-black'
+                });
+            </script>
+            {%endif%} 
+        {% endfor %} 
     {% endif %}
     
     
@@ -99,7 +93,7 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="#">Cadastrar Vendedor</a></li>
                                 <li><a class="dropdown-item" href="#">Cadastrar Gerente</a></li>
-                                <li><a class="dropdown-item" href="#">Cadastrar Empresa</a></li>
+                                <li><a class="dropdown-item" href="{% url 'ViewCadastrarEmpresa' %}">Cadastrar Empresa</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="#">Cadastrar Produto</a></li>
                             </ul>
