@@ -4,12 +4,13 @@
 <!-- Arrumar mask -->
 <script>
     $('document').ready(function() {        
-        $("#id_nascimento").attr("type", "date");
-        $("#id_telefone_celular").mask("(99) 9 9999-9999");
-        $("#id_cpf").mask("999.999.999-99");
         $("#id_cep").mask("00000-000");
+        $('#id_Telefone_celular').mask('(00) 0000-0000');
+        $('#id_Cpf').mask('000.000.000-00');
 })
 </script>
+
+
 <!-- Modal com as informações de termos e condições descritas -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -100,7 +101,7 @@
                                 </div>                                   
                                 <div class="form-group">
                                     <label for="id_Telefone_celular">Número do celular</label>
-                                    <input id="id_Telefone_celular" type="number" class="form-control" name="Telefone_celular" required autofocus>
+                                    <input id="id_Telefone_celular" type="text" class="form-control" name="Telefone_celular" required autofocus>
                                     <div class="invalid-feedback">
                                         Número do celular do não específicado!
                                     </div>
@@ -131,7 +132,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="id_cep">CEP</label>
-                                    <input id="id_cep" type="number" class="form-control" name="cep" required autofocus>
+                                    <input id="id_cep" type="text" class="form-control" name="cep" required autofocus>
                                     <div class="invalid-feedback">
                                         CEP Inválido!
                                     </div>

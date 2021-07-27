@@ -1,5 +1,5 @@
 from .forms import *
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required #Importando a view do Django para fazer login
 from django.contrib import messages
 from django.utils import timezone
@@ -47,14 +47,13 @@ def ViewCadastrarEmpresa(request):
         if FormularioPreenchido.is_valid():
             print("formulario valido")
             FormularioPreenchido.save()
-            
+            mensagem = f'Empresa cadastrada com sucesso!'
+            messages.success(request, mensagem) 
             return redirect("ViewIndex") 
         
         else:
             print(FormularioPreenchido.errors.as_data())               
-
-    mensagem = f'Empresa cadastrada com sucesso!'
-    messages.success(request, mensagem)  
+ 
     context = {
         "nome_pagina" : "Criar Conta",
         "FormularioSimples" : FormularioSimples,
@@ -62,6 +61,16 @@ def ViewCadastrarEmpresa(request):
     }
 
     return render(request, "Usuarios/CadastrarEmpresa.html", context)
+
+def ViewListarEmpresas(request):
+
+    ListEmpresas = Empresa.objects.all()
+
+    context = {
+        "nome_pagina" : "Empresas",
+        "ListEmpresas" : ListEmpresas
+    }
+    return render(request, "Usuarios/ListaEmpresa.html", context)
 
 
 

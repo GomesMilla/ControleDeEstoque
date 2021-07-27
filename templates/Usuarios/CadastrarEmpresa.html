@@ -1,4 +1,4 @@
-{% extends 'principal/baselogin.html' %}
+{% extends 'principal/baseprojeto.html' %}
 {% load bootstrap %}
 {% block conteudo %}
 <!-- Arrumar mask -->
@@ -6,105 +6,105 @@
     $('document').ready(function() {        
         $("#id_cep").mask("00000-000");
         $('#id_Cnpj').mask('00.000.000/0000-00', {reverse: true});
-        $('.id_Telefone').mask('(00) 0000-0000');
+        $('#id_Telefone').mask('(00) 0000-0000');
 })
 </script>
-            
-<body class="my-login-page">
-	<section class="h-100">
-		<div class="container h-100">
-			<div class="row justify-content-md-center h-100">
-				<div class="card-wrapper">
-					<div class="card fat">
-						<div class="card-body">
-							<h4 class="card-title">Cadastrar Empresa</h4>
-							<form method="POST" class="my-login-validation" novalidate="">
-                                {% csrf_token %}
-								<div class="form-group">
-									<label for="id_Nome">Nome da Empresa</label>
-									<input id="id_Nome" type="text" class="form-control" name="Nome" required autofocus>
-									<div class="invalid-feedback">
-										Nome da Empresa Inválido
-									</div>
-								</div>
-                                <div class="form-group">
-                                    <label for="id_Telefone">Contato da Empresa</label>
-                                    <input id="id_Telefone" type="text" class="form-control" name="Telefone" required autofocus>
-                                    <div class="invalid-feedback">
-                                        Contato da Empresa não específicado!
+<br><br><br><br>
+<div class="container">
+    <body class="my-login-page">
+        <section class="h-100">
+            <div class="container h-100">
+                <div class="row justify-content-md-center h-100">
+                    <div class="card-wrapper">
+                        <div class="card fat">
+                            <div class="card-body">
+                                <h2>Cadastrar Empresa</h2>
+                                <form method="POST" class="my-login-validation" novalidate="">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label for="id_Nome">Nome da Empresa</label>
+                                        <input id="id_Nome" type="text" class="form-control" name="Nome" required autofocus>
+                                        <div class="invalid-feedback">
+                                            Nome da Empresa Inválido
+                                        </div>
                                     </div>
-                                </div>     
-                                <div class="form-group">
-									<label for="id_email">E-Mail</label>
-									<input id="id_email" type="email" class="form-control" name="email" required>
-									<div class="invalid-feedback">
-										Email Inválido
-									</div>
-								</div>
-                                <div class="form-group">
-									<label for="id_Cnpj">CNPJ da Empresa</label>
-									<input id="id_Cnpj" type="text" class="form-control" name="Cnpj" required>
-									<div class="invalid-feedback">
-										CNPJ Inválido
-									</div>
-								</div>        
-                                <div class="form-group">
-                                    <label for="id_cep">CEP</label>
-                                    <input id="id_cep" type="text" class="form-control" name="cep" required autofocus>
-                                    <div class="invalid-feedback">
-                                        CEP Inválido
+                                    <div class="form-group">
+                                        <label for="id_Telefone">Contato da Empresa</label>
+                                        <input id="id_Telefone" type="text" class="form-control" name="Telefone" required autofocus>
+                                        <div class="invalid-feedback">
+                                            Contato da Empresa não específicado!
+                                        </div>
+                                    </div>     
+                                    <div class="form-group">
+                                        <label for="id_email">E-Mail</label>
+                                        <input id="id_email" type="email" class="form-control" name="email" required>
+                                        <div class="invalid-feedback">
+                                            Email Inválido
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="id_Pais">País</label>
-                                    <input id="id_Pais" type="text" class="form-control" name="Pais" required autofocus>
-                                    <div class="invalid-feedback">
-                                        País Inválido
+                                    <div class="form-group">
+                                        <label for="id_Cnpj">CNPJ da Empresa</label>
+                                        <input id="id_Cnpj" type="text" class="form-control" name="Cnpj" required>
+                                        <div class="invalid-feedback">
+                                            CNPJ Inválido
+                                        </div>
+                                    </div>        
+                                    <div class="form-group">
+                                        <label for="id_cep">CEP</label>
+                                        <input id="id_cep" type="text" class="form-control" name="cep" required autofocus>
+                                        <div class="invalid-feedback">
+                                            CEP Inválido
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="id_estado">Estado</label>
-                                    <input id="id_estado" type="text" class="form-control" name="estado" required autofocus>
-                                    <div class="invalid-feedback">
-                                        Estado não específicado!
+                                    <div class="form-group">
+                                        <label for="id_Pais">País</label>
+                                        <input id="id_Pais" type="text" class="form-control" name="Pais" required autofocus>
+                                        <div class="invalid-feedback">
+                                            País Inválido
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="id_cidade">Cidade</label>
-                                    <input id="id_cidade" type="text" class="form-control" name="cidade" required autofocus>
-                                    <div class="invalid-feedback">
-                                        Cidade não específicada!
+                                    <div class="form-group">
+                                        <label for="id_estado">Estado</label>
+                                        <input id="id_estado" type="text" class="form-control" name="estado" required autofocus>
+                                        <div class="invalid-feedback">
+                                            Estado não específicado!
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="id_logradouro">Logradouro</label>
-                                    <input id="id_logradouro" type="text" class="form-control" name="logradouro" required autofocus>
-                                    <div class="invalid-feedback">
-                                        Logradouro não específicado!
+                                    <div class="form-group">
+                                        <label for="id_cidade">Cidade</label>
+                                        <input id="id_cidade" type="text" class="form-control" name="cidade" required autofocus>
+                                        <div class="invalid-feedback">
+                                            Cidade não específicada!
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="id_bairro">Bairro</label>
-                                    <input id="id_bairro" type="text" class="form-control" name="bairro" required autofocus>
-                                    <div class="invalid-feedback">
-                                        Bairro não específicado!
+                                    <div class="form-group">
+                                        <label for="id_logradouro">Logradouro</label>
+                                        <input id="id_logradouro" type="text" class="form-control" name="logradouro" required autofocus>
+                                        <div class="invalid-feedback">
+                                            Logradouro não específicado!
+                                        </div>
                                     </div>
-                                </div>                                                                           
-                                <br>
-								<div class="d-grid gap-2 col-6 mx-auto">
-                                    <button class="btn btn-outline-primary" id="botao" type="submit">Cadastrar</button>
-                                </div>
-                                </div>
-							</form>
-						</div>
-					</div>
-                    <div class="footer">
-						Copyright &copy; 2021 &mdash; Camila Adriana|GomesMilla
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+                                    <div class="form-group">
+                                        <label for="id_bairro">Bairro</label>
+                                        <input id="id_bairro" type="text" class="form-control" name="bairro" required autofocus>
+                                        <div class="invalid-feedback">
+                                            Bairro não específicado!
+                                        </div>
+                                    </div>                                                                           
+                                    <br>
+                                    <div class="d-grid gap-2 col-6 mx-auto">
+                                        <button class="btn btn-outline-primary" id="botao" type="submit">Cadastrar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</div>
+<br>         
 
 <script>
 $( document ).ready(function() {
@@ -140,11 +140,6 @@ $( document ).ready(function() {
                 }
             });
         });
-
-
-
-
-
     });    
     
 </script>

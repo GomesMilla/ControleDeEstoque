@@ -7,10 +7,12 @@
     <meta name="theme-color" content="#F2BD24"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.compat.css" />
+    
     <!-- importando arquivos CSS  -->
     <link type="text/css" rel="stylesheet" href="{% static 'CSS/bootstrap.min.css' %}" media="screen,projection" />
     <link type="text/css" rel="stylesheet" href="{% static 'CSS/styles.css' %}">
     <link href="{% static 'CSS/HoldOn.min.css'%}" rel="stylesheet">
+    
     <!-- Importando arquivos JavaScript -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="{% static 'jquery.mask.js' %}"></script>
@@ -18,6 +20,7 @@
     <script type="text/javascript" src="{% static 'JS/bootstrap.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'JS/Dinamizar.js'%}"></script>
     <script type="text/javascript" src="{% static 'JS/HoldOn.min.js'%}"></script>
+    
     <!-- Importando icones -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -78,7 +81,7 @@
     
     
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light shadow-sm p-3 mb-5 bg-body rounded">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Controle de Estoque</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -105,7 +108,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="#">Listagem de Produtos</a></li>
-                                <li><a class="dropdown-item" href="#">Listagem de Empresa</a></li>
+                                <li><a class="dropdown-item" href="{% url 'ViewListarEmpresas' %}"">Listagem de Empresa</a></li>
                                 <li><a class="dropdown-item" href="#">Listagem de Gerentes</a></li>
                             </ul>
                         </li>
