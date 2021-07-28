@@ -56,8 +56,8 @@
                 </p>          
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Fechar</button>
-                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Entendi</button>
+                <button id="id_Fechar" type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Fechar</button>
+                <button id="id_Entendi" type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Entendi</button>
             </div>
         </div>
     </div>
@@ -218,8 +218,16 @@
 
 <script>
 $( document ).ready(function() {
-        $("#botao").attr("disabled", "true");
+        $("#botao").attr("disabled", "true"); // botão já começa desabilitado
 
+        // Opções do modal para selecionar de acordo com o click
+        $('#id_Entendi').click(function () {
+            $("#dropdownCheck2").prop("checked", true); 
+        })
+        $('#id_Fechar').click(function () {
+            $("#dropdownCheck2").prop("checked", false); 
+        })
+         // Configurações da senha para mostrar e esconder
         $('#Senha').click(function () {
             if($(this).is(':checked')){
                 $("#id_password").attr("type", "text");
@@ -228,7 +236,16 @@ $( document ).ready(function() {
                 $("#id_password").attr("type", "password");
             }
         })
+        // Configurações para habilitar o botão
         $( "#dropdownCheck2" ).click(function() {
+            if($(this).is(':checked')){
+                $("#botao").removeAttr("disabled", "");
+            }else {
+                $("#botao").attr("disabled", "true");
+            }
+        });
+        // Configurações para habilitar o botão
+        $("#id_Entendi" ).click(function() {
             if($(this).is(':checked')){
                 $("#botao").removeAttr("disabled", "");
             }else {
@@ -267,11 +284,6 @@ $( document ).ready(function() {
                 }
             });
         });
-
-
-
-
-
     });    
     
 </script>
