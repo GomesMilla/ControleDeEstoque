@@ -1,7 +1,7 @@
 {% extends 'principal/baseprojeto.html' %}
 {% load bootstrap %}
 {% block conteudo %}
-
+<br><br><br><br>
 <div class="container">
     <h3 class="">Lista de Empresas</h3>
     <table class="table table-hover">
@@ -17,8 +17,8 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                {% for empresa in ListEmpresas %}
+            {% for empresa in ListEmpresas %}
+                <tr>
                     <th scope="row">{{empresa.id}}</th>
                     <td>{{empresa.Nome}}</td>
                     <td>{{empresa.email}}</td>
@@ -30,8 +30,8 @@
                     <td>
                         <a type="button" class="btn btn-outline-danger">Excluir</a>
                     </td>
-                {% endfor %}
-            </tr>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 </div>
