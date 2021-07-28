@@ -4,35 +4,51 @@
 <br><br><br><br>
 <div class="container">
     <h3 class="">Lista de Empresas</h3>
-    <table class="table table-hover">
-        <thead>
-            <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Nome</th>
-            <th scope="col">E-mail</th>
-            <th scope="col">CNPJ</th>
-            <th scope="col">Telefone</th>
-            <th scope="col">Editar</th>
-            <th scope="col">Excluir</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for empresa in ListEmpresas %}
+    {% if ListEmpresas %}
+        <table class="table table-hover" id="id_tabelaEmpresas">
+            <thead>
                 <tr>
-                    <th scope="row">{{empresa.id}}</th>
-                    <td>{{empresa.Nome}}</td>
-                    <td>{{empresa.email}}</td>
-                    <td>{{empresa.Cnpj}}</td>
-                    <td>{{empresa.Telefone}}</td>
-                    <td>
-                        <a type="button" class="btn btn-outline-secondary">Editar</a>
-                    </td>
-                    <td>
-                        <a type="button" class="btn btn-outline-danger">Excluir</a>
-                    </td>
+                <th scope="col">ID</th>
+                <th scope="col">Nome</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">CNPJ</th>
+                <th scope="col">Telefone</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Excluir</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {% for empresa in ListEmpresas %}
+                    <tr>
+                        <th scope="row">{{empresa.id}}</th>
+                        <td>{{empresa.Nome}}</td>
+                        <td>{{empresa.email}}</td>
+                        <td>{{empresa.Cnpj}}</td>
+                        <td>{{empresa.Telefone}}</td>
+                        <td>
+                            <a type="button" class="btn btn-outline-secondary">Editar</a>
+                        </td>
+                        <td>
+                            <a type="button" class="btn btn-outline-danger">Excluir</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-danger" role="alert">
+            <h4 class="alert-heading">Não há empresa cadastrada!</h4>
+            <p>No nosso banco de dados não consta nenhuma empresa cadastrada. Caso houve um engano favor entrar em contato com a equipe de TI</p>
+            <hr>
+            <p class="mb-0"> Agora, caso queira <a href="{% url 'ViewCadastrarEmpresa' %}" class="alert-link"> cadastrar uma empresa</a> fique a vontade</p>
+        </div>
+    {% endif %}
 </div>
+<script>
+    $(document).ready(function(){
+        $("#id_pesquisa").on("keyup", function() {
+            Pesquisa("id_tabelaEmpresas tr","id_pesquisa");
+        });
+    });
+</script>
 {% endblock %}

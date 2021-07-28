@@ -33,6 +33,14 @@
     <title>{{nome_pagina}}</title>
 </head>
 
+<script>     
+    function Pesquisa(id_tabela,id_valor){
+        var value = $("#"+id_valor).val().toLowerCase();
+        $("#" + id_tabela).filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    }   
+    </script>
 <body>
     {% if messages %}
         {% for message in messages %} 
@@ -83,7 +91,7 @@
     <header>
         <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light shadow-sm p-3 mb-5 bg-body rounded">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Controle de Estoque</a>
+                <a class="navbar-brand" href="{% url 'ViewIndex' %}">Controle de Estoque</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -120,7 +128,7 @@
                         </li>
                     </ul>
                     <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">
+                        <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search"  id="id_pesquisa">
                         <button class="btn btn-outline-dark" type="submit">Pesquisar</button>
                     </form>
                 </div>
@@ -162,8 +170,7 @@
     
 
     <script>
-        $(document).ready(function() {          
-            
+        $(document).ready(function() {            
             // Função de carregamento
             $(window).bind('beforeunload', function() {
                 var options = {
@@ -177,10 +184,8 @@
             $(window).load(function() {
                 HoldOn.close();
             });
-            // Fim da função de carregamento        
-            
-    });
-        
+            // Fim da função de carregamento       
+    });        
     </script>
     {% block scripts %} 
     {% endblock %}
