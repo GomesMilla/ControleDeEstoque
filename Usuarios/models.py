@@ -137,11 +137,7 @@ class Empresa(models.Model):
         verbose_name="Empresa está ativa",
         default=True, 
     )
-    is_staff  = models.BooleanField(
-        verbose_name="Empresa é da equipe de desenvolvimento",
-        default= False,
-    )
-
+    
     class Meta:
         verbose_name = "Empresa"
         verbose_name_plural = "Empresas"
