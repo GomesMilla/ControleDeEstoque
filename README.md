@@ -25,7 +25,7 @@ Este é um projeto totalmente grátis!
 - [x] Listagem de Gerentes
 - [ ] Deletar Usuário
 - [ ] Deletar Produto
-- [ ] Deletar Empresa
+- [X] Desativar Empresa
 - [ ] Deletar Vendedor
 - [x] Login
 - [x] Reset de senha
