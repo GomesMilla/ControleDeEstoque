@@ -7,5 +7,8 @@ urlpatterns =[
     path('Início/', ViewIndex, name="ViewIndex"),
     path('Cadastrar-Empresa', ViewCadastrarEmpresa, name="ViewCadastrarEmpresa"),
     path('Lista-De-Empresas', ViewListarEmpresas, name="ViewListarEmpresas"),
+    # path('Desativar-Empresa/<int:id_empresa>/', ViewDesativarEmpresa, name="ViewDesativarEmpresa"),
+
+
 
 ]

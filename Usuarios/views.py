@@ -72,7 +72,15 @@ def ViewListarEmpresas(request):
     }
     return render(request, "Usuarios/ListaEmpresa.html", context)
 
-# def ViewDesativarEmpresa(request):
+# def ViewDesativarEmpresa(request, id_empresa):
+
+    ObjEmpresa = Empresa.objects.get(pk = id_empresa)
+
+    context = {
+        "nome_pagina" : "Desativar Empresa",
+    }
+
+
 
 
 
