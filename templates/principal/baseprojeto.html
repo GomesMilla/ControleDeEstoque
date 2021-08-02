@@ -89,7 +89,7 @@
     
     
     <header>
-        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light shadow-sm p-3 mb-5 bg-body rounded">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light shadow-sm p-3 mb-5 bg-body rounded position-absolute">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{% url 'ViewIndex' %}">Controle de Estoque</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -141,31 +141,8 @@
         {%endblock conteudo%}
     </main>
 
-
-    <!-- Footer -->
-    <footer class="page-footer font-small navbar-dark bg-dark">
-        <div class="container-fluid text-center text-md-left">
-            <div class="row">
-                <div class="col-md-6 mt-md-0 mt-3"><br>
-                    <h5 class="text-uppercase font-weight-bold" style="color: aliceblue;">Boa Aplicação:</h5>
-                    <p style="text-align: justify; color: aliceblue;">O controle bem-sucedido de estoque requer dados de compras, novos pedidos, expedição, 
-                        armazenamento, recebimento, satisfação do cliente, 
-                        prevenção de perdas, giro, dentre outros.
-                    </p>   
-                </div>
-                <hr class="clearfix w-100 d-md-none pb-3">
-                <div class="col-md-6 mb-md-0 mb-3"><br>
-                    <h5 class="text-uppercase font-weight-bold" style="color: aliceblue;">Resultados:</h5>
-                    <p style="text-align: justify; color: aliceblue;">Quando este acompanhamento e gerenciamento é feito de forma adequada, 
-                        é possível maximizar os lucros e ainda melhorar o índice de satisfação do cliente. 
-                        Isso é possível porque as empresas passam a ter ferramentas e dados suficientes para avaliar seu 
-                        estado atual e adequá-lo à projeção de vendas.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="footer-copyright text-center py-3">© 2021 Copyright: Camila Adriana|GomesMilla
-        </div>
+    <footer class="page-footer font-small bg-light">
+        <div class="footer-copyright text-center py-3">© 2021 Camila Adriana|GomesMilla</div>
     </footer>
     
 

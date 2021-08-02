@@ -53,7 +53,7 @@ def ViewCadastrarEmpresa(request):
         
         else:
             print(FormularioPreenchido.errors.as_data())               
- 
+
     context = {
         "nome_pagina" : "Criar Conta",
         "FormularioSimples" : FormularioSimples,
@@ -71,6 +71,9 @@ def ViewListarEmpresas(request):
         "ListEmpresas" : ListEmpresas
     }
     return render(request, "Usuarios/ListaEmpresa.html", context)
+
+# def ViewDesativarEmpresa(request):
+
 
 
 

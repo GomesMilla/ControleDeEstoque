@@ -133,6 +133,15 @@ class Empresa(models.Model):
     Telefone = models.CharField('Contato da empresa', max_length=194, blank=True, null=True)
     DataCadastro = models.DateTimeField('Data do cadastro',  auto_now_add=True, null=False)
 
+    is_active = models.BooleanField(
+        verbose_name="Empresa está ativa",
+        default=True, 
+    )
+    is_staff  = models.BooleanField(
+        verbose_name="Empresa é da equipe de desenvolvimento",
+        default= False,
+    )
+
     class Meta:
         verbose_name = "Empresa"
         verbose_name_plural = "Empresas"
