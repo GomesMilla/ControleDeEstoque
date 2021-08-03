@@ -64,7 +64,7 @@ def ViewCadastrarEmpresa(request):
 
 def ViewListarEmpresas(request):
 
-    ListEmpresas = Empresa.objects.all()
+    ListEmpresas = Empresa.objects.filter(is_active = True)
 
     context = {
         "nome_pagina" : "Empresas",
