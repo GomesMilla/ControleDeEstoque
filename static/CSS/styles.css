@@ -37,8 +37,8 @@ hr.divider {
 .cards{
   margin-top: 5%;
 }
-.tabela{
-  border: 1px solid rgb(44, 44, 44);
+.top{
+  margin-top: 10%;
 }
 
 /* Footer inferior */

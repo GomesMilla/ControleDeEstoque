@@ -1,22 +1,22 @@
 {% extends 'principal/baseprojeto.html' %}
 {% load bootstrap %}
 {% block conteudo %}
-<br><br><br><br>
 
-<div class="container">
+<div class="container top">
     <h3 class="titulo">Lista de Empresas</h3>
     <hr class="divider"/>
     {% if ListEmpresas %}
-        <table class="table table-hover cards tabela" id="id_tabelaEmpresas">
+    <div class="table-responsive">
+        <table class="table table-hover mt-5 shadow-sm p-3 mb-5 bg-body rounded" id="id_tabelaEmpresas">
             <thead>
                 <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Nome</th>
-                <th scope="col">E-mail</th>
-                <th scope="col">CNPJ</th>
-                <th scope="col">Telefone</th>
-                <th scope="col">Editar</th>
-                <th scope="col">Desativar</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">E-mail</th>
+                    <th scope="col">CNPJ</th>
+                    <th scope="col">Telefone</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Desativar</th>
                 </tr>
             </thead>
             <tbody>
@@ -54,6 +54,7 @@
                 {% endfor %}
             </tbody>
         </table>
+    </div>
     {% else %}
         <div class="alert alert-danger" role="alert">
             <h4 class="alert-heading">Não há empresa cadastrada!</h4>

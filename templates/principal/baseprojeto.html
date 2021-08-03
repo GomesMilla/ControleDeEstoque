@@ -45,35 +45,41 @@
     {% if messages %}
         {% for message in messages %} 
             {% if message.tags == 'success' %}
-            <div class="alert alert-success" role="alert">
-                <button type="button" class="btn-close position-absolute top-0 end-0" data-bs-dismiss="alert" aria-label="Close"></button>
-                <h4 class="alert-heading">Sucesso!</h4>
-                    <p>A empresa foi cadastrada com sucesso!!</p>
-                <hr>
-                <p class="mb-0">Horário do cadastro: {{now}}</p>
-            </div>
+                <div class="position-absolute bottom-50 end-50">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Concluído!
+                        <br>
+                        </strong>{{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
             {%elif message.tags == 'error'%}
-                <div class="p-3 mb-2 bg-danger text-white" role="alert">
-                    <li>{{ message }}</li>
+                <div class="position-absolute bottom-50 end-50">
+                    <div class="alert alert-alert alert-dismissible fade show" role="alert">
+                        <strong>Concluído!
+                        <br>
+                        </strong>{{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
                 </div>
             {%elif message.tags == 'warning'%}
-                <script type="text/javascript">
-                    var toastHTML = '{{ message }}';
-                    M.toast({
-                        html: toastHTML,
-                        displayLength: 6000,
-                        classes: 'rounded  red darken-4 white-text text-white'
-                    });
-                </script>
+                <div class="position-absolute bottom-50 end-50">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Concluído!
+                        <br>
+                        </strong>{{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
             {%elif message.tags == 'info'%}
-                <script type="text/javascript">
-                    var toastHTML = '{{ message }}';
-                    M.toast({
-                        html: toastHTML,
-                        displayLength: 6000,
-                        classes: 'rounded  teal lighten-4 black-text text-black'
-                    });
-                </script>
+                <div class="position-absolute bottom-50 end-50">
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong>Concluído!
+                        <br>
+                        </strong>{{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
             {% else %}
             <script type="text/javascript">
                 var toastHTML = '{{ message }}';
@@ -89,7 +95,7 @@
     
     
     <header>
-        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light shadow-sm p-3 mb-5 bg-body rounded position-absolute">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light shadow-sm p-3 mb-5 bg-body rounded">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{% url 'ViewIndex' %}">Controle de Estoque</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -153,7 +159,7 @@
                 var options = {
                     theme: "sk-circle",
                     message: 'Por favor, aguarde...',
-                    backgroundColor: "#black",
+                    backgroundColor: "rgb(0, 0, 0)",
                     textColor: "white"
                 };
                 HoldOn.open(options);

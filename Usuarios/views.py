@@ -77,8 +77,10 @@ def ViewDesativarEmpresa(request, id_empresa):
     ObjEmpresa = Empresa.objects.get(pk = id_empresa)
     ObjEmpresa.is_active = False
     ObjEmpresa.save()
-    # print("Desativei essa bagaça")
-    return redirect("ViewIndex") 
+    mensagem = f'Empresa removida com sucesso!'
+    messages.warning(request, mensagem) 
+    return redirect("ViewListarEmpresas")
+    
 
     context = {
         "nome_pagina" : "Desativar Empresa",
