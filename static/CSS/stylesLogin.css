@@ -2,13 +2,18 @@ html,body {
 	height: 100%;
 	margin-top: 10px;
 	font-size: 20px;
-
-
 }
 
 body.my-login-page {
 	background-image: linear-gradient(to right, rgb(202, 224, 248),rgb(209, 231, 252),rgb(171, 194, 243),rgb(168, 219, 248),rgb(194, 211, 247),rgb(167, 207, 233),rgb(190, 210, 253));
 	font-size: 18px;
+}
+hr.divider {
+	height: 0.2em;
+	max-width: 27rem;
+	margin: 0.6rem auto;
+	background: rgb(184, 131, 32);
+	opacity: 1;
 }
 
 .my-login-page .brand {

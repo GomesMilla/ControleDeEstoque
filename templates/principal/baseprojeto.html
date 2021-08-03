@@ -29,7 +29,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
-    <link rel="shortcut icon" href="{% static 'Imagem.png' %}">
+    <link rel="shortcut icon" href="{% static 'Butique.png' %}">
     <title>{{nome_pagina}}</title>
 </head>
 
@@ -95,9 +95,12 @@
     
     
     <header>
-        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light shadow-sm p-3 mb-5 bg-body rounded">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light shadow-none p-3 mb-5 bg-light rounded">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{% url 'ViewIndex' %}">Controle de Estoque</a>
+                <a class="navbar-brand" href="{% url 'ViewIndex' %}">
+                    <img src="{% static 'infinito.gif' %}" alt="Logo" width="80" height="80">
+                </a>
+                <!-- <a class="navbar-brand" href="{% url 'ViewIndex' %}">Controle de Estoque</a> -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -105,9 +108,9 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         
                         <li class="nav-item dropdown">
-                            <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenuOffset" data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="10,20">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Cadastro
-                            </button>
+                            </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="#">Cadastrar Vendedor</a></li>
                                 <li><a class="dropdown-item" href="#">Cadastrar Gerente</a></li>
