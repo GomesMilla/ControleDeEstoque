@@ -22,6 +22,7 @@
                                 <hr class="divider"/>
                                 <form method="POST" class="my-login-validation" novalidate="">
                                     {% csrf_token %}
+                                    <!-- {{ FormularioSimples }} -->
                                     <div class="form-group">
                                         <label for="id_Nome">Nome da Empresa</label>
                                         <input id="id_Nome" type="text" class="form-control" name="Nome" required autofocus>

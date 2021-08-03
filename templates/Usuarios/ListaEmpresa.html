@@ -28,7 +28,7 @@
                         <td>{{empresa.Cnpj}}</td>
                         <td>{{empresa.Telefone}}</td>
                         <td>
-                            <a type="button" class="btn btn-outline-secondary">Editar</a>
+                            <a class="btn btn-outline-secondary" href="{% url 'ViewEditarEmpresa' empresa.id %}">Editar</a>
                         </td>
                         <td>
                             <a href="#" class="btn btn-outline-danger" data-bs-toggle="modal"  data-bs-target="#staticBackdrop-{{empresa.id}}">Desativar</a>

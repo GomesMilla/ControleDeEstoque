@@ -86,6 +86,38 @@ def ViewDesativarEmpresa(request, id_empresa):
 
     return render(request, 'Usuarios/Index.html', context)
 
+def ViewEditarEmpresa(request, id_empresa):
+    print(id_empresa)
+    ObjEmpresa =  Empresa.objects.get(pk=id_empresa)
+    print(request.method)
+
+    if request.method == 'POST':
+        FormularioPreenchido = EmpresaForm(request.POST or None, instance = ObjEmpresa)
+        if FormularioPreenchido.is_valid():
+            ObjEmpresa.is_active = True
+            FormularioPreenchido.save()
+            mensagem = f'Alteração realizada com sucesso!'
+            messages.success(request, mensagem) 
+            return redirect("ViewListarEmpresas")
+    else:
+        FormularioPreenchido = EmpresaForm(instance=ObjEmpresa)
+        print(FormularioPreenchido)
+
+    context = {
+        "nome_pagina" : "Editar Empresa",
+        "FormularioSimples" : FormularioPreenchido
+    }
+
+    return render(request, "Usuarios/EditarEmpresa.html", context)
+
+
+# Construindo View
+# def ViewVisualizarEmpresa(request, id_empresa):
+#     ObjEmpresa = Empresa.objects.get(pk=id_empresa)
+
+#     return render(request)
+
+
 
 
 
