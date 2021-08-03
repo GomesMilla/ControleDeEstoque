@@ -31,26 +31,26 @@
                             <a type="button" class="btn btn-outline-secondary">Editar</a>
                         </td>
                         <td>
-                            <a type="button" href="#staticBackdrop" class="btn btn-outline-danger" data-bs-toggle="modal"  data-bs-target="#staticBackdrop">Desativar</a>
+                            <a href="#" class="btn btn-outline-danger" data-bs-toggle="modal"  data-bs-target="#staticBackdrop-{{empresa.id}}">Desativar</a>
+                            <div class="modal" id="staticBackdrop-{{empresa.id}}">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Tem certeza que deseja desativar a Empresa</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Ao confirmar, a empresa só ficará disponível para usuários masters e não aparecerá em consultas ou cadastros</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                            <a class="btn btn-primary" href="{% url 'ViewDesativarEmpresa' empresa.id %}">Desativar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </td>
                     </tr>
-                    <div class="modal" tabindex="-1" id="staticBackdrop">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Tem certeza que deseja desativar a Empresa</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <p>Ao confirmar, a empresa só ficará disponível para usuários masters e não aparecerá em consultas ou cadastros</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                <a type="button" class="btn btn-primary" href="{% url 'ViewDesativarEmpresa' empresa.id %}">Desativar</a>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
                 {% endfor %}
             </tbody>
         </table>
