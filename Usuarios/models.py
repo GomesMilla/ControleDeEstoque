@@ -118,7 +118,7 @@ class Gerente(models.Model):
         db_table = "Gerente"
 
     def __str__(self):
-        return self.pessoa.nome
+        return self.pessoa.Nome
 
 class Empresa(models.Model):
     Nome = models.CharField('Nome da empresa', max_length=194)
@@ -158,4 +158,4 @@ class Vendedor(models.Model):
         db_table = "vendedor"
 
     def __str__(self):
-        return self.pessoa.nome
+        return self.pessoa.Nome

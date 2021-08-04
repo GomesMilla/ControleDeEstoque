@@ -112,8 +112,6 @@
                                 Cadastro
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Cadastrar Vendedor</a></li>
-                                <li><a class="dropdown-item" href="#">Cadastrar Gerente</a></li>
                                 <li><a class="dropdown-item" href="{% url 'ViewCadastrarEmpresa' %}">Cadastrar Empresa</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="#">Cadastrar Produto</a></li>
@@ -125,7 +123,9 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="#">Listagem de Produtos</a></li>
+                                <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="{% url 'ViewListarEmpresas' %}"">Listagem de Empresa</a></li>
+                                <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="#">Listagem de Gerentes</a></li>
                             </ul>
                         </li>
