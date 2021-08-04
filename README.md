@@ -23,7 +23,6 @@ Este é um projeto totalmente grátis!
 - [x] Listagem de Produtos
 - [x] Listagem de Empresa
 - [x] Listagem de Gerentes
-- [ ] Deletar Usuário
 - [ ] Deletar Produto
 - [X] Desativar Empresa
 - [ ] Deletar Vendedor

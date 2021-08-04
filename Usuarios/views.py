@@ -45,11 +45,11 @@ def ViewCadastrarEmpresa(request):
         FormularioPreenchido = EmpresaForm(request.POST)
         print(FormularioPreenchido)
         if FormularioPreenchido.is_valid():
-            print("formulario valido")
+            FormularioPreenchido.is_active = True
             FormularioPreenchido.save()
             mensagem = f'Empresa cadastrada com sucesso!'
             messages.success(request, mensagem) 
-            return redirect("ViewIndex") 
+            return redirect("ViewListarEmpresas") 
         
         else:
             print(FormularioPreenchido.errors.as_data())               
@@ -120,6 +120,6 @@ def ViewEditarEmpresa(request, id_empresa):
 
 
 
-
+# Arrumar is_active da empresa. Ele já inicia sendo True
 
 
