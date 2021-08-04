@@ -17,6 +17,11 @@ class PessoaAdmin(admin.ModelAdmin):
 #     save_as = True
 # Entender o modelo ReadOnly.ModelAdmin
 
+class VendedorAdmin(admin.ModelAdmin):
+    readonly_fields = ('TotalComprado',)
+    search_fields = ['Nome']
+
+
 class EmpresaAdmin(admin.ModelAdmin):
     list_display = ('Nome', 'email', 'Cnpj','estado', 'id') 
     list_filter = ('estado','cep')
@@ -30,4 +35,4 @@ class EmpresaAdmin(admin.ModelAdmin):
 admin.site.register(Pessoa,PessoaAdmin) 
 admin.site.register(Gerente)
 admin.site.register(Empresa, EmpresaAdmin)
-admin.site.register(Vendedor)
+admin.site.register(Vendedor, VendedorAdmin)

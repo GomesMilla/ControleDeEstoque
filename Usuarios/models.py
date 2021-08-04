@@ -151,6 +151,7 @@ class Empresa(models.Model):
 class Vendedor(models.Model):
     pessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE)
     empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE)
+    TotalComprado = models.FloatField('Valor comprado do fornecedor', blank=True, null=True)
 
     class Meta:
         verbose_name = "Vendedor"
@@ -159,3 +160,5 @@ class Vendedor(models.Model):
 
     def __str__(self):
         return self.pessoa.Nome
+
+# Adicionar aqui o total comprado desse vendedor

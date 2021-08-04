@@ -29,7 +29,7 @@ def ViewCriarConta(request):
     return render(request, "Logins/CadastroUser.html", context)
 
 def ViewIndex(request):
-
+    print(request.user.Nome)
     context = {
         "nome_pagina" : "Início",
     }
@@ -76,7 +76,7 @@ def ViewDesativarEmpresa(request, id_empresa):
     ObjEmpresa = Empresa.objects.get(id = id_empresa)
     ObjEmpresa.is_active = False
     ObjEmpresa.save()
-    mensagem = f'Empresa removida com sucesso!'
+    mensagem = f'Empresa desativada com sucesso!'
     messages.warning(request, mensagem) 
     return redirect("ViewListarEmpresas")
     
