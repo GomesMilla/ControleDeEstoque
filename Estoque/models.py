@@ -10,6 +10,8 @@ class Produto(models.Model):
     Nome = models.CharField('Nome do produto', max_length=194)
     Categoria = models.CharField('Categoria', max_length=30, choices=CURVA_ABC)
     Descricao = models.TextField('Descrição do produto', max_length=194, blank=True, null=True)
+    QuantidadeMinima = models.IntegerField('Quantidade mínima')
+    ValorUnitario = models.FloatField('Valor unitário do produto')
 
     class Meta:
         verbose_name = "Produto"
@@ -19,6 +21,20 @@ class Produto(models.Model):
 
     def __str__(self):
         return self.Nome
+
+class ProdutoEstoque(models.Model):
+    produto = models.ForeignKey(Produto, on_delete=models.CASCADE)
+    quantidade = models.IntegerField(verbose_name="Quantidade de produto:")
+    data_de_validade = models.DateField(verbose_name="Data de validade:")
+
+    class Meta:
+        verbose_name = "Estoque"
+        verbose_name_plural = "Estoques"
+        db_table = "Estoque"
+
+    def __str__(self):
+        return self.produto.nome
+
 
 
 # Cada item de estoque tem muitas informações que podem ser relevantes para tomada de decisões. Dentre as principais, destacam-se:
