@@ -11,8 +11,6 @@
     })
 })
 </script>
-
-
 <!-- Modal com as informações de termos e condições descritas -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -226,7 +224,6 @@ $( document ).ready(function() {
             $('#id_Nascimento').datetimepicker({
                 format: 'DD/MM/YYYY',
             });
-            
             // get date from popup datepicker
             $("#datepicker-dialog .btn-primary").on("click", function () {
                 $("#datepicker-dialog").modal('hide');
@@ -240,9 +237,7 @@ $( document ).ready(function() {
                 }else {
                     $("[data-datepicker="+datepickerID+"]").text(popupDatepickerValue);	
                 }
-                
             });
-            
         });
 	
         $(function () {
