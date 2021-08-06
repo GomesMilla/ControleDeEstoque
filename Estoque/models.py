@@ -22,18 +22,20 @@ class Produto(models.Model):
     def __str__(self):
         return self.Nome
 
-class ProdutoEstoque(models.Model):
-    produto = models.ForeignKey(Produto, on_delete=models.CASCADE)
-    quantidade = models.IntegerField(verbose_name="Quantidade de produto:")
-    data_de_validade = models.DateField(verbose_name="Data de validade:")
+class Armazenamento(models.Model):
+    Produto = models.ForeignKey(Produto, on_delete=models.CASCADE)
+    Quantidade = models.IntegerField('Quantidade de produto')
+    DataValidade = models.DateField('Data de validade')
+    ValorEstoque = models.FloatField('Valor de Estoque', blank=True, null=True)
+    EstoqueAtual = models.FloatField('Quantidade disponivel no estoque', blank=True, null=True)
 
     class Meta:
         verbose_name = "Estoque"
         verbose_name_plural = "Estoques"
-        db_table = "Estoque"
+        db_table = "armazenamento"
 
     def __str__(self):
-        return self.produto.nome
+        return self.Produto.Nome
 
 
 

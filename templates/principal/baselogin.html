@@ -8,23 +8,30 @@
     <meta name="theme-color" content="#F2BD24"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.compat.css" />
-    
     <!-- importando arquivos CSS  -->
+    <link type="text/css" rel="stylesheet" href="{% static 'CSS/Date.css' %}">
     <link type="text/css" rel="stylesheet" href="{% static 'CSS/bootstrap.min.css' %}" media="screen,projection" />
     <link type="text/css" rel="stylesheet" href="{% static 'CSS/stylesLogin.css' %}">
     <link href="{% static 'CSS/HoldOn.min.css'%}" rel="stylesheet">
-    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
     <!-- Importando arquivos JavaScript -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="{% static 'jquery.mask.js' %}"></script>
-    <script type="text/javascript" src="{% static 'JS/jquery.mask.min.js'%}"></script>
+    <script type="text/javascript" src="{% static 'JS/jquery.mask.min.js'%}"></script>    
     <script type="text/javascript" src="{% static 'JS/bootstrap.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'JS/HoldOn.min.js'%}"></script>
-    <!-- <script src="JS/my-login.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
-    
+    <script type="text/javascript" src="{% static 'JS/Dinamizar.js'%}"></script>
+    <script type="text/javascript" src="{% static 'JS/Date.min.js'%}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Propeller textfield js --> 
+    <script type="text/javascript" src="dist/js/propeller.min.js"></script>
+    <!-- Datepicker moment with locales -->
+    <script type="text/javascript" language="javascript" src="datetimepicker/js/moment-with-locales.js"></script>
+    <!-- Propeller Bootstrap datetimepicker -->
+    <script type="text/javascript" language="javascript" src="datetimepicker/js/bootstrap-datetimepicker.js"></script>
     <!-- Importando icones -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,7 +40,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
-    <link rel="shortcut icon" href="{% static 'Imagem.png' %}">
+    <link rel="shortcut icon" href="{% static 'Butique.png' %}">
     <title>{{nome_pagina}}</title>
 </head>
 
@@ -42,7 +49,6 @@
         {%block conteudo%} 
         {%endblock conteudo%}
     </main>
-
 
     <script>
         $(document).ready(function() { 
@@ -61,8 +67,7 @@
             });
             // Fim da função de carregamento        
             
-    });
-        
+    });        
     </script>
     {% block scripts %} 
     {% endblock %}

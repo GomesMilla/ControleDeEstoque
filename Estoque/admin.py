@@ -8,3 +8,4 @@ class ProdutoAdmin(admin.ModelAdmin):
     view_on_site = False
 
 admin.site.register(Produto,ProdutoAdmin)
+admin.site.register(Armazenamento)
