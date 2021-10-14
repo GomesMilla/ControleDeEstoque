@@ -13,10 +13,10 @@ class PessoaForm(forms.ModelForm):
     
     class Meta:
         model = Pessoa
-        fields = ["Nome","Naturalidade","Pais","Escolaridade", "Status", "email", "Telefone_celular", "Cpf", "Nascimento","EstadoCivil","Profissao", "cep","estado","cidade","bairro","logradouro","Numero","password"]
+        fields = ('__all__')
 
 class EmpresaForm(forms.ModelForm):
 
     class Meta:
         model = Empresa
-        exclude = ('DataCadastro',)
+        exclude = ('dataCadastro',)

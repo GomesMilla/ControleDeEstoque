@@ -3,22 +3,22 @@ from Usuarios.models import *
 
 # Sobrescrevendo a classe admin padrão!
 class PessoaAdmin(admin.ModelAdmin):
-    list_display = ('Nome', 'email', 'Cpf','estado','id') #Dentro do admin na class Pessoas, é esses atributos que será mostrado
+    list_display = ('nome', 'email', 'cpf','estado','id') #Dentro do admin na class Pessoas, é esses atributos que será mostrado
     list_filter = ('is_active','is_superuser','is_staff')#Filtrar Pessoas por esses atributos
-    date_hierarchy = 'DataCadastro'
-    search_fields = ['Nome']#Campo de pesquisa por nome
+    date_hierarchy = 'dataCadastro'
+    search_fields = ['nome']#Campo de pesquisa por nome
     view_on_site = False
 
 class VendedorAdmin(admin.ModelAdmin):
-    readonly_fields = ('TotalComprado',)
-    search_fields = ['Nome']
+    readonly_fields = ('totalVendido',)
+    search_fields = ['nome']
 
 
 class EmpresaAdmin(admin.ModelAdmin):
-    list_display = ('Nome', 'email', 'Cnpj','estado', 'id') 
+    list_display = ('nome', 'email', 'cnpj','estado', 'id') 
     list_filter = ('estado','cep')
-    date_hierarchy = 'DataCadastro'
-    search_fields = ['Nome']
+    date_hierarchy = 'dataCadastro'
+    search_fields = ['nome']
     view_on_site = False
 
 

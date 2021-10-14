@@ -1,7 +1,11 @@
 from pathlib import Path
-import os
+import os, sys
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-6w23%li%v2=dkbe_#sahsag0zw*p96-o3nt4t@$_x$5$vgd-ak'
+
+sys.path.append(
+    os.path.join(BASE_DIR, "apps")
+)
 
 # Configurações para programador e servidor local
 DEBUG = True
@@ -18,9 +22,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Estoque',
-    'Transacao',
     'Usuarios',
+    # 'Estoque',
+    # 'Transacao',
     'easy_mask',
     'crispy_forms',
     'bootstrapform',
