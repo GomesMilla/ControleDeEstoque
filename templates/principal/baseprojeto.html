@@ -92,7 +92,6 @@
                 <a class="navbar-brand" href="{% url 'ViewIndex' %}">
                     <img src="{% static 'infinito.gif' %}" alt="Logo" width="80" height="80">
                 </a>
-                <!-- <a class="navbar-brand" href="{% url 'ViewIndex' %}">Controle de Estoque</a> -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -124,6 +123,16 @@
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Financeiro
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="#">Circulação de Capital</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#">Relatório Financeiro</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Logística
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -134,11 +143,18 @@
                                     <li><a class="dropdown-item" href="#">PDF</a></li>
                                 </ul>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Estoque</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Opções
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="#">Estoque</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="{% url 'Login' %}">Sair</a></li>
+                                </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="{% url 'Login' %}">Sair</a>
+                                <a class="nav-link active" aria-current="page" href="#"> <i class="material-icons fs-3 text-green-15 d-flex justify-content-end" id="id_favoritar">campaign</i></a>
                             </li>
                         </ul>
                     </div>

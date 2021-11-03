@@ -1,71 +1,173 @@
 {% extends 'principal/baseprojeto.html' %}
 {% block conteudo %}
 {% load static %}
-    <main class="container">
-        <h1 class="Index">CONTROLE DE ESTOQUE</h1>
-        <hr class="divider" />
-        <div class="row cards">
-            <div class="col-sm-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">CADASTRAR PRODUTO</h5>
-                        <p class="text-dark">Cadastrar produto para que seja adicionado um tipo de alimento no controle de estoque</p>
-                        <a href="#" type="button"  class="btn btn-outline-primary">CADASTRAR PRODUTO</a>
+    
+    <div class="container top">
+        <div class="row gap-3 d-flex justify-content-center">
+            <div class="card yellow-13" style="width: 15rem; height: 130px; background-color: rgb(61, 43, 226);">
+                <div class="card-body mt-1">
+                    <div class="row">
+                        <div class="col-6">
+                            <span class="material-icons text-white d-flex align-items-center pt-1" style="font-size: 75px;">category</span>
+                        </div>
+                        <div class="col-6 text-center text-white align-items-center mt-1">
+                            <span class="fs-6 fw-bold">Produtos</span>
+                            <p class="fs-2">6891</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">RELATÓRIO DAS MOVIMENTAÇÕES</h5>
-                        <p class="card-text">Relatório das movimentações, listando data, gerente, tipo de movimentação e mais.</p>
-                        <a href="#" class="btn btn-outline-primary">RELATÓRIO</a>
+            <div class="card green-15" style="width: 15rem; height: 130px; background-color: rgb(221, 221, 65);">
+                <div class="card-body mt-1">
+                    <div class="row">
+                        <div class="col-6">
+                            <span class="material-icons text-white d-flex align-items-center pt-1" style="font-size: 75px;">payments</span>
+                        </div>
+                        <div class="col-6 text-center text-white align-items-center mt-1">
+                            <span class="fs-6 fw-bold">Serviço</span>
+                            <p class="fs-2">200</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card red-12" style="width: 15rem; height: 130px; background-color: green;">
+                <div class="card-body mt-1">
+                    <div class="row">
+                        <div class="col-6 ">
+                            <span class="material-icons text-white d-flex align-items-center pt-1" style="font-size: 75px;">monetization_on</span>
+                        </div>
+                        <div class="col-6 text-center text-white align-items-center mt-1">
+                            <span class="fs-6 fw-bold">Vendas</span>
+                            <p class="fs-2">1865</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card red-12" style="width: 15rem; height: 130px; background-color: red;">
+                <div class="card-body mt-1">
+                    <div class="row">
+                        <div class="col-6 ">
+                            <span class="material-icons text-white d-flex align-items-center pt-1" style="font-size: 75px;">attach_money</span>
+                        </div>
+                        <div class="col-6 text-center text-white align-items-center mt-1">
+                            <span class="fs-6 fw-bold">Compras</span>
+                            <p class="fs-2">2589</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card red-12" style="width: 15rem; height: 130px; background-color: rgb(110, 79, 21);">
+                <div class="card-body mt-1">
+                    <div class="row">
+                        <div class="col-6 ">
+                            <span class="material-icons text-white d-flex align-items-center pt-1" style="font-size: 75px;">campaign</span>
+                        </div>
+                        <div class="col-6 text-center text-white align-items-center mt-1">
+                            <span class="fs-6 fw-bold">Avisos</span>
+                            <p class="fs-2">25</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <br>
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">PRODUTOS CADASTRADOS</h5>
-                        <p class="card-text">Lista de produtos cadastrados.</p>
-                        <a href="#" class="btn btn-outline-primary">PRODUTOS CADASTRADOS</a>
+        <div class="mt-5">
+            <div class="accordion" id="accordionPanelsStayOpenExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                            <span class="material-icons text-black d-flex align-items-center pt-1" style="font-size: 25px">add_shopping_cart</span>Últimas Movimentações
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                        <div class="accordion-body">
+                            <table class="table">
+                                <thead class="table-secondary">
+                                    <tr>
+                                        <th scope="col">Data Movimentação</th>
+                                        <th scope="col">Tipo</th>
+                                        <th scope="col">Produto</th>
+                                        <th scope="col">Valor Movimentado</th>
+                                        <th scope="col">Responsável</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>20/03/2022</td>
+                                        <td>Compra</td>
+                                        <td>Macarrão</td>
+                                        <td>159,00</td>
+                                        <td>Camila Adriana</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                            <span class="material-icons text-black d-flex align-items-center pt-1" style="font-size: 25px">production_quantity_limits</span>Últimas Compras
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+                        <div class="accordion-body">
+                            <div class="accordion-body">
+                                <table class="table">
+                                    <thead class="table-secondary">
+                                        <tr>
+                                            <th scope="col">Data Movimentação</th>
+                                            <th scope="col">Produto</th>
+                                            <th scope="col">Valor Movimentado</th>
+                                            <th scope="col">Responsável</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>20/03/2022</td>
+                                            <td>Macarrão</td>
+                                            <td>159,00</td>
+                                            <td>Camila Adriana</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                            <span class="material-icons text-black d-flex align-items-center pt-1" style="font-size: 25px">attach_money</span>Últimas Vendas
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+                        <div class="accordion-body">
+                            <div class="accordion-body">
+                                <table class="table">
+                                    <thead class="table-secondary">
+                                        <tr>
+                                            <th scope="col">Data Movimentação</th>
+                                            <th scope="col">Tipo</th>
+                                            <th scope="col">Produto</th>
+                                            <th scope="col">Valor Movimentado</th>
+                                            <th scope="col">Responsável</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>20/03/2022</td>
+                                            <td>Compra</td>
+                                            <td>Macarrão</td>
+                                            <td>159,00</td>
+                                            <td>Camila Adriana</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">ENTRADA DE PRODUTOS</h5>
-                        <p class="card-text">Adicionar Produto ao estoque</p>
-                        <a href="#" class="btn btn-outline-primary">ADICIONAR PRODUTO</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">ESTOQUE</h5>
-                        <p class="card-text">Todos os produtos que estão no estoque validando data de vencimento, quantidade e nome do produto.</p>
-                        <a href="#" class="btn btn-outline-primary">ESTOQUE</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">SAÍDA DE PRODUTO</h5>
-                        <p class="card-text">Retirada de produtos do estoque.</p>
-                        <a href="#" class="btn btn-outline-primary">RETIRAR PRODUTO</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-    <br>
+    </div>         
+</div>
 {% endblock %}
