@@ -24,7 +24,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Usuarios',
     'Estoque',
-    # 'Transacao',
+    'Transacao',
     'easy_mask',
     'crispy_forms',
     'bootstrapform',
