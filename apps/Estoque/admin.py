@@ -18,4 +18,15 @@ class SalaPersonalizado(admin.ModelAdmin):
     empty_value_display = 'Não Informado'
     date_hierarchy = 'dataCadastro'
 
+class ClassificacaoPersonalizado(admin.ModelAdmin):
+    list_display = ('nome', 'cadastradoPor', 'dataCadastro')
+    list_filter = ['ativo']
+    ordering = ['nome']
+    search_fields = ['nome']
+    readonly_fields = ('dataCadastro', 'cadastradoPor', 'desativadoPor', 'dataDesativacao')
+    empty_value_display = 'Não Informado'
+    date_hierarchy = 'dataCadastro'
+
+
 admin.site.register(Sala, SalaPersonalizado)
+admin.site.register(Classificacao, ClassificacaoPersonalizado)

@@ -30,9 +30,9 @@ class Classificacao(models.Model):
     nome = models.CharField('Nome Categoria', max_length=30)
     descricao = models.CharField("Descrição da categoria", max_length=200)
     dataCadastro = models.DateTimeField('Data do cadastro', auto_now_add=True)
-    cadastradoPor = models.ForeignKey("Usuarios.Pessoa", on_delete=models.PROTECT, related_name="PessoaCadastrouCategoria")
-    ativo = models.BooleanField(verbose_name="Empresa está ativa",default=True) 
-    desativadoPor = models.ForeignKey("Usuarios.Pessoa", on_delete=models.PROTECT, related_name="PessoaDesativouCategoria")
+    cadastradoPor = models.ForeignKey("Usuarios.Pessoa", on_delete=models.PROTECT, related_name="PessoaCadastrouCategoria", blank=True, null=True)
+    ativo = models.BooleanField(verbose_name="Empresa está ativa",default=True, blank=True, null=True) 
+    desativadoPor = models.ForeignKey("Usuarios.Pessoa", on_delete=models.PROTECT, related_name="PessoaDesativouCategoria", blank=True, null=True)
     dataDesativacao = models.DateField('Data de nascimento', blank=True, null=True)  
 
     class Meta:
