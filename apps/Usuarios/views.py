@@ -29,7 +29,7 @@ def ViewCriarConta(request):
     return render(request, "Logins/CadastroUser.html", context)
 
 def ViewIndex(request):
-    print(request.user.Nome)
+    print(request.user.nome)
     context = {
         "nome_pagina" : "Início",
     }

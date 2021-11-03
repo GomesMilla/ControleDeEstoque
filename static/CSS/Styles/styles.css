@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 body{
-    background-color: #F4EEEE;
+    background-color: #ffffff;
 }
 .basico{
     color: azure;
@@ -50,5 +50,8 @@ body {
 
 main {
   flex: 1 0 auto;
+}
+.bg-light{
+  background-color: white !important;
 }
     
