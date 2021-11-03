@@ -7,9 +7,14 @@ from .models import Sala, Classificacao, Produto, LocalArmazenamentoProduto
 # class PersonAdmin(admin.ModelAdmin):
 #     pass
 
+
+#  radio_fields = {"ativo": admin.VERTICAL}
 class SalaPersonalizado(admin.ModelAdmin):
     list_display = ('nome', 'predio', 'andar', 'ativo')
-    fields = ('nome','descricao','ativo'('predio', 'andar'))
+    list_filter = ['ativo']
+    ordering = ['nome']
+    search_fields = ['nome']
+    readonly_fields = ('dataCadastro', 'cadastradoPor', 'desativadoPor', 'dataDesativacao')
     empty_value_display = 'Não Informado'
     date_hierarchy = 'dataCadastro'
 
