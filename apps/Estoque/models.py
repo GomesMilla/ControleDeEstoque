@@ -85,22 +85,21 @@ class LocalArmazenamentoProduto(models.Model):
     def __str__(self):
         return self.sala
 
-# class Estoque(models.Model):
-#     produto = models.ForeignKey(Produto, on_delete=models.CASCADE)
-#     quantidade = models.IntegerField('Quantidade de produto')
-#     valorEstoque = models.FloatField('Valor de Estoque', blank=True, null=True)
-#     estoqueAtual = models.FloatField('Quantidade disponivel no estoque', blank=True, null=True)
-#     gerenteResposavel = models.ForeignKey("Usuarios.Gerente", related_name="GerenteResponsavel", on_delete=models.PROTECT)
-#     dataCadastro = models.DateTimeField('Data do cadastro', auto_now_add=True)
-#     cadastradoPor = models.ForeignKey("Usuarios.Pessoa", on_delete=models.CASCADE, related_name="PessoaCadastrouEstoque")
+class Estoque(models.Model):
+    produto = models.ForeignKey(Produto, on_delete=models.CASCADE)
+    valorEstoque = models.FloatField('Valor de Estoque', blank=True, null=True)
+    estoqueAtual = models.FloatField('Quantidade disponivel no estoque', blank=True, null=True)
+    gerenteResposavel = models.ForeignKey("Usuarios.Gerente", related_name="GerenteResponsavel", on_delete=models.PROTECT)
+    dataCadastro = models.DateTimeField('Data do cadastro', auto_now_add=True)
+    cadastradoPor = models.ForeignKey("Usuarios.Pessoa", on_delete=models.CASCADE, related_name="PessoaCadastrouEstoque")
 
-#     class Meta:
-#         verbose_name = "Estoque"
-#         verbose_name_plural = "Estoques"
-#         db_table = "estoque"
+    class Meta:
+        verbose_name = "Estoque"
+        verbose_name_plural = "Estoques"
+        db_table = "estoque"
 
-#     def __str__(self):
-#         return self.produto.nome
+    def __str__(self):
+        return self.produto.nome
 
 
 

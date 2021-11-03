@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Sala, Classificacao, Produto, LocalArmazenamentoProduto
+from .models import Estoque, Sala, Classificacao, Produto, LocalArmazenamentoProduto
 
 # ModelAdminclasse é a representação de um modelo na interface administrativa
 # Sintaxe para registrar todos os models de uma vez no admin
@@ -46,8 +46,18 @@ class LocalArmazenamentoProdutoPersonalizado(admin.ModelAdmin):
     empty_value_display = 'Não Informado'
     date_hierarchy = 'dataCadastro'
 
+class EstoquePersonalizado(admin.ModelAdmin):
+    list_display = ('produto' ,'valorEstoque', 'estoqueAtual', 'gerenteResposavel')
+    list_filter = ['produto']
+    ordering = ['produto']
+    search_fields = ['produto']
+    readonly_fields = ('dataCadastro', 'cadastradoPor')
+    empty_value_display = 'Não Informado'
+    date_hierarchy = 'dataCadastro'
+
 
 admin.site.register(Sala, SalaPersonalizado)
 admin.site.register(Classificacao, ClassificacaoPersonalizado)
 admin.site.register(Produto, ProdutoPersonalizado)
 admin.site.register(LocalArmazenamentoProduto, LocalArmazenamentoProdutoPersonalizado)
+admin.site.register(Estoque, EstoquePersonalizado)
