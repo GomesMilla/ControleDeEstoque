@@ -60,19 +60,19 @@ class Pais(models.Model):
 
 class Pessoa(AbstractBaseUser,PermissionsMixin):
     nome = models.CharField('Nome completo', max_length=194)
-    pais = models.ForeignKey("Pais", on_delete=models.CASCADE, related_name="PaisdoUsuario")
-    escolaridade = models.CharField('Escolaridade', max_length=30, choices=ESCOLARIDADE)
-    status = models.CharField('Genero', max_length=10, choices=STATUS_GENERO)
+    pais = models.ForeignKey("Pais", on_delete=models.CASCADE, related_name="PaisdoUsuario", blank=True, null=True)
+    escolaridade = models.CharField('Escolaridade', max_length=30, choices=ESCOLARIDADE, blank=True, null=True)
+    status = models.CharField('Genero', max_length=10, choices=STATUS_GENERO, blank=True, null=True)
     email = models.EmailField('E-mail', unique=True)
     telefoneCelular = models.CharField('Número de telefone', max_length=19, unique=True)
     cpf = models.CharField(verbose_name='CPF', max_length=14, unique=True)
     dataDascimento = models.DateField('Data de nascimento', auto_now=False, auto_now_add=False, blank=True, null=True)
-    cep = models.CharField('CEP', max_length=11)
-    estado = models.CharField('Estado',max_length=30)
-    cidade = models.CharField('Cidade', max_length=194)
-    bairro = models.CharField('Bairro',max_length=194)
-    logradouro = models.CharField('Logradouro', max_length=194)
-    Numero = models.CharField('Número da residencia', max_length=194)
+    cep = models.CharField('CEP', max_length=11, blank=True, null=True)
+    estado = models.CharField('Estado',max_length=30, blank=True, null=True)
+    cidade = models.CharField('Cidade', max_length=194, blank=True, null=True)
+    bairro = models.CharField('Bairro',max_length=194, blank=True, null=True)
+    logradouro = models.CharField('Logradouro', max_length=194, blank=True, null=True)
+    Numero = models.CharField('Número da residencia', max_length=194, blank=True, null=True)
     dataCadastro = models.DateTimeField('Data do cadastro', auto_now_add=True)
     dataDesativacao = models.DateField('Data de nascimento', blank=True, null=True)
     is_active = models.BooleanField(verbose_name="Usuário está ativo",default=True)
@@ -80,6 +80,7 @@ class Pessoa(AbstractBaseUser,PermissionsMixin):
     is_superuser = models.BooleanField(verbose_name= "Usuário é um superusuario",default=False)
 
     USERNAME_FIELD = "email"
+    # REQUIRED_FIELDS = ['nome', 'telefoneCelular', 'cpf']
 
     objects = UsuarioManager()
 
@@ -157,3 +158,4 @@ class Vendedor(models.Model):
         return str(self.pessoa)
 
 
+# id Group = Gerente, Vendedor e funcionário

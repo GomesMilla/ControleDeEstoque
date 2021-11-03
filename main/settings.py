@@ -23,7 +23,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Usuarios',
-    # 'Estoque',
+    'Estoque',
     # 'Transacao',
     'easy_mask',
     'crispy_forms',
