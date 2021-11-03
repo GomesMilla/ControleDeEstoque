@@ -1,11 +1,16 @@
 from django.contrib import admin
-from .models import *
+from .models import Sala, Classificacao, Produto, LocalArmazenamentoProduto
 
-# class ProdutoAdmin(admin.ModelAdmin):
-#     list_display = ('Nome', 'Categoria','id') 
-#     list_filter = ['Categoria']
-#     search_fields = ['Nome']
-#     view_on_site = False
+# ModelAdminclasse é a representação de um modelo na interface administrativa
+# Sintaxe para registrar todos os models de uma vez no admin
+# @admin.register(Sala, Classificacao, Produto, LocalArmazenamentoProduto)
+# class PersonAdmin(admin.ModelAdmin):
+#     pass
 
-admin.site.register(Produto)
-# admin.site.register(Armazenamento)
+class SalaPersonalizado(admin.ModelAdmin):
+    list_display = ('nome', 'predio', 'andar', 'ativo')
+    fields = ('nome','descricao','ativo'('predio', 'andar'))
+    empty_value_display = 'Não Informado'
+    date_hierarchy = 'dataCadastro'
+
+admin.site.register(Sala, SalaPersonalizado)
