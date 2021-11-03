@@ -7,8 +7,6 @@ from .models import Sala, Classificacao, Produto, LocalArmazenamentoProduto
 # class PersonAdmin(admin.ModelAdmin):
 #     pass
 
-
-#  radio_fields = {"ativo": admin.VERTICAL}
 class SalaPersonalizado(admin.ModelAdmin):
     list_display = ('nome', 'predio', 'andar', 'ativo')
     list_filter = ['ativo']
@@ -28,5 +26,17 @@ class ClassificacaoPersonalizado(admin.ModelAdmin):
     date_hierarchy = 'dataCadastro'
 
 
+class ProdutoPersonalizado(admin.ModelAdmin):
+    list_display = ('nome', 'classificacao' ,'cadastradoPor', 'quantidadeMinima', 'valorUnitario', 'gerenteResposavel')
+    list_filter = ['classificacao']
+    radio_fields = {"classificacao": admin.VERTICAL}
+    ordering = ['nome']
+    search_fields = ['nome']
+    readonly_fields = ('dataCadastro', 'cadastradoPor', 'desativadoPor', 'dataDesativacao')
+    empty_value_display = 'Não Informado'
+    date_hierarchy = 'dataCadastro'
+
+
 admin.site.register(Sala, SalaPersonalizado)
 admin.site.register(Classificacao, ClassificacaoPersonalizado)
+admin.site.register(Produto, ProdutoPersonalizado)

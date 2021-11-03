@@ -14,7 +14,7 @@ class Sala(models.Model):
     dataCadastro = models.DateTimeField('Data do cadastro', auto_now_add=True)
     cadastradoPor = models.ForeignKey("Usuarios.Pessoa", on_delete=models.CASCADE, related_name="PessoaCadastrouSala")
     ativo = models.BooleanField(verbose_name="Empresa está ativa",default=True) 
-    desativadoPor = models.ForeignKey("Usuarios.Pessoa", on_delete=models.CASCADE, related_name="PessoaDesativouSala")
+    desativadoPor = models.ForeignKey("Usuarios.Pessoa", on_delete=models.CASCADE, related_name="PessoaDesativouSala", blank=True, null=True)
     dataDesativacao = models.DateField('Data de nascimento', blank=True, null=True)   
 
     class Meta:
@@ -52,6 +52,11 @@ class Produto(models.Model):
     descricao = models.TextField('Descrição do produto', max_length=194, blank=True, null=True)
     quantidadeMinima = models.IntegerField('Quantidade mínima')
     valorUnitario = models.FloatField('Valor unitário do produto')
+    dataCadastro = models.DateTimeField('Data do cadastro', auto_now_add=True)
+    cadastradoPor = models.ForeignKey("Usuarios.Pessoa", on_delete=models.PROTECT, related_name="PessoaCadastrouProduto")
+    ativo = models.BooleanField(verbose_name="Empresa está ativa",default=True) 
+    desativadoPor = models.ForeignKey("Usuarios.Pessoa", on_delete=models.PROTECT, related_name="PessoaDesativouProduto", blank=True, null=True)
+    dataDesativacao = models.DateField('Data de nascimento', blank=True, null=True)
 
     class Meta:
         verbose_name = "Produto"
@@ -68,7 +73,7 @@ class LocalArmazenamentoProduto(models.Model):
     dataCadastro = models.DateTimeField('Data do cadastro', auto_now_add=True)
     cadastradoPor = models.ForeignKey("Usuarios.Pessoa", on_delete=models.PROTECT, related_name="PessoaCadastrouLocalArmazenamentoProduto")
     ativo = models.BooleanField(verbose_name="Empresa está ativa",default=True) 
-    desativadoPor = models.ForeignKey("Usuarios.Pessoa", on_delete=models.PROTECT, related_name="PessoaDesativouoLocalArmazenamentoProduto")
+    desativadoPor = models.ForeignKey("Usuarios.Pessoa", on_delete=models.PROTECT, related_name="PessoaDesativouoLocalArmazenamentoProduto", blank=True, null=True)
     dataDesativacao = models.DateField('Data de nascimento', blank=True, null=True)
 
     class Meta:
