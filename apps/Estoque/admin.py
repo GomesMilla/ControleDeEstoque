@@ -37,6 +37,17 @@ class ProdutoPersonalizado(admin.ModelAdmin):
     date_hierarchy = 'dataCadastro'
 
 
+class LocalArmazenamentoProdutoPersonalizado(admin.ModelAdmin):
+    list_display = ('sala', 'produto' ,'dataCadastro', 'cadastradoPor', 'ativo')
+    list_filter = ['sala']
+    ordering = ['sala']
+    search_fields = ['sala']
+    readonly_fields = ('dataCadastro', 'cadastradoPor', 'desativadoPor', 'dataDesativacao')
+    empty_value_display = 'Não Informado'
+    date_hierarchy = 'dataCadastro'
+
+
 admin.site.register(Sala, SalaPersonalizado)
 admin.site.register(Classificacao, ClassificacaoPersonalizado)
 admin.site.register(Produto, ProdutoPersonalizado)
+admin.site.register(LocalArmazenamentoProduto, LocalArmazenamentoProdutoPersonalizado)
