@@ -30,62 +30,74 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="shortcut icon" href="{% static 'Butique.png' %}">
-    <title>{{nome_pagina}}</title>
+    <title>{{nomePagina}}</title>
 </head>
 
 <body>
-    {% if messages %}
-        {% for message in messages %} 
-            {% if message.tags == 'success' %}
-                <div class="position-absolute bottom-50 end-50">
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong>Concluído!
-                        <br>
-                        </strong>{{ message }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <div id="ajax_message">
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == 'success'%}
+                    <div class="position-fixed bottom-25 end-0 mt-9 p-5" style="z-index: 11">
+                        <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="toast-header">
+                                <img src="{% static 'images/verde.png'%}" width="24" height="24" class="rounded me-2" alt="...">
+                                <strong class="me-auto">Ebaa! Sucesso! </strong>
+                                <small>{{now}}</small>
+                                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                            </div>
+                            <div class="toast-body">
+                                {{message}}
+                            </div>
+                        </div>
                     </div>
-                </div>
-            {%elif message.tags == 'error'%}
-                <div class="position-absolute bottom-50 end-50">
-                    <div class="alert alert-alert alert-dismissible fade show" role="alert">
-                        <strong>Concluído!
-                        <br>
-                        </strong>{{ message }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                {% elif message.tags == 'info'%}
+                    <div class="position-fixed bottom-25 end-0 mt-9 p-5" style="z-index: 11">
+                        <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="toast-header">
+                                <img src="{% static 'images/azul.png'%}" width="24" height="24" class="rounded me-2" alt="...">
+                                <strong class="me-auto">Informações para você...</strong>
+                                <small>{{now}}</small>
+                                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                            </div>
+                            <div class="toast-body">
+                                {{message}}
+                            </div>
+                        </div>
                     </div>
-                </div>
-            {%elif message.tags == 'warning'%}
-                <div class="position-absolute bottom-50 end-50">
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <strong>Concluído!
-                        <br>
-                        </strong>{{ message }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                {% elif message.tags == 'warning'%} 
+                    <div class="position-fixed bottom-25 end-0 mt-9 p-5" style="z-index: 11">
+                        <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="toast-header">
+                                <img src="{% static 'images/amarelo.png'%}" width="24" height="24" class="rounded me-2" alt="...">
+                                <strong class="me-auto">Ops! Falhas a vista...</strong>
+                                <small>{{now}}</small>
+                                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                            </div>
+                            <div class="toast-body">
+                                {{message}}
+                            </div>
+                        </div>
                     </div>
-                </div>
-            {%elif message.tags == 'info'%}
-                <div class="position-absolute bottom-50 end-50">
-                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        <strong>Concluído!
-                        <br>
-                        </strong>{{ message }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                {% elif message.tags == 'error'%}
+                    <div class="position-fixed bottom-25 end-0 mt-9 p-5" style="z-index: 11">
+                        <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="toast-header">
+                                <img src="{% static 'images/vermelho.png'%}" width="24" height="24" class="rounded me-2" alt="...">
+                                <strong class="me-auto">Ops! Ocorreu algum erro...</strong>
+                                <small>{{now}}</small>
+                                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                            </div>
+                            <div class="toast-body">
+                                {{message}}
+                            </div>
+                        </div>
                     </div>
-                </div>
-            {% else %}
-            <script type="text/javascript">
-                var toastHTML = '{{ message }}';
-                M.toast({
-                    html: toastHTML,
-                    displayLength: 6000,
-                    classes: 'rounded yellow black-text text-black'
-                });
-            </script>
-            {%endif%} 
-        {% endfor %} 
-    {% endif %}
-    
-    
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
+       
     <header>
         <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light p-3 mb-5 bg-light rounded border-bottom">
             <div class="container-fluid">

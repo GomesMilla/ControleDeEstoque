@@ -36,8 +36,6 @@ def ViewIndex(request):
     return render(request, "Usuarios/Index.html", context)
 
 def ViewCadastrarEmpresa(request):
-
-    FormularioSimples = EmpresaForm()
     now = timezone.now()    
     
     if request.method == 'POST':
@@ -52,7 +50,11 @@ def ViewCadastrarEmpresa(request):
             return redirect("ViewListarEmpresas") 
         
         else:
-            print(FormularioPreenchido.errors.as_data())               
+            print(FormularioPreenchido.errors.as_data())  
+    else:
+        mensagem = f'Por favor! Preencha todos os campos corretamento para cadastrar a empresa!'
+        messages.info(request, mensagem)
+        FormularioSimples = EmpresaForm()             
 
     context = {
         "nome_pagina" : "Criar Conta",
