@@ -11,6 +11,7 @@ urlpatterns = [
     
     # URLS DE INICIO
     path('', views.ViewInicio, name="ViewInicio"),
+    path('ObjetivosDoSistema', views.ViewObjetivos, name="ViewObjetivos"),
     path('Login', LoginView.as_view(template_name='Logins/Login.html'), name='Login'),
     
 

@@ -12,6 +12,15 @@ def ViewInicio(request):
 
     return render(request, "Apresentacao/Inicio.html", context)
 
+def ViewObjetivos(request):
+
+    context = {
+        "NomePagina": "Objetivos"
+    }
+
+    return render(request, "Apresentacao/Objetivos.html", context)
+
+
 def ViewCriarConta(request):
     FormularioVazio = PessoaForm()
     if request.method == 'POST':
