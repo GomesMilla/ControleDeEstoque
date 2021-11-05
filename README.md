@@ -5,7 +5,7 @@
 </h4>
 
 <h1 align="center">
-  <img alt="Imagem de inicio" title="#ControleDeEstoque" src="static/Apresentação.png" />
+  <img alt="Imagem de inicio" title="#ControleDeEstoque" src="static/imagens/Apresentação.png" />
 </h1>
 <p text-align="justify">Este repositório tem foco, na criação de uma aplicação de Controle de Estoque de um estabelecimento, interligado a um banco de dados provido pelo próprio Framework Django facilitando dessa forma a manipulação de seus dados.</p>
 <p text-align="justify">Este projeto faz parte do meu portfólio pessoal, então, ficarei feliz caso você forneça algum feedback, código, estrutura, funcionalidade ou qualquer melhoria que você possa relatar para melhora-lo.Você pode usar este projeto como quiser, seja para estudar, fazer melhorias, você quem manda!.</p>
@@ -92,7 +92,7 @@ python manage.py runserver
 ---
 
 
- <img style="border-radius: 50%;" src="static/download.png" width="100px;" alt=""/>
+ <img style="border-radius: 50%;" src="static/imagens/download.png" width="100px;" alt=""/>
  <sub><b>Camila Adriana</b></sub></a> <a href="www.linkedin.com/in/camila-adriana-gomes-de-jesus-04767b1ba" title="Foto de perfil"></a><br>
 Feito com ❤️ por Camila Adriana 👋🏽 Entre em contato!
 
