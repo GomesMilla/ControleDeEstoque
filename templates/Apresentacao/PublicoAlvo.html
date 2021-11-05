@@ -1,0 +1,27 @@
+{% extends 'Bases/BaseInicio.html' %}
+{% load static %}
+{% block conteudo %}
+
+<body>
+    <div class="container top">
+        <p class="tituloIndex">Para quem?</p>
+        <p style="text-align: justify;">
+            Tem como alvo mercado grandes e pequenos negócios. Todos
+            que tenham como objetivo organizar seu estoque. Por ser prático e dinâmico,
+            auxilia principalmente empresas que estão se consolidando e precisam de
+            praticidade e rapidez para organizar os produtos que irão oferecer. Isso tudo
+            de uma forma efetiva e produtiva.
+        </p>
+        <div>
+            <div class="row">
+                <div class="col s12 m4 l4">
+                    <img src="{% static 'imagens/restauranteI.svg' %}" alt="Imagem de login" style="width: 110%; margin-top: 35%;">
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+
+{% endblock %}
