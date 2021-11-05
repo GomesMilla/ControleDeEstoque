@@ -2,49 +2,46 @@
 {% load static %}
 {% block conteudo %}
 
-
-
-
-<div class="container mt-5">
-    <div class="row">
-        <div class="col s12 s6 m6">           
-            <form method="POST" class="my-login-validation" novalidate="">
-                {% csrf_token %}
-                    <div class="p-5">
-                        <span class="tituloIndex">Login</span>
-                        <div class="form-floating mb-3 mt-5">                    
-                            <input id="id_username" type="email" class="form-control" name="username" value="" required autofocus>
-                            <label for="floatingInput">E-Mail</label>
-                        </div>
-                        <div class="form-floating mb-3">                        
-                            <input id="id_password" type="password" class="form-control" name="password" value="" required autofocus>
-                            <label for="floatingInput">Senha</label>
-                            <div class="mb-3 mt-3">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="dropdownCheck2">
-                                    <label class="form-check-label" for="dropdownCheck2">
-                                        Mostrar Senha
-                                    </label>
-                                </div>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col s12 s6 m6">           
+                <form method="POST" class="my-login-validation" novalidate="">
+                    {% csrf_token %}
+                        <div class="p-5">
+                            <span class="tituloIndex">Login</span>
+                            <div class="form-floating mb-3 mt-5">                    
+                                <input id="id_username" type="email" class="form-control" name="username" value="" required autofocus>
+                                <label for="floatingInput">E-Mail</label>
                             </div>
-                            Esqueci minha senha <a href="{% url 'reset_password' %}">Recuperar</a>
+                            <div class="form-floating mb-3">                        
+                                <input id="id_password" type="password" class="form-control" name="password" value="" required autofocus>
+                                <label for="floatingInput">Senha</label>
+                                <div class="mb-3 mt-3">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="dropdownCheck2">
+                                        <label class="form-check-label" for="dropdownCheck2">
+                                            Mostrar Senha
+                                        </label>
+                                    </div>
+                                </div>
+                                Esqueci minha senha <a href="{% url 'reset_password' %}">Recuperar</a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="d-grid gap-2 col-5 mx-auto">
-                        <button class="btn btn-outline-primary rounded-pill" type="submit">Entrar</button>
-                    </div>
-                    <div class="mt-4 text-center">
-                        Não tem conta? <a href="{% url 'ViewCriarConta' %}">Criar</a>
-                    </div>
-            </form>
-        </div>
-        <div class="col s6">
-            <img src="{% static 'imagens/Login.svg' %}" alt="Imagem de login" style="width: 110%; margin-top: 35%;">
+                        <div class="d-grid gap-2 col-5 mx-auto">
+                            <button class="btn btn-outline-primary rounded-pill" type="submit">Entrar</button>
+                        </div>
+                        <div class="mt-4 text-center">
+                            Não tem conta? <a href="{% url 'ViewCriarConta' %}">Criar</a>
+                        </div>
+                </form>
+            </div>
+            <div class="col s6">
+                <img src="{% static 'imagens/Login.svg' %}" alt="Imagem de login" style="width: 110%; margin-top: 35%;">
+            </div>
         </div>
     </div>
-</div>
-
-
+</body>
 
 <script>
     $('#dropdownCheck2').click(function () {
