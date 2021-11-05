@@ -1,5 +1,6 @@
 from pathlib import Path
 import os, sys
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-6w23%li%v2=dkbe_#sahsag0zw*p96-o3nt4t@$_x$5$vgd-ak'
 
@@ -28,8 +29,6 @@ INSTALLED_APPS = [
     'easy_mask',
     'crispy_forms',
     'bootstrapform',
-
-
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -49,7 +48,7 @@ ROOT_URLCONF = 'main.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': ['Templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
