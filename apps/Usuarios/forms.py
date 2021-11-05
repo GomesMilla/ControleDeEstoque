@@ -3,7 +3,6 @@ from .models import *
 from django.contrib.auth.models import User
 
 class PessoaForm(forms.ModelForm):
-
     def save(self, commit=True):
         user = super(PessoaForm, self).save(commit=False)
         user.set_password(self.cleaned_data['password'])

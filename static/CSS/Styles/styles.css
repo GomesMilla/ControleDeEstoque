@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@800&display=swap');
 body{
     background-color: #ffffff;
 }
@@ -41,6 +42,10 @@ hr.divider {
   margin-top: 10%;
 }
 
+.topInicio{
+  margin-top: 30%;
+}
+
 /* Footer inferior */
 body {
   display: flex;
@@ -53,5 +58,11 @@ main {
 }
 .bg-light{
   background-color: white !important;
+}
+
+.tituloIndex{
+    margin-top: 13%;
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 50px;
 }
     

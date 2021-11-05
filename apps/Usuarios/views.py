@@ -4,6 +4,13 @@ from django.contrib.auth.decorators import login_required #Importando a view do 
 from django.contrib import messages
 from django.utils import timezone
 
+def ViewInicio(request):
+
+    context = {
+        "NomePagina": "Controle de Estoque"
+    }
+
+    return render(request, "Apresentacao/Inicio.html", context)
 
 def ViewCriarConta(request):
     FormularioVazio = PessoaForm()

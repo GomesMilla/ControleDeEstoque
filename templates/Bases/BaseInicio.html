@@ -1,0 +1,215 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#F2BD24"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.compat.css" />
+    <!-- importando CSS e JV  -->
+    <link rel="stylesheet" href="{% static 'CSS/Bootstrap/bootstrap.min.css'%}">
+    <link type="text/css" rel="stylesheet" href="{% static 'CSS/Styles/styles.css' %}">
+    <link href="{% static 'css/HoldOn/HoldOn.min.css'%}" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="{% static 'js/jquery.mask.js' %}"></script>
+    <script type="text/javascript" src="{% static 'JS/Bootstrap/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'JS/Styles/Dinamizar.js'%}"></script>
+    <script type="text/javascript" src="{% static 'JS/HoldOn/HoldOn.min.js'%}"></script>
+    <script src="https://kit.fontawesome.com/2cbdb08e7a.js" crossorigin="anonymous"></script>
+    <!-- Importando icones -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="shortcut icon" href="{% static 'media/download.png'%}">
+    <title>{{NomePagina}}</title>
+</head>
+
+<body>
+    {% if messages %}
+    {% for message in messages %} 
+    {% if message.tags == 'success' %}
+      <script type="text/javascript">
+          var toastHTML = '{{ message }}';
+          M.toast({
+              html: toastHTML,
+              displayLength: 6000,
+              classes: 'rounded green lighten-2 black-text text-black'
+          });
+      </script>
+    {%elif message.tags == 'error'%}
+    <script type="text/javascript">
+        var toastHTML = '{{ message }}';
+        M.toast({
+            html: toastHTML,
+            displayLength: 6000,
+            classes: 'rounded red black-text text-black'
+        });
+    </script>
+    {%elif message.tags == 'warning'%}
+    <script type="text/javascript">
+        var toastHTML = '{{ message }}';
+        M.toast({
+            html: toastHTML,
+            displayLength: 6000,
+            classes: 'rounded  red darken-4 white-text text-white'
+        });
+    </script>
+    {%elif message.tags == 'info'%}
+    <script type="text/javascript">
+        var toastHTML = '{{ message }}';
+        M.toast({
+            html: toastHTML,
+            displayLength: 6000,
+            classes: 'rounded  teal lighten-4 black-text text-black'
+        });
+    </script>
+    {% else %}
+    <script type="text/javascript">
+        var toastHTML = '{{ message }}';
+        M.toast({
+            html: toastHTML,
+            displayLength: 6000,
+            classes: 'rounded yellow black-text text-black'
+        });
+    </script>
+    {%endif%} 
+    {% endfor %} 
+    {% endif %}
+    <header>
+        <!-- Nav para aparelhos maiores -->
+        <nav class="navbar navbar-expand-lg navbar-primary bg-primary mb-5 border-bottom border-primary fixed-top">
+            <div class="container-fluid">
+              <a class="navbar-brand ms-5" href="#">
+                <i class="material-icons fs-1 text-green-15" id="Descurtir_pulicacao">
+                    thumb_down_off_alt
+                </i>
+              </a>
+              <div class="d-flex justify-content-end">
+                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown m-2">
+                          <li class="nav-item m-2">
+                            <a class="nav-link active text-white" aria-current="page" href="#">Objetivos</a>
+                        </li>
+                        <li class="nav-item m-2">
+                            <a class="nav-link active text-white" aria-current="page" href="#">Público alvo</a>
+                        </li>
+                        <li class="nav-item m-2">
+                          <a class="nav-link active text-white" aria-current="page" href="#">Escreva</a>
+                        </li>
+                        <li class="nav-item m-2">
+                          <a class="nav-link active text-white" aria-current="page" href="#">Entrar</a>
+                        </li>                     
+                    </ul>
+                </div>
+              </div>              
+            </div>
+        </nav>
+    </header>
+
+    <main>        
+        {%block conteudo%} 
+        {%endblock conteudo%}
+    </main>
+
+    <footer class="text-center text-black bg-primary mt-5">
+        <!-- Grid container -->
+        <div class="container pt-4">
+          <!-- Section: Social media -->
+          <section class="mb-4">
+            <!-- Facebook -->
+            <a
+              class="btn btn-link btn-floating btn-lg text-dark m-1 bg-primary"
+              href="#!"
+              role="button"
+              data-mdb-ripple-color="dark"
+              ><i class="fab fa-facebook-f text-white"></i
+            ></a>
+      
+            <!-- Twitter -->
+            <a
+              class="btn btn-link btn-floating btn-lg text-dark m-1 bg-primary"
+              href="#!"
+              role="button"
+              data-mdb-ripple-color="dark"
+              ><i class="fab fa-twitter text-white"></i
+            ></a>
+      
+            <!-- Google -->
+            <a
+              class="btn btn-link btn-floating btn-lg text-dark m-1 bg-primary"
+              href="#!"
+              role="button"
+              data-mdb-ripple-color="dark"
+              ><i class="fab fa-google text-white"></i
+            ></a>
+      
+            <!-- Instagram -->
+            <a
+              class="btn btn-link btn-floating btn-lg text-dark m-1 bg-primary"
+              href="#!"
+              role="button"
+              data-mdb-ripple-color="dark"
+              ><i class="fab fa-instagram text-white"></i
+            ></a>
+      
+            <!-- Linkedin -->
+            <a
+              class="btn btn-link btn-floating btn-lg text-dark m-1 bg-primary"
+              href="#!"
+              role="button"
+              data-mdb-ripple-color="dark"
+              ><i class="fab fa-linkedin text-white"></i
+            ></a>
+            <!-- Github -->
+            <a
+              class="btn btn-link btn-floating btn-lg text-dark m-1 bg-primary"
+              href="#!"
+              role="button"
+              data-mdb-ripple-color="dark"
+              ><i class="fab fa-github text-white"></i
+            ></a>
+          </section>
+          <!-- Section: Social media -->
+        </div>
+        <footer class="page-footer font-small bg-primary">
+            <div class="footer-copyright text-center py-3 text-white">© 2021 Camila Adriana|GomesMilla</div>
+        </footer>
+       
+      </footer>
+
+   
+
+    
+    <script>
+        $(document).ready(function() {
+            // Função de carregamento
+            $(window).bind('beforeunload', function() {
+                var options = {
+                    theme: "sk-circle",
+                    message: 'Por favor, aguarde...',
+                    backgroundColor: "#black",
+                    textColor: "white"
+                };
+                HoldOn.open(options);
+            });
+            $(window).load(function() {
+                HoldOn.close();
+            });
+            // Fim da função de carregamento        
+            
+    });
+        
+    </script>
+    {% block scripts %} 
+    {% endblock %}
+
+</body>
+</html>
