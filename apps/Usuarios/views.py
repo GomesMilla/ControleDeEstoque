@@ -65,7 +65,7 @@ def ViewCriarConta(request):
 
 
     context = {
-        "nome_pagina" : "Criar Conta",
+        "NomePagina" : "Criar Conta",
         "FormularioVazio" : FormularioVazio
     }
 
@@ -73,8 +73,9 @@ def ViewCriarConta(request):
 
 def ViewIndex(request):
     print(request.user.nome)
+    
     context = {
-        "nome_pagina" : "Início",
+        "NomePagina" : "Início",
     }
     return render(request, "Usuarios/Index.html", context)
 
@@ -102,7 +103,7 @@ def ViewCadastrarEmpresa(request):
         FormularioSimples = EmpresaForm()             
 
     context = {
-        "nome_pagina" : "Criar Conta",
+        "NomePagina" : "Criar Conta",
         "FormularioSimples" : FormularioSimples,
         "now" : now
     }
@@ -114,35 +115,32 @@ def ViewListarEmpresas(request):
     ListEmpresas = Empresa.objects.filter(ativo=True)
 
     context = {
-        "nome_pagina" : "Empresas",
+        "NomePagina" : "Empresas",
         "ListEmpresas" : ListEmpresas
     }
     return render(request, "Listar/ListaEmpresa.html", context)
 
 def ViewDesativarEmpresa(request, id_empresa):
+    now = timezone.now()
     ObjEmpresa = Empresa.objects.get(id = id_empresa)
     ObjEmpresa.ativo = False
+    ObjEmpresa.dataDesativacao = now
+    ObjEmpresa.desativadoPor = request.user
     ObjEmpresa.save()
     mensagem = f'Empresa desativada com sucesso!'
     messages.warning(request, mensagem) 
     return redirect("ViewListarEmpresas")
     
-    context = {
-        "nome_pagina" : "Desativar Empresa",
-    }
-
-    return render(request, 'Usuarios/Index.html', context)
 
 def ViewEditarEmpresa(request, id_empresa):
-    print(id_empresa)
     ObjEmpresa =  Empresa.objects.get(pk=id_empresa)
-    print(request.method)
 
     if request.method == 'POST':
         FormularioPreenchido = EmpresaForm(request.POST or None, instance = ObjEmpresa)
         if FormularioPreenchido.is_valid():
-            ObjEmpresa.is_active = True
-            FormularioPreenchido.save()
+            objEmpresa = FormularioPreenchido.save(commit=False)
+            objEmpresa.ativo = True
+            objEmpresa.save()
             mensagem = f'Alteração realizada com sucesso!'
             messages.success(request, mensagem) 
             return redirect("ViewListarEmpresas")
@@ -151,11 +149,11 @@ def ViewEditarEmpresa(request, id_empresa):
         print(FormularioPreenchido)
 
     context = {
-        "nome_pagina" : "Editar Empresa",
+        "NomePagina" : "Editar Empresa",
         "FormularioSimples" : FormularioPreenchido
     }
 
-    return render(request, "Usuarios/EditarEmpresa.html", context)
+    return render(request, "Editar/EditarEmpresa.html", context)
 
 
 # Construindo View

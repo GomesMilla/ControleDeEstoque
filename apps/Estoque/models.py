@@ -6,6 +6,7 @@ CURVA_ABC = [
     ("B", "Valor médio"),
     ("B", "Valor baixo"),
 ]
+
 class Sala(models.Model):
     nome = models.CharField("Nome da sala", max_length=200)
     predio = models.CharField("Prédio", max_length=40, null=True, blank=True)
