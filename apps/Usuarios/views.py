@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required #Importando a view do Django para fazer login
 from django.contrib import messages
 from django.utils import timezone
+from django.contrib.auth import authenticate, login, logout
 
 def ViewInicio(request):
 
@@ -28,6 +29,23 @@ def ViewPublicoAlvo(request):
     }
 
     return render(request, "Apresentacao/PublicoAlvo.html", context)
+
+def ViewLogin(request):
+    if request.user.is_authenticated: return redirect('ViewListarEmpresas')
+    
+    if request.method == "POST":
+        user = authenticate(email = request.POST['username'], password = request.POST['password'])
+        if user is not None:
+            login(request, user)
+            return redirect('ViewListarEmpresas')
+        else:
+            messages.error(request, "Usuário ou senha inválidos!")
+            print("ALGUM DADO ERRADO! PRINCESA")
+    
+    context = {
+        "nomePagina": "Controle de Estoque"
+    }
+    return render(request, 'Logins/Login.html', context)
 
 
 def ViewCriarConta(request):
@@ -61,21 +79,23 @@ def ViewIndex(request):
     return render(request, "Usuarios/Index.html", context)
 
 def ViewCadastrarEmpresa(request):
-    now = timezone.now()    
+    now = timezone.now()
+    FormularioSimples = EmpresaForm(initial={ "cadastradoPor" : request.user,})    
     
     if request.method == 'POST':
-        print("Dentro metodo post")
-        FormularioPreenchido = EmpresaForm(request.POST)
-        print(FormularioPreenchido)
-        if FormularioPreenchido.is_valid():
-            FormularioPreenchido.is_active = True
-            FormularioPreenchido.save()
+        form = EmpresaForm(request.POST)
+        if form.is_valid():
+            objEmpresa = form.save(commit=False)
+            objEmpresa.dataCadastro = now
+            objEmpresa.cadastradoPor = request.user
+            objEmpresa.ativo = True
+            objEmpresa.save()
             mensagem = f'Empresa cadastrada com sucesso!'
             messages.success(request, mensagem) 
             return redirect("ViewListarEmpresas") 
         
         else:
-            print(FormularioPreenchido.errors.as_data())  
+            print(form.errors.as_data())  
     else:
         mensagem = f'Por favor! Preencha todos os campos corretamento para cadastrar a empresa!'
         messages.info(request, mensagem)
@@ -87,21 +107,21 @@ def ViewCadastrarEmpresa(request):
         "now" : now
     }
 
-    return render(request, "Usuarios/CadastrarEmpresa.html", context)
+    return render(request, "Cadastro/CadastrarEmpresa.html", context)
 
 def ViewListarEmpresas(request):
 
-    ListEmpresas = Empresa.objects.filter(is_active = True)
+    ListEmpresas = Empresa.objects.filter(ativo=True)
 
     context = {
         "nome_pagina" : "Empresas",
         "ListEmpresas" : ListEmpresas
     }
-    return render(request, "Usuarios/ListaEmpresa.html", context)
+    return render(request, "Listar/ListaEmpresa.html", context)
 
 def ViewDesativarEmpresa(request, id_empresa):
     ObjEmpresa = Empresa.objects.get(id = id_empresa)
-    ObjEmpresa.is_active = False
+    ObjEmpresa.ativo = False
     ObjEmpresa.save()
     mensagem = f'Empresa desativada com sucesso!'
     messages.warning(request, mensagem) 

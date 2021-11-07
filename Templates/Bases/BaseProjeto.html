@@ -1,37 +1,35 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="theme-color" content="#F2BD24"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.compat.css" />
-    
-    <!-- importando arquivos CSS  -->
-    <link type="text/css" rel="stylesheet" href="{% static 'CSS/Bootstrap/bootstrap.min.css' %}" media="screen,projection" />
-    <link type="text/css" rel="stylesheet" href="{% static 'CSS/Styles/styles.css' %}">
-    <link href="{% static 'CSS/HoldOn/HoldOn.min.css'%}" rel="stylesheet">
-    
-    <!-- Importando arquivos JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="{% static 'jquery.mask.js' %}"></script>
-    <script type="text/javascript" src="{% static 'JS/Jquery/jquery.mask.min.js'%}"></script>
-    <script type="text/javascript" src="{% static 'JS/Bootstrap/bootstrap.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'JS/Styles/Dinamizar.js'%}"></script>
-    <script type="text/javascript" src="{% static 'JS/HoldOn/HoldOn.min.js'%}"></script>
-    
-    <!-- Importando icones -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="shortcut icon" href="{% static 'Butique.png' %}">
-    <title>{{nomePagina}}</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="theme-color" content="#F2BD24"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.compat.css" />
+        <!-- importando CSS e JV  -->
+        <link rel="stylesheet" href="{% static 'CSS/Bootstrap/bootstrap.min.css'%}">
+        <link type="text/css" rel="stylesheet" href="{% static 'CSS/Styles/styles.css' %}">
+        <link href="{% static 'css/HoldOn/HoldOn.min.css'%}" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="{% static 'JS/Jquery/jquery.mask.js' %}"></script>
+        <script type="text/javascript" src="{% static 'JS/Bootstrap/bootstrap.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'JS/Styles/Dinamizar.js'%}"></script>
+        <script type="text/javascript" src="{% static 'JS/HoldOn/HoldOn.min.js'%}"></script>
+        <script src="https://kit.fontawesome.com/2cbdb08e7a.js" crossorigin="anonymous"></script>
+        <!-- Importando icones -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
+        <link rel="shortcut icon" href="{% static 'media/download.png'%}">
+        <title>{{NomePagina}}</title>
+    </head>
 
 <body>
     <div id="ajax_message">
@@ -99,7 +97,7 @@
     </div>
        
     <header>
-        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light p-3 mb-5 bg-light rounded border-bottom">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-primary bg-primary p-3 mb-5 rounded border-bottom">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{% url 'ViewIndex' %}">
                     <img src="{% static 'infinito.gif' %}" alt="Logo" width="80" height="80">
@@ -112,17 +110,21 @@
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Cadastro
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="{% url 'ViewCadastrarEmpresa' %}">Cadastrar Empresa</a></li>
+                                    <li>
+                                        <a class="dropdown-item" href="{% url 'ViewCadastrarEmpresa' %}">Cadastrar Empresa</a>
+                                    </li>
                                     <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="#">Cadastrar Produto</a></li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">Cadastrar Produto</a>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Listagem
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -134,7 +136,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Financeiro
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -144,7 +146,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Logística
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -156,17 +158,17 @@
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Opções
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="#">Estoque</a></li>
                                     <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="{% url 'Login' %}">Sair</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'ViewLogin' %}">Sair</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#"> <i class="material-icons fs-3 text-green-15 d-flex justify-content-end" id="id_favoritar">campaign</i></a>
+                                <a class="nav-link active text-white" aria-current="page" href="#"> <i class="material-icons fs-3 text-green-15 d-flex justify-content-end" id="id_favoritar">campaign</i></a>
                             </li>
                         </ul>
                     </div>
@@ -180,9 +182,72 @@
         {%endblock conteudo%}
     </main>
 
-    <footer class="page-footer font-small bg-light">
-        <div class="footer-copyright text-center py-3">© 2021 Camila Adriana|GomesMilla</div>
-    </footer>
+    <footer class="text-center text-black bg-primary mt-5">
+        <!-- Grid container -->
+        <div class="container pt-4">
+          <!-- Section: Social media -->
+          <section class="mb-4">
+            <!-- Facebook -->
+            <a
+              class="btn btn-link btn-floating btn-lg text-dark m-1 bg-primary"
+              href="#!"
+              role="button"
+              data-mdb-ripple-color="dark"
+              ><i class="fab fa-facebook-f text-white"></i
+            ></a>
+      
+            <!-- Twitter -->
+            <a
+              class="btn btn-link btn-floating btn-lg text-dark m-1 bg-primary"
+              href="#!"
+              role="button"
+              data-mdb-ripple-color="dark"
+              ><i class="fab fa-twitter text-white"></i
+            ></a>
+      
+            <!-- Google -->
+            <a
+              class="btn btn-link btn-floating btn-lg text-dark m-1 bg-primary"
+              href="#!"
+              role="button"
+              data-mdb-ripple-color="dark"
+              ><i class="fab fa-google text-white"></i
+            ></a>
+      
+            <!-- Instagram -->
+            <a
+              class="btn btn-link btn-floating btn-lg text-dark m-1 bg-primary"
+              href="#!"
+              role="button"
+              data-mdb-ripple-color="dark"
+              ><i class="fab fa-instagram text-white"></i
+            ></a>
+      
+            <!-- Linkedin -->
+            <a
+              class="btn btn-link btn-floating btn-lg text-dark m-1 bg-primary"
+              href="#!"
+              role="button"
+              data-mdb-ripple-color="dark"
+              ><i class="fab fa-linkedin text-white"></i
+            ></a>
+            <!-- Github -->
+            <a
+              class="btn btn-link btn-floating btn-lg text-dark m-1 bg-primary"
+              href="#!"
+              role="button"
+              data-mdb-ripple-color="dark"
+              ><i class="fab fa-github text-white"></i
+            ></a>
+          </section>
+          <!-- Section: Social media -->
+        </div>
+        <footer class="page-footer font-small bg-primary">
+            <div class="footer-copyright text-center py-3 text-white">© 2021 Camila Adriana|GomesMilla</div>
+        </footer>
+       
+      </footer>
+
     
 
     <script>

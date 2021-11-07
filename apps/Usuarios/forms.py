@@ -15,7 +15,6 @@ class PessoaForm(forms.ModelForm):
         fields = ('__all__')
 
 class EmpresaForm(forms.ModelForm):
-
     class Meta:
         model = Empresa
         exclude = ('dataCadastro',)

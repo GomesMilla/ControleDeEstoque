@@ -13,7 +13,7 @@ urlpatterns = [
     path('', views.ViewInicio, name="ViewInicio"),
     path('ObjetivosDoSistema', views.ViewObjetivos, name="ViewObjetivos"),
     path('PublicoAlvo', views.ViewPublicoAlvo, name="ViewPublicoAlvo"),
-    path('Login', LoginView.as_view(template_name='Logins/Login.html'), name='Login'),
+    path('login/', views.ViewLogin, name = 'ViewLogin'),
     
 
 
