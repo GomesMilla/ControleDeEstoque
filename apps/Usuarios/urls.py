@@ -27,6 +27,7 @@ urlpatterns =[
     # VENDEDOR
     path('Cadastrar-Vendedor', Cadastrar.ViewCadastrarVendedor, name="ViewCadastrarVendedor"),
     path('Desativar-Vendedor/<int:id_vendedor>/', Desativar.ViewDesativarVendedor, name="ViewDesativarVendedor"),
+    path('Movimentacoes-Vendedor/<int:id_vendedor>/', Listar.ViewListarMovimentacaoVendedor, name="ViewListarMovimentacaoVendedor"),
 
     # REDEFINIÇÃO DE SENHAS
     path('reset_password/', auth_views.PasswordResetView.as_view(template_name="Logins/forgot.html"), name="reset_password"),

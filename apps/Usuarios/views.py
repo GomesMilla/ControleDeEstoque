@@ -11,8 +11,8 @@ from Usuarios.SubViews import Desativar
 from Usuarios.SubViews import Editar
 from Usuarios.SubViews import Listar
 
-
-
+from Estoque.models import Produto
+from Transacao.models import Movimentacao
 
 def ViewInicio(request):
 
@@ -57,11 +57,35 @@ def ViewLogin(request):
     return render(request, 'Logins/Login.html', context)
 
 
-def ViewIndex(request):
-    print(request.user.nome)
+def ViewIndex(request): 
+    now = timezone.now()  
+    mesAtual = now.month
+    listCompra = []
+    listVenda = []
+    listUltimasCompras = []
+    listUltimasVendas = []
+    listProdutos = Produto.objects.all()
+    listServicos =  Movimentacao.objects.filter(dataCadastro__month=mesAtual).order_by("-dataCadastro")  
+    ultimasMovimentacoes =  listServicos[:5]
+
+    for servico in listServicos:
+        if servico.tipoTransacao == "E" :
+            listCompra.append(servico)
+            listUltimasCompras = listCompra[:5]
+        else:
+            listVenda.append(servico)
+            listUltimasVendas = listVenda[:5]
     
+
     context = {
         "NomePagina" : "Início",
+        "qtdProdutos" : len(listProdutos),
+        "qtdMovimentacaoMensal" : len(listServicos),
+        "qtdCompra" : len(listCompra),
+        "qtdVendas": len(listVenda),
+        "listUltimasMovimentacoes" : ultimasMovimentacoes,
+        "listUltimasCompras" : listUltimasCompras,
+        "listUltimasVendas" : listUltimasVendas,
     }
     return render(request, "Usuarios/Index.html", context)
 

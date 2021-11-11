@@ -1,0 +1,23 @@
+{% extends 'Bases/BaseProjeto.html' %}
+{% load bootstrap %}
+{% block conteudo %}
+
+<div class="container top">
+    <p class="titulo">Movimentações do Vendedor {{objVendedor.pessoa.nome}}</p>
+    {% if listMovimentacoesVendedor %}
+        {% for movimentacao in listMovimentacoesVendedor %}
+            {{movimentacao}}
+        {% endfor %}
+    {% else %}
+    <div class="alert alert-danger d-flex align-items-center mt-5" role="alert">
+        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+        <div>
+            Não há movimentações feitas por ele! 
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+
+
+{% endblock %}

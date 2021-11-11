@@ -14,6 +14,7 @@ class Movimentacao(models.Model):
     vendendor = models.ForeignKey("Usuarios.Vendedor", related_name="VendedorDoProdutoTransacao", on_delete=models.PROTECT)
     produto = models.ForeignKey("Estoque.Produto", related_name="ProdutodaMovimentacao", on_delete=models.PROTECT)
     qtdProdutos = models.FloatField("Quantidade de produtos movimentados")
+    valor = models.FloatField("Valor da movimentação", blank=True, null=False)
     dataCadastro = models.DateTimeField('Data do cadastro', auto_now_add=True)
     resposavel = models.ForeignKey("Usuarios.Pessoa", on_delete=models.PROTECT, related_name="PessoaResposnavelPelaMovimentacao")
     

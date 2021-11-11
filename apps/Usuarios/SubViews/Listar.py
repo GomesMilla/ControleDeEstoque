@@ -33,3 +33,18 @@ def ViewListarMovimentacaoEmpresa(request, id_empresa):
     }
 
     return render (request, "Listar/ListarMovimentacoes.html", context)
+
+
+def ViewListarMovimentacaoVendedor(request, id_vendedor):
+    objVendedor = Vendedor.objects.get(pk=id_vendedor)
+    listMovimentacoesVendedor = Movimentacao.objects.filter(vendendor=objVendedor)
+
+
+
+    context = {
+        "NomePagina" : "Movimentações do Vendedor",
+        "objVendedor":objVendedor,
+        "listMovimentacoesVendedor" : listMovimentacoesVendedor,
+    }
+
+    return render(request, "Listar/ListarMovimentacoesVendedor.html", context)

@@ -42,7 +42,7 @@
                             <td>Desativo</td>
                         {% endif %}
                         <td>
-                            <a class="btn btn-outline-dark" href="#">Ver Mais</a>
+                            <a class="btn btn-outline-dark" href="{% url 'ViewListarMovimentacaoVendedor' vendedor.id %}">Ver Mais</a>
                             <a href="#" class="btn btn-outline-dark" data-bs-toggle="modal"  data-bs-target="#staticBackdrop-{{vendedor.id}}">Desativar</a>
                             <div class="modal fade" id="staticBackdrop-{{vendedor.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">                                        

@@ -12,7 +12,7 @@
                         </div>
                         <div class="col-6 text-center text-white align-items-center mt-1">
                             <span class="fs-6 fw-bold">Produtos</span>
-                            <p class="fs-2">6891</p>
+                            <p class="fs-2">{{qtdProdutos}}</p>
                         </div>
                     </div>
                 </div>
@@ -25,7 +25,7 @@
                         </div>
                         <div class="col-6 text-center text-white align-items-center mt-1">
                             <span class="fs-6 fw-bold">Serviço</span>
-                            <p class="fs-2">200</p>
+                            <p class="fs-2">{{qtdMovimentacaoMensal}}</p>
                         </div>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                         </div>
                         <div class="col-6 text-center text-white align-items-center mt-1">
                             <span class="fs-6 fw-bold">Vendas</span>
-                            <p class="fs-2">1865</p>
+                            <p class="fs-2">{{qtdVendas}}</p>
                         </div>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                         </div>
                         <div class="col-6 text-center text-white align-items-center mt-1">
                             <span class="fs-6 fw-bold">Compras</span>
-                            <p class="fs-2">2589</p>
+                            <p class="fs-2">{{qtdCompra}}</p>
                         </div>
                     </div>
                 </div>
@@ -80,26 +80,32 @@
                     </h2>
                     <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
                         <div class="accordion-body">
-                            <table class="table">
-                                <thead class="table-secondary">
-                                    <tr>
-                                        <th scope="col">Data Movimentação</th>
-                                        <th scope="col">Tipo</th>
-                                        <th scope="col">Produto</th>
-                                        <th scope="col">Valor Movimentado</th>
-                                        <th scope="col">Responsável</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>20/03/2022</td>
-                                        <td>Compra</td>
-                                        <td>Macarrão</td>
-                                        <td>159,00</td>
-                                        <td>Camila Adriana</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            {% if listUltimasMovimentacoes %}
+                                <table class="table">
+                                    <thead class="table-secondary">
+                                        <tr>
+                                            <th scope="col">Data Movimentação</th>
+                                            <th scope="col">Tipo</th>
+                                            <th scope="col">Produto</th>
+                                            <th scope="col">Valor Movimentado</th>
+                                            <th scope="col">Responsável</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for movimentacao in listUltimasMovimentacoes %}
+                                            <tr>
+                                                <td>{{movimentacao.dataCadastro}}</td>
+                                                <td>{{movimentacao.tipoTransacao}}</td>
+                                                <td>{{movimentacao.produto}}</td>
+                                                <td>{{movimentacao.valor}}</td>
+                                                <td>{{movimentacao.resposavel}}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            {% else %}
+                                <p class="text-muted mt-2 fs-5">Não movimentações registrado nesse mes ainda!</p>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -112,24 +118,30 @@
                     <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
                         <div class="accordion-body">
                             <div class="accordion-body">
-                                <table class="table">
-                                    <thead class="table-secondary">
-                                        <tr>
-                                            <th scope="col">Data Movimentação</th>
-                                            <th scope="col">Produto</th>
-                                            <th scope="col">Valor Movimentado</th>
-                                            <th scope="col">Responsável</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>20/03/2022</td>
-                                            <td>Macarrão</td>
-                                            <td>159,00</td>
-                                            <td>Camila Adriana</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                {% if listUltimasCompras %}
+                                    <table class="table">
+                                        <thead class="table-secondary">
+                                            <tr>
+                                                <th scope="col">Data Movimentação</th>
+                                                <th scope="col">Produto</th>
+                                                <th scope="col">Valor Movimentado</th>
+                                                <th scope="col">Responsável</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for compra in listUltimasCompras %}
+                                                <tr>
+                                                    <td>{{compra.dataCadastro}}</td>
+                                                    <td>{{compra.produto}}</td>
+                                                    <td>{{compra.valor}}</td>
+                                                    <td>{{compra.responsavel}}</td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                {% else %}
+                                    <p class="text-muted mt-2 fs-5">Não há compras registrado nesse mes ainda!</p>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -143,26 +155,30 @@
                     <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
                         <div class="accordion-body">
                             <div class="accordion-body">
-                                <table class="table">
-                                    <thead class="table-secondary">
-                                        <tr>
-                                            <th scope="col">Data Movimentação</th>
-                                            <th scope="col">Tipo</th>
-                                            <th scope="col">Produto</th>
-                                            <th scope="col">Valor Movimentado</th>
-                                            <th scope="col">Responsável</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>20/03/2022</td>
-                                            <td>Compra</td>
-                                            <td>Macarrão</td>
-                                            <td>159,00</td>
-                                            <td>Camila Adriana</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                {% if listUltimasVendas %}
+                                    <table class="table">
+                                        <thead class="table-secondary">
+                                            <tr>
+                                                <th scope="col">Data Movimentação</th>
+                                                <th scope="col">Produto</th>
+                                                <th scope="col">Valor Movimentado</th>
+                                                <th scope="col">Responsável</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for venda in listUltimasVendas %}
+                                                <tr>
+                                                    <td>{{venda.dataCadastro}}</td>
+                                                    <td>{{venda.produto}}</td>
+                                                    <td>{{venda.valor}}</td>
+                                                    <td>{{venda.responsavel}}</td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                {% else %}
+                                    <p class="text-muted mt-2 fs-5">Não há vendas registrado nesse mes ainda!</p>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
