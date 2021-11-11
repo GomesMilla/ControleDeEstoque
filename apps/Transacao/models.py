@@ -10,7 +10,7 @@ class Movimentacao(models.Model):
     ]
     
     tipoTransacao = models.CharField("Tipo de transação!", max_length=3, choices=TIPO_TRANSACAO_CHOICE)
-    empresaVendendora = models.ForeignKey("Usuarios.Empresa", related_name="EmpresaVendedoraDaTransacao", on_delete=models.PROTECT)
+    empresaTransacao = models.ForeignKey("Usuarios.Empresa", related_name="EmpresaVendedoraDaTransacao", on_delete=models.PROTECT)
     vendendor = models.ForeignKey("Usuarios.Vendedor", related_name="VendedorDoProdutoTransacao", on_delete=models.PROTECT)
     produto = models.ForeignKey("Estoque.Produto", related_name="ProdutodaMovimentacao", on_delete=models.PROTECT)
     qtdProdutos = models.FloatField("Quantidade de produtos movimentados")

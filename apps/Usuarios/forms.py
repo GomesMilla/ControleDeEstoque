@@ -1,6 +1,7 @@
 from django import forms
-from .models import *
 from django.contrib.auth.models import User
+
+from .models import  Pessoa, Empresa, Vendedor
 
 class PessoaForm(forms.ModelForm):
     def save(self, commit=True):
@@ -18,3 +19,10 @@ class EmpresaForm(forms.ModelForm):
     class Meta:
         model = Empresa
         exclude = ('dataCadastro',)
+
+
+class VendedorForm(forms.ModelForm):
+
+    class Meta:
+        model = Vendedor
+        exclude = ('totalVendido', 'dataCadastro', 'dataDesativacao', 'desativadoPor', 'ativo')

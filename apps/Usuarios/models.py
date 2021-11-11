@@ -60,7 +60,7 @@ class Pais(models.Model):
 
 class Pessoa(AbstractBaseUser,PermissionsMixin):
     nome = models.CharField('Nome completo', max_length=194)
-    pais = models.ForeignKey("Pais", on_delete=models.CASCADE, related_name="PaisdoUsuario", blank=True, null=True)
+    pais = models.ForeignKey("Pais", on_delete=models.CASCADE, related_name="PaisUsuario", blank=True, null=True)
     escolaridade = models.CharField('Escolaridade', max_length=30, choices=ESCOLARIDADE, blank=True, null=True)
     status = models.CharField('Genero', max_length=10, choices=STATUS_GENERO, blank=True, null=True)
     email = models.EmailField('E-mail', unique=True)
@@ -145,7 +145,7 @@ class Vendedor(models.Model):
     dataCadastro = models.DateTimeField('Data do cadastro', auto_now_add=True)
     dataDesativacao = models.DateField('Data de nascimento', blank=True, null=True)
     cadastradoPor = models.ForeignKey("Pessoa", on_delete=models.CASCADE, related_name="PessoaCadastrouVendedor")
-    desativadoPor = models.ForeignKey("Pessoa", on_delete=models.CASCADE, related_name="PessoaDesativouVendedor")
+    desativadoPor = models.ForeignKey("Pessoa", on_delete=models.CASCADE, related_name="PessoaDesativouVendedor", blank=True, null=True)
     ativo = models.BooleanField(verbose_name="Empresa está ativa",default=True) 
 
     class Meta:

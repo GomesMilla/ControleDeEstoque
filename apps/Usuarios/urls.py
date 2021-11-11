@@ -1,15 +1,32 @@
 from django.urls import path
 from .views import *
-from django.contrib.auth import views as auth_views  #Importando pacote Django padrão para recuperação de senha 
+from django.contrib.auth import views as auth_views  
+
+
+
+from Usuarios.views import Cadastrar
+from Usuarios.views import Listar
+from Usuarios.views import Editar
+from Usuarios.views import Desativar
 
 
 urlpatterns =[
-    path('Criar-Conta/', ViewCriarConta, name="ViewCriarConta"),
+    # INICIO DO SISTEMA
     path('Início/', ViewIndex, name="ViewIndex"),
-    path('Cadastrar-Empresa', ViewCadastrarEmpresa, name="ViewCadastrarEmpresa"),
-    path('Lista-De-Empresas', ViewListarEmpresas, name="ViewListarEmpresas"),
-    path('Desativar-Empresa/<int:id_empresa>/', ViewDesativarEmpresa, name="ViewDesativarEmpresa"),
-    path('Editar-Empresa/<int:id_empresa>/', ViewEditarEmpresa, name="ViewEditarEmpresa"),
+    # USUÁRIOS
+    path('Criar-Conta/', Cadastrar.ViewCriarConta, name="ViewCriarConta"),  
+    
+    
+    # EMPRESA
+    path('Cadastrar-Empresa', Cadastrar.ViewCadastrarEmpresa, name="ViewCadastrarEmpresa"),
+    path('Lista-De-Empresas', Listar.ViewListarEmpresas, name="ViewListarEmpresas"),
+    path('Desativar-Empresa/<int:id_empresa>/', Desativar.ViewDesativarEmpresa, name="ViewDesativarEmpresa"),
+    path('Editar-Empresa/<int:id_empresa>/', Editar.ViewEditarEmpresa, name="ViewEditarEmpresa"),
+    path('Movimentacoes-Empresa/<int:id_empresa>/', Listar.ViewListarMovimentacaoEmpresa, name="ViewListarMovimentacaoEmpresa"),
+
+    # VENDEDOR
+    path('Cadastrar-Vendedor', Cadastrar.ViewCadastrarVendedor, name="ViewCadastrarVendedor"),
+    path('Desativar-Vendedor/<int:id_vendedor>/', Desativar.ViewDesativarVendedor, name="ViewDesativarVendedor"),
 
     # REDEFINIÇÃO DE SENHAS
     path('reset_password/', auth_views.PasswordResetView.as_view(template_name="Logins/forgot.html"), name="reset_password"),

@@ -1,0 +1,92 @@
+{% extends 'Bases/BaseProjeto.html' %}
+{% load bootstrap %}
+{% block conteudo %}
+
+<div class="container top">
+    <p class="titulo">Movimentações da Empresa {{objEmpresa.nome}}</p>
+    <div class="alert alert-danger d-flex align-items-center mt-5" role="alert">
+        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+        <div>
+            Não há movimentações registradas dessa empresa! 
+        </div>
+    </div>
+    {% if listMovimentacao %}
+        {% for movimentacao in listMovimentacao%}
+            {{movimentacao}}
+        {% endfor %}
+    {% else %}
+    {% endif %}
+    <p class="titulo mt-5">Vendedores da Empresa {{objEmpresa.nome}}</p>
+    {% if listVendedores %}
+        <table class="table text-center">
+            <thead class="table-secondary">
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">E-mail</th>
+                    <th scope="col">Telefone</th>
+                    <th scope="col">CPF</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Gerenciar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for vendedor in listVendedores %}
+                    <tr>
+                        <td>{{vendedor.pessoa.nome}}</td>
+                        <td>{{vendedor.pessoa.email}}</td>
+                        <td>{{vendedor.pessoa.telefoneCelular}}</td>
+                        <td>{{vendedor.pessoa.cpf}}</td>
+                        {% if vendedor.ativo %}
+                            <td>Ativo</td>
+                        {% else %}
+                            <td>Desativo</td>
+                        {% endif %}
+                        <td>
+                            <a class="btn btn-outline-dark" href="#">Ver Mais</a>
+                            <a href="#" class="btn btn-outline-dark" data-bs-toggle="modal"  data-bs-target="#staticBackdrop-{{vendedor.id}}">Desativar</a>
+                            <div class="modal fade" id="staticBackdrop-{{vendedor.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">                                        
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <div class="p-3 text-center"> 
+                                                {% if not vendedor.ativo %}                                                 
+                                                    <i class="material-icons fs-120" style="color: #198754; font-size: 120px;">task_alt</i>                                                                                                         
+                                                {% else %}
+                                                    <i class="material-icons fs-120" style="color: rgb(228, 13, 13); font-size: 120px;">highlight_off</i>  
+                                                {% endif %}
+                                                <div class="fs-2 mt-2">Tem certeza?</div>                                                   
+                                                    <div class="text-muted mt-2">Você realmente quer 
+                                                        {% if not vendedor.ativo %}
+                                                            ativar
+                                                        {% else %}
+                                                            desativar 
+                                                        {% endif %}
+                                                        o vendedor '{{ vendedor.pessoa.nome }}'? </div>     
+                                                </div>
+                                            <div class="mb-4 text-center">                                                   
+                                                <button type="button" class="btn btn-light border border-1 px-4 m-1" data-bs-dismiss="modal">Cancelar</button>
+                                                {% if not vendedor.ativo %}
+                                                    <a href="{% url 'ViewDesativarVendedor' vendedor.id %}" class="btn btn-success red-13 px-4">Ativar</a> 
+                                                {% else %}
+                                                    <a href="{% url 'ViewDesativarVendedor' vendedor.id %}" class="btn btn-danger red-13 px-4">Desativar</a>                                                 
+                                                {% endif %}
+                                            </div>                                                   
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div> 
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+    <div class="alert alert-danger d-flex align-items-center mt-5" role="alert">
+        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+        <div>
+            Não há vendedores registradas nessa empresa! 
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

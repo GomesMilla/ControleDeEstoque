@@ -74,7 +74,7 @@ DATABASES = {
 #Configurações para login declaração de user 
 AUTH_USER_MODEL = "Usuarios.Pessoa" # Declarando nas configurações qual é o novo padrão de User
 LOGIN_REDIRECT_URL = 'ViewIndex' # Redirecionando para a pagina inicial depois de logar
-LOGIN_URL = 'Login' # Definindo a view padrão do Django de login
+LOGIN_URL = 'ViewLogin' # Definindo a view padrão do Django de login
 
 
 AUTH_PASSWORD_VALIDATORS = [

@@ -1,4 +1,4 @@
-{% extends 'Bases/Baseprojeto.html' %}
+{% extends 'Bases/BaseProjeto.html' %}
 {% load bootstrap %}
 {% block conteudo %}
 
@@ -6,7 +6,7 @@
     $( document ).ready(function() {
         $('document').ready(function() {        
         $("#id_cep").mask("00000-000");
-        $('#id_Numero').mask('(00) 0000-0000');
+        $('#id_telefoneCelular').mask('(00) 0000-0000');
         $('#id_cpf').mask('000.000.000-00');
     })
 })
@@ -61,11 +61,13 @@
             </div>
         </div>
     </div>
-</div>        
-<!-- {{FormularioVazio}} -->
+</div>  
 <body>
-    <div class="container">
-        <h2 class="titulo">Cadastrar Usuário</h2>
+    <div class="container top">
+        <!-- <ul>{{FormularioVazio}}</ul> -->
+        <div class="d-flex justify-content-center">
+            <p class="fs-1 fw-bolder text-muted">Cadastrar Usuário</p>
+        </div>
         <form method="POST" class="my-login-validation" novalidate="">
             {% csrf_token %}
                 <div class="form-group">
@@ -76,11 +78,28 @@
                     </div>
                 </div>
                 <div class="form-group mt-2">
-                    <label for="id_pais">País</label>
-                    <input id="id_pais" type="text" class="form-control" name="pais" required autofocus>
+                    <label for="id_email">E-Mail</label>
+                    <input id="id_email" type="email" class="form-control" name="email" required>
                     <div class="invalid-feedback">
-                        Qual seu país?
+                        Email Inválido
                     </div>
+                </div>
+                <div class="form-group  mt-2">
+                    <label for="id_dataDascimento">Nascimento</label>
+                    <input type="text" class="form-control" id="id_dataDascimento" data-target="#id_dataDascimento" data-toggle="datetimepicker" >
+                    <div class="invalid-feedback">
+                        Nascimento Inválido!
+                    </div>  
+                </div>
+                <div class="form-group mt-2">
+                    <label for="id_telefoneCelular">Telefone Celular</label>
+                    <input id="id_telefoneCelular" type="text" class="form-control" name="telefoneCelular" required autofocus>
+                    <div class="invalid-feedback">
+                        Número não específicado!
+                    </div>
+                </div>  
+                <div class=" mt-2">
+                    {{ FormularioVazio.pais|bootstrap }}
                 </div>
                 <div class=" mt-2">
                     {{ FormularioVazio.status|bootstrap }}
@@ -95,13 +114,6 @@
                         CPF Inválido!
                     </div>
                 </div>
-                <div class="form-group  mt-2">
-                    <label for="id_dataDascimento">Nascimento</label>
-                    <input type="text" class="form-control" id="id_dataDascimento" data-target="#id_dataDascimento" data-toggle="datetimepicker" >
-                    <div class="invalid-feedback">
-                        Nascimento Inválido!
-                    </div>  
-                </div> 
                 <div class="form-group  mt-2">
                     <label for="id_cep">CEP</label>
                     <input id="id_cep" type="text" class="form-control" name="cep" required autofocus>
@@ -138,19 +150,13 @@
                     </div>
                 </div>
                 <div class="form-group mt-2">
-                    <label for="id_Numero">Número</label>
-                    <input id="id_Numero" type="number" class="form-control" name="Numero" required autofocus>
+                    <label for="id_Numero">Número Residẽncia</label>
+                    <input id="id_Numero" type="text" class="form-control" name="Numero" required autofocus>
                     <div class="invalid-feedback">
                         Número não específicado!
                     </div>
                 </div>                               
-                <div class="form-group mt-2">
-                    <label for="id_email">E-Mail</label>
-                    <input id="id_email" type="email" class="form-control" name="email" required>
-                    <div class="invalid-feedback">
-                        Email Inválido
-                    </div>
-                </div>
+                
                 <div class="form-group mt-2">
                     <label for="id_password">Senha</label>
                     <input id="id_password" type="password" class="form-control" name="password" required data-eye>

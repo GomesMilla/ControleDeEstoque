@@ -26,7 +26,7 @@
                             <td>{{empresa.cnpj}}</td>
                             <td>{{empresa.telefone}}</td>
                             <td>
-                                <a class="btn btn-outline-dark" href="{% url 'ViewEditarEmpresa' empresa.id %}">Ver Mais</a>
+                                <a class="btn btn-outline-dark" href="{% url 'ViewListarMovimentacaoEmpresa' empresa.id %}">Ver Mais</a>
                                 <a class="btn btn-outline-dark" href="{% url 'ViewEditarEmpresa' empresa.id %}">Editar</a>
                                 <a href="#" class="btn btn-outline-dark" data-bs-toggle="modal"  data-bs-target="#staticBackdrop-{{empresa.id}}">Desativar</a>
                                 <div class="modal fade" id="staticBackdrop-{{empresa.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
