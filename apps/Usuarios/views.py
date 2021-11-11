@@ -51,7 +51,7 @@ def ViewCriarConta(request):
         "FormularioVazio" : FormularioVazio
     }
 
-    return render(request, "Logins/CadastroUser.html", context)
+    return render(request, "Cadastro/CadastroUser.html", context)
 
 def ViewIndex(request):
     print(request.user.nome)

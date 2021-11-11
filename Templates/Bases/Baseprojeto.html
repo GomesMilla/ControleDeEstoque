@@ -99,7 +99,7 @@
     </div>
        
     <header>
-        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light p-3 mb-5 bg-light rounded border-bottom">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-primary p-3 mb-5 border-bottom">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{% url 'ViewIndex' %}">
                     <img src="{% static 'infinito.gif' %}" alt="Logo" width="80" height="80">
@@ -112,17 +112,21 @@
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Cadastro
                                 </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">                                   
                                     <li><a class="dropdown-item" href="{% url 'ViewCadastrarEmpresa' %}">Cadastrar Empresa</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" href="#">Cadastrar Produto</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="{% url 'ViewCriarConta' %}">Cadastrar Usuário</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="{% url 'ViewCadastrarEmpresa' %}">Cadastrar Sala</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Listagem
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -131,10 +135,12 @@
                                     <li><a class="dropdown-item" href="{% url 'ViewListarEmpresas' %}"">Listagem de Empresa</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" href="#">Listagem de Gerentes</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#">Listagem de Salas</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Financeiro
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -144,7 +150,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Logística
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -156,7 +162,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Opções
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -166,7 +172,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#"> <i class="material-icons fs-3 text-green-15 d-flex justify-content-end" id="id_favoritar">campaign</i></a>
+                                <a class="nav-link active text-white" aria-current="page" href="#"> <i class="material-icons fs-3 text-green-15 d-flex justify-content-end" id="id_favoritar">campaign</i></a>
                             </li>
                         </ul>
                     </div>
@@ -180,8 +186,8 @@
         {%endblock conteudo%}
     </main>
 
-    <footer class="page-footer font-small bg-light">
-        <div class="footer-copyright text-center py-3">© 2021 Camila Adriana|GomesMilla</div>
+    <footer class="page-footer font-small bg-primary">
+        <div class="footer-copyright text-center py-3 text-white">© 2021 Camila Adriana|GomesMilla</div>
     </footer>
     
 
