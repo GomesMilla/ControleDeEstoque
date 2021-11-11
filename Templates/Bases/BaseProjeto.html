@@ -95,10 +95,8 @@
             {% endfor %}
         {% endif %}
     </div>
-       
     <header>
-        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-primary p-3 mb-5 border-bottom">
-        <nav class="navbar fixed-top navbar-expand-lg navbar-primary bg-primary p-3 mb-5 rounded border-bottom">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-primary bg-primary p-3 mb-5  border-bottom">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{% url 'ViewIndex' %}">
                     <img src="{% static 'infinito.gif' %}" alt="Logo" width="80" height="80">
@@ -114,14 +112,6 @@
                                 <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Cadastro
                                 </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">                                   
-                                    <li><a class="dropdown-item" href="{% url 'ViewCadastrarEmpresa' %}">Cadastrar Empresa</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="#">Cadastrar Produto</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="{% url 'ViewCriarConta' %}">Cadastrar Usuário</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="{% url 'ViewCadastrarEmpresa' %}">Cadastrar Sala</a></li>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li>
                                         <a class="dropdown-item" href="{% url 'ViewCadastrarEmpresa' %}">Cadastrar Empresa</a>
@@ -148,7 +138,6 @@
                                     <li><a class="dropdown-item" href="#">Listagem de Gerentes</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" href="#">Listagem de Salas</a></li>
-                                    <li><a class="dropdown-item" href="#">Listagem de Sala</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
@@ -198,74 +187,63 @@
         {%endblock conteudo%}
     </main>
 
-    <footer class="page-footer font-small bg-primary">
-        <div class="footer-copyright text-center py-3 text-white">© 2021 Camila Adriana|GomesMilla</div>
-    </footer>
     <footer class="text-center text-black bg-primary mt-5">
-        <!-- Grid container -->
         <div class="container pt-4">
-          <!-- Section: Social media -->
-          <section class="mb-4">
-            <!-- Facebook -->
-            <a
-              class="btn btn-link btn-floating btn-lg text-dark m-1 bg-primary"
-              href="#!"
-              role="button"
-              data-mdb-ripple-color="dark"
-              ><i class="fab fa-facebook-f text-white"></i
-            ></a>
-      
-            <!-- Twitter -->
-            <a
-              class="btn btn-link btn-floating btn-lg text-dark m-1 bg-primary"
-              href="#!"
-              role="button"
-              data-mdb-ripple-color="dark"
-              ><i class="fab fa-twitter text-white"></i
-            ></a>
-      
-            <!-- Google -->
-            <a
-              class="btn btn-link btn-floating btn-lg text-dark m-1 bg-primary"
-              href="#!"
-              role="button"
-              data-mdb-ripple-color="dark"
-              ><i class="fab fa-google text-white"></i
-            ></a>
-      
-            <!-- Instagram -->
-            <a
-              class="btn btn-link btn-floating btn-lg text-dark m-1 bg-primary"
-              href="#!"
-              role="button"
-              data-mdb-ripple-color="dark"
-              ><i class="fab fa-instagram text-white"></i
-            ></a>
-      
-            <!-- Linkedin -->
-            <a
-              class="btn btn-link btn-floating btn-lg text-dark m-1 bg-primary"
-              href="#!"
-              role="button"
-              data-mdb-ripple-color="dark"
-              ><i class="fab fa-linkedin text-white"></i
-            ></a>
-            <!-- Github -->
-            <a
-              class="btn btn-link btn-floating btn-lg text-dark m-1 bg-primary"
-              href="#!"
-              role="button"
-              data-mdb-ripple-color="dark"
-              ><i class="fab fa-github text-white"></i
-            ></a>
-          </section>
-          <!-- Section: Social media -->
+            <section class="mb-4">
+                <a
+                    class="btn btn-link btn-floating btn-lg text-dark m-1 bg-primary"
+                    href="#!"
+                    role="button"
+                    data-mdb-ripple-color="dark"
+                    ><i class="fab fa-facebook-f text-white"></i
+                    >
+                </a>
+                <a
+                    class="btn btn-link btn-floating btn-lg text-dark m-1 bg-primary"
+                    href="#!"
+                    role="button"
+                    data-mdb-ripple-color="dark"
+                    ><i class="fab fa-twitter text-white"></i
+                    >
+                </a>
+                <a
+                    class="btn btn-link btn-floating btn-lg text-dark m-1 bg-primary"
+                    href="#!"
+                    role="button"
+                    data-mdb-ripple-color="dark"
+                    ><i class="fab fa-google text-white"></i
+                    >
+                </a>
+                <a
+                    class="btn btn-link btn-floating btn-lg text-dark m-1 bg-primary"
+                    href="#!"
+                    role="button"
+                    data-mdb-ripple-color="dark"
+                    ><i class="fab fa-instagram text-white"></i
+                    >
+                </a>
+                <a
+                    class="btn btn-link btn-floating btn-lg text-dark m-1 bg-primary"
+                    href="#!"
+                    role="button"
+                    data-mdb-ripple-color="dark"
+                    ><i class="fab fa-linkedin text-white"></i
+                    >
+                </a>
+                <a
+                    class="btn btn-link btn-floating btn-lg text-dark m-1 bg-primary"
+                    href="#!"
+                    role="button"
+                    data-mdb-ripple-color="dark"
+                    ><i class="fab fa-github text-white"></i
+                    >
+                </a>
+            </section>
         </div>
         <footer class="page-footer font-small bg-primary">
             <div class="footer-copyright text-center py-3 text-white">© 2021 Camila Adriana|GomesMilla</div>
         </footer>
-       
-      </footer>
+    </footer>
 
     
 

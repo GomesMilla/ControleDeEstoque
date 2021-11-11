@@ -28,6 +28,7 @@ admin.site.register(Pessoa,PessoaAdmin)
 admin.site.register(Gerente)
 admin.site.register(Empresa, EmpresaAdmin)
 admin.site.register(Vendedor, VendedorAdmin)
+admin.site.register(Pais)
 
 ####################################################################
 # PESQUISAR readonly_fields

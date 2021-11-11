@@ -65,11 +65,14 @@ main {
     font-family: 'Fira Sans', sans-serif;
     font-size: 50px;
 }
-  
+/* Zoom dos cards iniciais */
 .zoomCards:hover {
   -webkit-transform: scale(1.05);
   -moz-transform: scale(1.05);
   -o-transform: scale(0.7);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
+}
+.tabela{
+  background-color: rgb(148, 148, 148);
 }

@@ -1,60 +1,57 @@
-{% extends 'principal/baseprojeto.html' %}
+{% extends 'Bases/BaseProjeto.html' %}
 {% load bootstrap %}
 {% block conteudo %}
 
 <div class="container top">
-    <h3 class="Index">Lista de Empresas</h3>
-    <hr class="divider"/>
+    <p class="fs-1 fw-bolder text-muted">Lista de Empresas</p>
     {% if ListEmpresas %}
-    <div class="table-responsive">
-        <table class="table table-hover mt-5 shadow-sm p-3 mb-5 bg-body rounded" id="id_tabelaEmpresas">
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">E-mail</th>
-                    <th scope="col">CNPJ</th>
-                    <th scope="col">Telefone</th>
-                    <th scope="col">Editar</th>
-                    <th scope="col">Desativar</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for empresa in ListEmpresas %}
-                    <tr>
-                        <th scope="row">{{empresa.id}}</th>
-                        <td>{{empresa.Nome}}</td>
-                        <td>{{empresa.email}}</td>
-                        <td>{{empresa.Cnpj}}</td>
-                        <td>{{empresa.Telefone}}</td>
-                        <td>
-                            <a class="btn btn-outline-secondary" href="{% url 'ViewEditarEmpresa' empresa.id %}">Editar</a>
-                        </td>
-                        <td>
-                            <a href="#" class="btn btn-outline-danger" data-bs-toggle="modal"  data-bs-target="#staticBackdrop-{{empresa.id}}">Desativar</a>
-                            <div class="modal" id="staticBackdrop-{{empresa.id}}">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">Tem certeza que deseja desativar a Empresa</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>Ao confirmar, a empresa só ficará disponível para usuários masters e não aparecerá em consultas ou cadastros</p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                            <a class="btn btn-primary" href="{% url 'ViewDesativarEmpresa' empresa.id %}">Desativar</a>
+        <div class="table-responsive text-center">
+            <table class="table table-hover mt-5 shadow-sm p-3 mb-5 bg-body rounded" id="id_tabelaEmpresas">
+                <thead class="tabela">
+                    <tr class="">
+                        <th scope="col">Código</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">E-mail</th>
+                        <th scope="col">CNPJ</th>
+                        <th scope="col">Telefone</th>
+                        <th scope="col">Gerenciar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for empresa in ListEmpresas %}
+                        <tr>
+                            <th scope="row">{{empresa.id}}</th>
+                            <td>{{empresa.nome}}</td>
+                            <td>{{empresa.email}}</td>
+                            <td>{{empresa.cnpj}}</td>
+                            <td>{{empresa.telefone}}</td>
+                            <td>
+                                <a class="btn btn-outline-dark" href="{% url 'ViewEditarEmpresa' empresa.id %}">Ver Mais</a>
+                                <a class="btn btn-outline-dark" href="{% url 'ViewEditarEmpresa' empresa.id %}">Editar</a>
+                                <a href="#" class="btn btn-outline-dark" data-bs-toggle="modal"  data-bs-target="#staticBackdrop-{{empresa.id}}">Desativar</a>
+                                <div class="modal fade" id="staticBackdrop-{{empresa.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">                                        
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                <div class="p-3 text-center">                                                  
+                                                    <i class="material-icons fs-120" style="color: rgb(228, 13, 13); font-size: 120px;">highlight_off</i>                                                                                                         
+                                                    <div class="fs-2 mt-2">Tem certeza?</div>                                                   
+                                                        <div class="text-muted mt-2">Você realmente quer desativar a empresa '{{ empresa.nome }}'? </div>     
+                                                    </div>
+                                                <div class="mb-4 text-center">                                                   
+                                                    <button type="button" class="btn btn-light border border-1 px-4 m-1" data-bs-dismiss="modal">Cancelar</button>
+                                                    <a href="{% url 'ViewDesativarEmpresa' empresa.id %}" class="btn btn-danger red-13 px-4">Desativar</a>                                                 
+                                                </div>                                                   
+                                            </div> 
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+                                </div> 
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     {% else %}
         <div class="alert alert-danger" role="alert">
             <h4 class="alert-heading">Não há empresa cadastrada!</h4>

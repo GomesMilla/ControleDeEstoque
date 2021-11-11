@@ -124,8 +124,8 @@ class Empresa(models.Model):
     telefone = models.CharField('Contato da empresa', max_length=194, blank=True, null=True)
     dataCadastro = models.DateTimeField('Data do cadastro', auto_now_add=True)
     dataDesativacao = models.DateField('Data de nascimento', blank=True, null=True)
-    cadastradoPor = models.ForeignKey("Pessoa", on_delete=models.CASCADE, related_name="PessoaCadastrouEmpresa")
-    desativadoPor = models.ForeignKey("Pessoa", on_delete=models.CASCADE, related_name="PessoaDesativouEmpresa")
+    cadastradoPor = models.ForeignKey("Pessoa", on_delete=models.CASCADE, related_name="PessoaCadastrouEmpresa", blank=True, null=True)
+    desativadoPor = models.ForeignKey("Pessoa", on_delete=models.CASCADE, related_name="PessoaDesativouEmpresa", blank=True, null=True)
     ativo = models.BooleanField(verbose_name="Empresa está ativa",default=True)    
     
     class Meta:
