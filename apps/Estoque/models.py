@@ -32,7 +32,7 @@ class Classificacao(models.Model):
     descricao = models.CharField("Descrição da categoria", max_length=200)
     dataCadastro = models.DateTimeField('Data do cadastro', auto_now_add=True)
     cadastradoPor = models.ForeignKey("Usuarios.Pessoa", on_delete=models.PROTECT, related_name="PessoaCadastrouCategoria", blank=True, null=True)
-    ativo = models.BooleanField(verbose_name="Empresa está ativa",default=True, blank=True, null=True) 
+    ativo = models.BooleanField(verbose_name="Classificação está ativa",default=True, blank=True, null=True) 
     desativadoPor = models.ForeignKey("Usuarios.Pessoa", on_delete=models.PROTECT, related_name="PessoaDesativouCategoria", blank=True, null=True)
     dataDesativacao = models.DateField('Data de nascimento', blank=True, null=True)  
 
@@ -51,11 +51,11 @@ class Produto(models.Model):
     categoria = models.CharField('Categoria', max_length=30, choices=CURVA_ABC)
     gerenteResposavel = models.ForeignKey("Usuarios.Gerente", related_name="GerenteResposasavelpeloProduto", on_delete=models.PROTECT)
     descricao = models.TextField('Descrição do produto', max_length=194, blank=True, null=True)
-    quantidadeMinima = models.IntegerField('Quantidade mínima')
-    valorUnitario = models.FloatField('Valor unitário do produto')
+    quantidadeMinima = models.IntegerField('Quantidade mínima')    
+    valorUnitario = models.DecimalField('Valor unitário do produto',max_digits=9, decimal_places=2)
     dataCadastro = models.DateTimeField('Data do cadastro', auto_now_add=True)
     cadastradoPor = models.ForeignKey("Usuarios.Pessoa", on_delete=models.PROTECT, related_name="PessoaCadastrouProduto")
-    ativo = models.BooleanField(verbose_name="Empresa está ativa",default=True) 
+    ativo = models.BooleanField(verbose_name="Produto está ativo",default=True) 
     desativadoPor = models.ForeignKey("Usuarios.Pessoa", on_delete=models.PROTECT, related_name="PessoaDesativouProduto", blank=True, null=True)
     dataDesativacao = models.DateField('Data de nascimento', blank=True, null=True)
 

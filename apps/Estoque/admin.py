@@ -21,7 +21,7 @@ class ClassificacaoPersonalizado(admin.ModelAdmin):
     list_filter = ['ativo']
     ordering = ['nome']
     search_fields = ['nome']
-    readonly_fields = ('dataCadastro', 'cadastradoPor', 'desativadoPor', 'dataDesativacao')
+    # readonly_fields = ('dataCadastro', 'cadastradoPor', 'desativadoPor', 'dataDesativacao')
     empty_value_display = 'Não Informado'
     date_hierarchy = 'dataCadastro'
 
@@ -32,7 +32,7 @@ class ProdutoPersonalizado(admin.ModelAdmin):
     radio_fields = {"classificacao": admin.VERTICAL}
     ordering = ['nome']
     search_fields = ['nome']
-    readonly_fields = ('dataCadastro', 'cadastradoPor', 'desativadoPor', 'dataDesativacao')
+    # readonly_fields = ('dataCadastro', 'cadastradoPor', 'desativadoPor', 'dataDesativacao')
     empty_value_display = 'Não Informado'
     date_hierarchy = 'dataCadastro'
 

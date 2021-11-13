@@ -7,16 +7,21 @@
         <meta name="theme-color" content="#F2BD24"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.compat.css" />
-        <!-- importando CSS e JV  -->
+        <!-- importando CSS do Bootsrap  -->
         <link rel="stylesheet" href="{% static 'CSS/Bootstrap/bootstrap.min.css'%}">
+        <!-- importando CSS do sb-admin-2 -->
+        <link type="text/css" rel="stylesheet" href="{% static 'CSS/Styles/sb-admin-2.min.css' %}">
+         <!-- importando CSS personalizado -->
         <link type="text/css" rel="stylesheet" href="{% static 'CSS/Styles/styles.css' %}">
         <link href="{% static 'css/HoldOn/HoldOn.min.css'%}" rel="stylesheet">
+        <!-- importando arquivos JS -->
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script src="{% static 'JS/Jquery/jquery.mask.js' %}"></script>
         <script type="text/javascript" src="{% static 'JS/Bootstrap/bootstrap.min.js' %}"></script>
-        <script type="text/javascript" src="{% static 'JS/Styles/Dinamizar.js'%}"></script>
         <script type="text/javascript" src="{% static 'JS/HoldOn/HoldOn.min.js'%}"></script>
+        <script type="text/javascript" src="{% static 'JS/Styles/sb-admin-2.min.js'%}"></script>
         <script src="https://kit.fontawesome.com/2cbdb08e7a.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.js"></script>
         <!-- Importando icones -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -108,104 +113,200 @@
             {% endfor %}
         {% endif %}
     </div>
-    <header>
-        <nav class="navbar fixed-top navbar-expand-lg navbar-primary bg-primary p-3 mb-5  border-bottom">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="{% url 'ViewIndex' %}">
-                    <img src="{% static 'infinito.gif' %}" alt="Logo" width="80" height="80">
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="d-flex justify-content-end">
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Cadastro
+    <!-- <header>
+        <div class="col s3">
+         <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                        
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small"
+                                            placeholder="Search for..." aria-label="Search"
+                                            aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-bell fa-fw"></i>
+                                <span class="badge badge-danger badge-counter">3+</span>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-envelope fa-fw"></i>
+                                <span class="badge badge-danger badge-counter">7</span>
+                            </a>
+                        </li>
+                        <div class="topbar-divider d-none d-sm-block"></div>
+                            <li class="nav-item dropdown no-arrow">
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                    <img class="img-profile rounded-circle"
+                                        src="img/undraw_profile.svg">
                                 </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li>
-                                        <a class="dropdown-item" href="{% url 'ViewCadastrarEmpresa' %}">Cadastrar Empresa</a>
-                                    </li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li>
-                                        <a class="dropdown-item" href="#">Cadastrar Produto</a>
-                                    </li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li>
-                                        <a class="dropdown-item" href="{% url 'ViewCriarConta' %}">Cadastrar Usuário</a>
-                                    </li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li>
-                                        <a class="dropdown-item" href="{% url 'ViewCadastrarVendedor' %}">Cadastrar Vendedor</a>
-                                    </li>
-                                    <li><hr class="dropdown-divider"></li>                                    
-                                    <li>
-                                        <a class="dropdown-item" href="#">Cadastrar Sala</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Listagem
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="#">Listagem de Produtos</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="{% url 'ViewListarEmpresas' %}"">Listagem de Empresa</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="#">Listagem de Gerentes</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="#">Listagem de Salas</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Financeiro
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="#">Circulação de Capital</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="#">Relatório Financeiro</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Logística
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="#">Cadastrar Relatório</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="#">Relatório das Movimentações</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="#">PDF</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Opções
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="#">Estoque</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="{% url 'ViewLogin' %}">Sair</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active text-white" aria-current="page" href="#"> <i class="material-icons fs-3 text-green-15 d-flex justify-content-end" id="id_favoritar">campaign</i></a>
                             </li>
                         </ul>
-                    </div>
-                </div>
+                    </nav>
             </div>
-        </nav>
-    </header>
+    </header> -->
 
-    <main>        
-        {%block conteudo%} 
-        {%endblock conteudo%}
+    <main>
+        <div class="row">
+            <div class="col-xl-3 col-md-3 mb-4">
+                <div id="wrapper">
+                    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+                        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'ViewIndex' %}">
+                            <div class="sidebar-brand-icon rotate-n-15">
+                                <i class="fas fa-laugh-wink"></i>
+                            </div>
+                            <div class="sidebar-brand-text mx-3">Arrumar foto <sup>2</sup></div>
+                        </a>
+                        <hr class="sidebar-divider my-0">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="index.html">
+                                <i class="fas fa-fw fa-tachometer-alt"></i>
+                                <span>Dashboard</span></a>
+                        </li>
+                        <hr class="sidebar-divider">
+                        <div class="sidebar-heading">
+                            Cadastrar
+                        </div>
+                        <li class="nav-item">
+                            <a class="nav-link collapsed" href="{% url 'ViewCadastrarEmpresa' %}" data-toggle="collapse" data-target="#cadastrar"
+                                aria-expanded="true" aria-controls="collapseTwo">
+                                <i class="fas fa-fw fa-cog"></i>
+                                <span>Cadastrar Empresa</span>
+                            </a>
+                            <a class="nav-link collapsed" href="{% url 'ViewCriarConta' %}" data-toggle="collapse" data-target="#cadastrar"
+                                aria-expanded="true" aria-controls="collapseTwo">
+                                <i class="fas fa-fw fa-cog"></i>
+                                <span>Cadastrar Usuário</span>
+                            </a>
+                            <a class="nav-link collapsed" href="{% url 'ViewCadastrarVendedor' %}" data-toggle="collapse" data-target="#cadastrar"
+                                aria-expanded="true" aria-controls="collapseTwo">
+                                <i class="fas fa-fw fa-cog"></i>
+                                <span>Cadastrar Vendedor</span>
+                            </a>
+                            <a class="nav-link collapsed" href="{% url 'ViewCadastrarVendedor' %}" data-toggle="collapse" data-target="#cadastrar"
+                                aria-expanded="true" aria-controls="collapseTwo">
+                                <i class="fas fa-fw fa-cog"></i>
+                                <span>Cadastrar Sala</span>
+                            </a>
+                            <a class="nav-link collapsed" href="{% url 'ViewCadastrarVendedor' %}" data-toggle="collapse" data-target="#cadastrar"
+                                aria-expanded="true" aria-controls="collapseTwo">
+                                <i class="fas fa-fw fa-cog"></i>
+                                <span>Cadastrar Produto</span>
+                            </a>
+                            <a class="nav-link collapsed" href="{% url 'ViewCadastrarVendedor' %}" data-toggle="collapse" data-target="#cadastrar"
+                                aria-expanded="true" aria-controls="collapseTwo">
+                                <i class="fas fa-fw fa-cog"></i>
+                                <span>Cadastrar Relatório</span>
+                            </a>
+                        </li>
+                        <hr class="sidebar-divider">
+                        <li class="nav-item">
+                            <div class="sidebar-heading">
+                                Listagem
+                            </div>
+                            <li class="nav-item">
+                                <a class="nav-link collapsed" href="{% url 'ViewListarEmpresas' %}" data-toggle="collapse" data-target="#cadastrar"
+                                    aria-expanded="true" aria-controls="collapseTwo">
+                                    <i class="fas fa-fw fa-cog"></i>
+                                    <span>Listar Empresa</span>
+                                </a>
+                                <a class="nav-link collapsed" href="{% url 'ViewCadastrarVendedor' %}" data-toggle="collapse" data-target="#cadastrar"
+                                    aria-expanded="true" aria-controls="collapseTwo">
+                                    <i class="fas fa-fw fa-cog"></i>
+                                    <span>Listar Vendedor</span>
+                                </a>
+                                <a class="nav-link collapsed" href="{% url 'ViewCadastrarVendedor' %}" data-toggle="collapse" data-target="#cadastrar"
+                                    aria-expanded="true" aria-controls="collapseTwo">
+                                    <i class="fas fa-fw fa-cog"></i>
+                                    <span>Listar Produto</span>
+                                </a>
+                                <a class="nav-link collapsed" href="{% url 'ViewCadastrarVendedor' %}" data-toggle="collapse" data-target="#cadastrar"
+                                    aria-expanded="true" aria-controls="collapseTwo">
+                                    <i class="fas fa-fw fa-cog"></i>
+                                    <span>Listar Estoque</span>
+                                </a>
+                                <a class="nav-link collapsed" href="{% url 'ViewCadastrarVendedor' %}" data-toggle="collapse" data-target="#cadastrar"
+                                    aria-expanded="true" aria-controls="collapseTwo">
+                                    <i class="fas fa-fw fa-cog"></i>
+                                    <span>Listar Sala</span>
+                                </a>   
+                            </li>
+                        </li>
+                        <hr class="sidebar-divider">
+                        <li class="nav-item">
+                            <div class="sidebar-heading">
+                                Financeiro e Logística
+                            </div>
+                            <li class="nav-item">
+                                <a class="nav-link collapsed" href="{% url 'ViewListarEmpresas' %}" data-toggle="collapse" data-target="#cadastrar"
+                                    aria-expanded="true" aria-controls="collapseTwo">
+                                    <i class="fas fa-fw fa-cog"></i>
+                                    <span>Relatório Financeiro</span>
+                                </a>
+                                <a class="nav-link collapsed" href="{% url 'ViewCadastrarVendedor' %}" data-toggle="collapse" data-target="#cadastrar"
+                                    aria-expanded="true" aria-controls="collapseTwo">
+                                    <i class="fas fa-fw fa-cog"></i>
+                                    <span>Movimentações</span>
+                                </a>
+                                <a class="nav-link collapsed" href="{% url 'ViewCadastrarVendedor' %}" data-toggle="collapse" data-target="#cadastrar"
+                                    aria-expanded="true" aria-controls="collapseTwo">
+                                    <i class="fas fa-fw fa-cog"></i>
+                                    <span>Relatório Transação</span>
+                                </a>
+                                <a class="nav-link collapsed" href="{% url 'ViewCadastrarVendedor' %}" data-toggle="collapse" data-target="#cadastrar"
+                                    aria-expanded="true" aria-controls="collapseTwo">
+                                    <i class="fas fa-fw fa-cog"></i>
+                                    <span>PDFs</span>
+                                </a>
+                            </li>
+                        </li>
+                        <hr class="sidebar-divider">
+                        <li class="nav-item">
+                            <div class="sidebar-heading">
+                                Mais Opções
+                            </div>
+                            <li class="nav-item">
+                                <a class="nav-link collapsed" href="{% url 'ViewListarEmpresas' %}" data-toggle="collapse" data-target="#cadastrar"
+                                    aria-expanded="true" aria-controls="collapseTwo">
+                                    <i class="fas fa-fw fa-cog"></i>
+                                    <span>Sair</span>
+                                </a>
+                            </li>
+                        </li>          
+                    </ul>
+                </div>
+            </div>        
+            <div class="col-xl-9 col-md-9">
+                    {%block conteudo%} 
+                    {%endblock conteudo%}            
+            </div>  
+        </div>      
     </main>
 
     <footer class="text-center text-black bg-primary mt-5">

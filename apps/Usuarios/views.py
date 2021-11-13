@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required #Importando a view do 
 from django.contrib import messages
 from django.utils import timezone
 from django.contrib.auth import authenticate, login, logout
+import json
 
 
 
@@ -60,6 +61,11 @@ def ViewLogin(request):
 def ViewIndex(request): 
     now = timezone.now()  
     mesAtual = now.month
+    listProduto = Produto.objects.filter(ativo=True)
+    nomes = [obj.nome for obj in listProduto]
+    valorUnitarios = [int(obj.valorUnitario) for obj in listProduto]
+    # categorias = [int(obj.categoria) for obj in listProduto]
+
     listCompra = []
     listVenda = []
     listUltimasCompras = []
@@ -86,6 +92,10 @@ def ViewIndex(request):
         "listUltimasMovimentacoes" : ultimasMovimentacoes,
         "listUltimasCompras" : listUltimasCompras,
         "listUltimasVendas" : listUltimasVendas,
+        'nomes': json.dumps(nomes),
+        'valorUnitarios': json.dumps(valorUnitarios),
+        # 'categorias': json.dumps(categorias),
+        "listProduto":listProduto,
     }
     return render(request, "Usuarios/Index.html", context)
 
