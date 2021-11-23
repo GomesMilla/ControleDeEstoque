@@ -8,6 +8,7 @@ from Usuarios import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('Usuarios.urls')), #Incluindo a rota da Url criada no aplicativo url
+    path('Estoque/', include('Estoque.urls')),
     
     # URLS DE INICIO
     path('', views.ViewInicio, name="ViewInicio"),

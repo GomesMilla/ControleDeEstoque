@@ -1,19 +1,27 @@
 {% extends 'Bases/BaseProjeto.html' %}
 {% load bootstrap %}
-{% block conteudo %}
 
+
+
+{% block conteudo %}
     <div class="container"> 
         <div class="d-flex justify-content-center">
-            <p class="fs-1 fw-bolder text-muted">Cadastrar Vendedor</p>
+            <p class="titulo">Cadastrar Vendedor</p>
         </div>
         <form method="POST" class="my-login-validation" novalidate="">
             {% csrf_token %}
             <div class="form-group mt-3">
                 {{form.pessoa|bootstrap}}
+            </div>
+            <div class="row">
+                <div class="form-group mt-3 col-11">
+                    {{form.empresa|bootstrap}}
+                </div>
+                <div class="col-1 mt-5">
+                    <a class="btn btn-sm" data-bs-toggle="modal" id="AdicionarDependente" data-bs-target="#AdicionarDependent"><i class="material-icons fs-1 text-primary" style="font-size: 35px;">add_circle_outline</i></a> 
+                </div>
             </div> 
-            <div class="form-group mt-3">
-                {{form.empresa|bootstrap}}
-            </div> 
+            
             <div class="form-group mt-3 cadastradoPor">
                 {{form.cadastradoPor|bootstrap}}
             </div>                                                                    
@@ -22,11 +30,99 @@
             </div>
         </form>
     </div>
+{% endblock %}
 
+{% block scripts %} 
 <script>
-$( document ).ready(function() {
-    $(".cadastradoPor").hide()
-        
+    $( document ).ready(function() {
+        $(".cadastradoPor").hide()
+        // Verificar se já existe vendedor cadastrado junto com a empresa
+        $("#id_dependente").hide();
+                // $("#AdicionarDependente").hide();
+                $(".cpf").hide()
+                $(".rg").hide()
+                Dependente = false
+                $("#flexSwitchCheckDefault").click(function(){
+                    if (Dependente == false){
+                        Dependente = true
+                        $.ajax({
+                            
+                            dataType: 'json',
+                            success: function (Dependentes) {
+                                $("#id_dependente").show();
+                                $("#AdicionarDependente").show();
+                                $("#id_dependente").attr("required",true)
+                                
+                                var ObjDependente = $("#id_dependente");
+                                //Limpa combo de ObjDependente
+                                ObjDependente.empty();
+                                ObjDependente.append('<option value="" disabled selected> Selecione um dependente</option>')
+                                $.each(Dependentes, function() {
+                                    ObjDependente.append('<option value="'+this.pk+'">'+this.fields.nome+'</option>');
+                                });
+                                ObjDependente.trigger("chosen:updated");
+                                ObjDependente.select();
+                            }
+                        });
+    
+                    }else{
+                        Dependente=false
+                        $("#id_dependente").hide();
+                        $("#AdicionarDependente").hide();
+                        $("#id_dependente").removeAttr("required",false)
+                    }
+                });
+                $('#id_horario').bootstrapMaterialDatePicker({ 
+                    date: false,
+                    format: 'HH:mm',
+                });
+        // Cadastrar Empresa
+    
+        $( "#id_cadastrarDependente" ).click(function() {
+            var nomeDependente = $("#id_nomeDependente").val();
+            var genero = $("#id_genero").val();
+            var tipoDependente = $("#id_tipodependente").val();
+            var dataNascimento = $("#id_dataNascimento").val();
+            var cpf = $("#id_cpf").val();
+            var rg = $("#id_rg").val();
+    
+            $.ajax({
+               
+                data: {
+                    "nomeDependente":nomeDependente,
+                    "genero":genero,
+                    "tipoDependente":tipoDependente,
+                    "dataNascimento":dataNascimento,
+                    "cpf" : cpf,
+                    "rg" : rg,
+                },
+    
+                dataType: 'json',
+                
+                success: function (listDependentes) {
+                    var ObjDependente = $("#id_dependente");
+    
+                    //Limpa combo de ObjDependente
+                    ObjDependente.empty();
+                    
+                    ObjDependente.append('<option selected="" value="">Selecione um Dependente</option>');
+    
+                    $.each(listDependentes, function() {
+                        ObjDependente.append('<option value="'+this.pk+'">'+this.fields.nome+'</option>');
+                    }); 
+                    $("#id_dependente").trigger("chosen:updated");
+                    ObjDependente.val()
+                    ObjDependente.select();
+    
+                    $("#id_nomeDependente").val("");
+                    $("#id_genero").val("");
+                    $("#id_tipodependente").val("");
+                    $("#id_dataNascimento").val("");
+                    $("#id_cpf").val("");
+                    $("#id_rg").val("");
+                }
+            });
+        });
     });   
-</script>
+    </script>
 {% endblock %}

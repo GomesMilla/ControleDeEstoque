@@ -5,22 +5,24 @@ from django.contrib import messages
 
 def ViewCadastrarSala(request):
     now = timezone.now()
-    form = SalaForm()
+    objUser = request.user
+    form = SalaForm(initial={'cadastradoPor': request.user,})
 
     if request.method == "POST":
         formulario = SalaForm(request.POST)
         if formulario.is_valid:
             objSala = formulario.save(commit=False) 
             objSala.dataCadastro = now
-            objSala.cadastradoPor = request.user
             objSala.ativo = True
             objSala.save()
-            redirect("ViewListarEmpresas")
+            return redirect("ViewListarEmpresas")
+
         else:
+            print(formulario.errors.as_data())
             messages.error(request, "Usuário ou senha inválidos!")
             print("ALGUM DADO ERRADO! PRINCESA")
     else:
-        form = SalaForm()
+        form = SalaForm(initial={'cadastradoPor': request.user,})
 
     context = {
         

@@ -11,19 +11,13 @@
     <link rel="stylesheet" href="{% static 'CSS/Bootstrap/bootstrap.min.css'%}">
     <!-- importando CSS do sb-admin-2 -->
     <link type="text/css" rel="stylesheet" href="{% static 'CSS/Styles/sb-admin-2.min.css' %}">
-     <!-- importando CSS personalizado -->
+    <!-- importando CSS personalizado -->
     <link type="text/css" rel="stylesheet" href="{% static 'CSS/Styles/styles.css' %}">
+    <!-- Importando arquivo de carregamento CSS -->
     <link href="{% static 'css/HoldOn/HoldOn.min.css'%}" rel="stylesheet">
-    <!-- importando arquivos JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="{% static 'JS/Jquery/jquery.mask.js' %}"></script>
-    <script type="text/javascript" src="{% static 'JS/Bootstrap/bootstrap.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'JS/HoldOn/HoldOn.min.js'%}"></script>
-    <script type="text/javascript" src="{% static 'JS/Styles/sb-admin-2.min.js'%}"></script>
-    <script src="https://kit.fontawesome.com/2cbdb08e7a.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.js"></script>
     <!-- Importando icones -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
@@ -142,7 +136,7 @@
                         <a class="collapse-item" href="{% url 'ViewCriarConta' %}">Cadastrar Usuário</a>
                         <a class="collapse-item" href="{% url 'ViewCadastrarEmpresa' %}">Cadastrar Empresa</a>
                         <a class="collapse-item" href="{% url 'ViewCadastrarVendedor' %}">Cadastrar Vendedor</a>
-                        <a class="collapse-item" href="{% url 'ViewCadastrarEmpresa' %}">Cadastrar Sala</a>
+                        <a class="collapse-item" href="{% url 'ViewCadastrarSala' %}">Cadastrar Sala</a>
                         <a class="collapse-item" href="{% url 'ViewCriarConta' %}">Cadastrar Produto</a>
                         <a class="collapse-item" href="{% url 'ViewCadastrarEmpresa' %}">Cadastrar Relatório</a>
                     </div>
@@ -410,7 +404,7 @@
                 </div>
             </div>
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
+            <footer class="sticky-footer bg-gradient">
                 <footer class=" sticky-footer text-center text-black bg-light mt-5">
                     <div class="container pt-4">
                         <section class="mb-4">
@@ -491,26 +485,55 @@
             </div>
         </div>
     </div>
-</body>
-<script>
-    $(document).ready(function() {            
-        // Função de carregamento
-        $(window).bind('beforeunload', function() {
-            var options = {
-                theme: "sk-circle",
-                message: 'Por favor, aguarde...',
-                backgroundColor: "rgb(0, 0, 0)",
-                textColor: "white"
-            };
-            HoldOn.open(options);
-        });
-        $(window).load(function() {
-            HoldOn.close();
-        });
-        // Fim da função de carregamento       
-});        
-</script>
-{% block scripts %} 
-{% endblock %}
+
+
+
+
+    <!-- importando arquivos JS -->
+    
+    <!-- "Linkando" com o CDN do jquery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    
+    <!-- Importando arquivo do Jquery Mask -->
+    <script src="{% static 'JS/Jquery/jquery.mask.js' %}"></script>
+    
+    <!-- Importando arquivo JS do Bootstrap -->
+    <script type="text/javascript" src="{% static 'JS/Bootstrap/bootstrap.min.js' %}"></script>
+    
+    <!-- Importando arquivo JS para funções de carregamento -->
+    <script type="text/javascript" src="{% static 'JS/HoldOn/HoldOn.min.js'%}"></script>
+    
+    <!-- Importando arquivo de Styles do novo template -->
+    <script type="text/javascript" src="{% static 'JS/Styles/sb-admin-2.min.js'%}"></script>
+    
+    <!-- Importando icones do font aewsome -->
+    <script src="https://kit.fontawesome.com/2cbdb08e7a.js" crossorigin="anonymous"></script>
+    
+    <!-- Importando charts para funções do grafico -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.js"></script>
+    
+    <script>
+        $(document).ready(function() {            
+            // Função de carregamento
+            $(window).bind('beforeunload', function() {
+                var options = {
+                    theme: "sk-circle",
+                    message: 'Por favor, aguarde...',
+                    backgroundColor: "rgb(0, 0, 0)",
+                    textColor: "white"
+                };
+                HoldOn.open(options);
+            });
+            $(window).load(function() {
+                HoldOn.close();
+            });
+            // Fim da função de carregamento       
+        });        
+    </script>
+
+    {% block scripts %} 
+    {% endblock %}
+    
+    </body>
 </html>
-  
+

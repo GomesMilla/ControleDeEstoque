@@ -1,0 +1,38 @@
+{% extends 'Bases/BaseProjeto.html' %}
+{% load bootstrap %}
+{% block conteudo %}
+
+    <div class="container"> 
+        <div class="d-flex justify-content-center">
+            <p class="titulo">Cadastrar Vendedor</p>
+        </div>
+        <form method="POST" class="my-login-validation" novalidate="">
+            {% csrf_token %}
+            <div class="form-group mt-3">
+                {{form.nome|bootstrap}}
+            </div> 
+            <div class="form-group mt-3">
+                {{form.predio|bootstrap}}
+            </div> 
+            <div class="form-group mt-3">
+                {{form.andar|bootstrap}}
+            </div>
+            <div class="form-group mt-3">
+                {{form.descricao|bootstrap}}
+            </div>
+            <div class="form-group mt-3 cadastradoPor">
+                {{form.cadastradoPor|bootstrap}}
+            </div>                                                                      
+            <div class="d-flex justify-content-center mt-5">
+                <button class="btn btn-outline-primary rounded-pill" id="botao" type="submit">Cadastrar</button>
+            </div>
+        </form>
+    </div>
+
+<script>
+$( document ).ready(function() {
+    $(".cadastradoPor").hide()
+        
+    });   
+</script>
+{% endblock %}
