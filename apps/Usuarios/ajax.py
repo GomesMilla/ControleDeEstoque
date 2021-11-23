@@ -46,3 +46,8 @@ def AjaxCadastroEmpresa(request):
     data = serializers.serialize('json', listEmpresas)
     return HttpResponse(data, content_type="application/json")
 
+
+# def AjaxVerificarEmail(request):
+#     EmailEmpresa = request.GET.get('EmailEmpresa', None)
+
+
