@@ -1,23 +1,192 @@
 {% extends 'Bases/BaseProjeto.html' %}
 {% load bootstrap %}
+
+
 {% block conteudo %}
 
-<div class="container">
-    <p class="titulo">Movimentações do Vendedor {{objVendedor.pessoa.nome}}</p>
-    {% if listMovimentacoesVendedor %}
-        {% for movimentacao in listMovimentacoesVendedor %}
-            {{movimentacao}}
-        {% endfor %}
-    {% else %}
-    <div class="alert alert-danger d-flex align-items-center mt-5" role="alert">
-        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
-        <div>
-            Não há movimentações feitas por ele! 
+
+<div class="col-xl-12 col-md-12 mb-4 mt-5" >
+    <div class="container-fluid">
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Movimentações do Vendedor {{objVendedor.pessoa.nome}}</h1>
         </div>
-    </div>
-    {% endif %}
+        <div class="row">
+            <div class="col-xl-5 col-md-12 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    Movimentações
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{qtdMovimentacaoMensal}} 52</div>
+                            </div>
+                            <div class="col-auto">
+                                <span class="material-icons text-white text-gray-300 fa-2x" style="font-size: 35px;" >payments</span>
+                                <!-- <i class="fas fa-calendar fa-2x text-gray-300"></i> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-5 col-md-6 mb-4">
+                <div class="card border-left-danger shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                    Compras
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-8 col-lg-7">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Movimentação Mensal</h6>
+                    </div>
+                    <div class="card-body">
+                        {% if qtdMovimentacaoMensal > 0 %}
+                            <div class="chart-pie pt-4 pb-2">
+                                <canvas id="movimentacoes"></canvas>
+                            </div>
+                        {% else %}
+                            <p class="text-muted">Ainda não ocorreu nenhuma movimentação esse mes</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-5">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Produtos Comprados</h6>
+                    </div>
+                    <div class="card-body">
+                        {% if listProduto %}
+                            <div class="chart-pie pt-4 pb-2">
+                                <canvas id="productsChart"></canvas>
+                            </div>
+                        {% else %}
+                            <p class="text-muted">Não há produtos cadastrados para mostrar</p>
+                        {% endif %}
+                        <div class="mt-4 text-center small">
+                            <span class="mr-2">
+                                <i class="fas fa-circle text-primary"></i> Produtos com relação com seu preço unitário
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 mb-4">
+                <div class="col-lg-12 mb-4">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Informações gerais</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Todas Movimentações</h6>
+                                </div>
+                                <div class="card-body">
+                                    {% if listMovimentacoesVendedor %}
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Data Movimentação</th>
+                                                        <th>Tipo</th>
+                                                        <th>Produto</th>
+                                                        <th>Valor movimentado</th>
+                                                        <th>Responsável</th>
+                                                        <th>Ver mais</th>
+                                                    </tr>
+                                                </thead>
+                                                <tfoot>
+                                                    {% for movimentacao in listMovimentacoesVendedor %}
+                                                        <tr>
+                                                            <td>{{movimentacao.dataCadastro}}</td>
+                                                            <td>{{movimentacao.tipoTransacao}}</td>
+                                                            <td>{{movimentacao.produto}}</td>
+                                                            <td>{{movimentacao.valor}}</td>
+                                                            <td>{{movimentacao.resposavel}}</td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    {% else %}
+                                        <p class="text-muted mt-2 ">Não há movimentações desse vendedor cadastrado! </p>
+                                    {% endif %}
+                                </div>
+                            </div> 
+                        </div>
+                    </div>    
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 mb-4">
+                <div class="col-lg-12 mb-4">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Informações sobre o Vendedor</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">{{objVendedor}}</h6>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="list-group list-group-horizontal">
+                                        <li class="list-group-item col-4">{{objVendedor.pessoa.email}}</li>
+                                        <li class="list-group-item col-4">{{objVendedor.pessoa.telefoneCelular}}</li>
+                                        <li class="list-group-item col-4">{{objVendedor.pessoa.cpf}}</li>
+                                    </ul>
+                                    <ul class="list-group list-group-horizontal mt-3">
+                                        <li class="list-group-item col-4">{{objVendedor.pessoa.estado}}</li>
+                                        <li class="list-group-item col-4">{{objVendedor.pessoa.cidade}}</li>
+                                        <li class="list-group-item col-4">{{objVendedor.pessoa.logradouro}}</li>
+                                    </ul>
+                                    <ul class="list-group list-group-horizontal mt-3">
+                                        <li class="list-group-item col-4">{{objVendedor.dataCadastro}}</li>
+                                        <li class="list-group-item col-4">
+                                            {% if objVendedor.dataDesativacao %}
+                                                {{objVendedor.dataDesativacao}}
+                                            {% else %}
+                                                Vendedor Ativo no momento!
+                                            {% endif %}
+                                        </li>
+                                        <li class="list-group-item col-4">
+                                            {% if objVendedor.desativadoPor %}
+                                                {{objVendedor.desativadoPor}}
+                                            {% else %}
+                                                Vendedor Ativo no momento!
+                                            {% endif %}
+                                        </li>
+                                    </ul>                    
+                                </div>
+                            </div> 
+                        </div>
+                    </div>    
+                </div>
+            </div>
+        </div>
+    </div>  
 </div>
 
+{% endblock %}
 
+{% block scripts %}
 
 {% endblock %}

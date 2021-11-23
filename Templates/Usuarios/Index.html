@@ -1,327 +1,328 @@
 {% extends 'Bases/BaseProjeto.html' %}
-{% block conteudo %}
 {% load static %}
-<div class="col-xl-12 col-md-12 mb-4 mt-5" >
-    <div class="container-fluid">
-        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-        </div>
-        <div class="row">
-            <div class="col-xl-3 col-md-12 mb-4">
-                <div class="card border-left-primary shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                    Movimentações
+
+{% block conteudo %}
+    <div class="col-xl-12 col-md-12 mb-4 mt-5" >
+        <div class="container-fluid">
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+            </div>
+            <div class="row">
+                <div class="col-xl-3 col-md-12 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        Movimentações
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{qtdMovimentacaoMensal}}</div>
                                 </div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{qtdMovimentacaoMensal}}</div>
-                            </div>
-                            <div class="col-auto">
-                                <span class="material-icons text-white text-gray-300 fa-2x" style="font-size: 35px;" >payments</span>
-                                <!-- <i class="fas fa-calendar fa-2x text-gray-300"></i> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-success shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                    Vendas
+                                <div class="col-auto">
+                                    <span class="material-icons text-white text-gray-300 fa-2x" style="font-size: 35px;" >payments</span>
+                                    <!-- <i class="fas fa-calendar fa-2x text-gray-300"></i> -->
                                 </div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-danger shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
-                                    Compras
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-success shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                        Vendas
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
                                 </div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-warning shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                    Notificações
+                                <div class="col-auto">
+                                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                                 </div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
                             </div>
-                            <div class="col-auto">
-                                <i class="fas fa-comments fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-danger shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                        Compras
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-warning shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                        Notificações
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xl-8 col-lg-7">
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Movimentação Mensal</h6>
-                    </div>
-                    <div class="card-body">
-                        {% if qtdMovimentacaoMensal > 0 %}
-                            <div class="chart-pie pt-4 pb-2">
-                                <canvas id="movimentacoes"></canvas>
-                            </div>
-                        {% else %}
-                            <p class="text-muted">Ainda não ocorreu nenhuma movimentação esse mes</p>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-5">
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Cotação dos Produtos</h6>
-                    </div>
-                    <div class="card-body">
-                        {% if listProduto %}
-                            <div class="chart-pie pt-4 pb-2">
-                                <canvas id="productsChart"></canvas>
-                            </div>
-                        {% else %}
-                            <p class="text-muted">Não há produtos cadastrados para mostrar</p>
-                        {% endif %}
-                        <div class="mt-4 text-center small">
-                            <span class="mr-2">
-                                <i class="fas fa-circle text-primary"></i> Os produtos acima mostra o valor unitário
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12 mb-4">
-                <div class="col-lg-12 mb-4">
+            <div class="row">
+                <div class="col-xl-8 col-lg-7">
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Informações gerais</h6>
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="m-0 font-weight-bold text-primary">Movimentação Mensal</h6>
                         </div>
                         <div class="card-body">
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Últimas Movimentações</h6>
+                            {% if qtdMovimentacaoMensal > 0 %}
+                                <div class="chart-pie pt-4 pb-2">
+                                    <canvas id="movimentacoes"></canvas>
                                 </div>
-                                <div class="card-body">
-                                    {% if listUltimasMovimentacoes %}
-                                        <div class="table-responsive">
-                                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Data Movimentação</th>
-                                                        <th>Tipo</th>
-                                                        <th>Produto</th>
-                                                        <th>Valor movimentado</th>
-                                                        <th>Responsável</th>
-                                                        <th>Ver mais</th>
-                                                    </tr>
-                                                </thead>
-                                                <tfoot>
-                                                    {% for movimentacao in listUltimasMovimentacoes %}
-                                                        <tr>
-                                                            <td>{{movimentacao.dataCadastro}}</td>
-                                                            <td>{{movimentacao.tipoTransacao}}</td>
-                                                            <td>{{movimentacao.produto}}</td>
-                                                            <td>{{movimentacao.valor}}</td>
-                                                            <td>{{movimentacao.resposavel}}</td>
-                                                        </tr>
-                                                    {% endfor %}
-                                                </tfoot>
-                                            </table>
-                                        </div>
-                                    {% else %}
-                                        <p class="text-muted mt-2 ">Não há movimentações cadastradas! </p>
-                                    {% endif %}
-                                </div>
-                            </div> 
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Últimas Compras</h6>
-                                </div>
-                                <div class="card-body">
-                                    {% if listUltimasCompras %}
-                                        <div class="table-responsive">
-                                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Data Movimentação</th>
-                                                        <th>Tipo</th>
-                                                        <th>Produto</th>
-                                                        <th>Valor movimentado</th>
-                                                        <th>Responsável</th>
-                                                        <th>Ver mais</th>
-                                                    </tr>
-                                                </thead>
-                                                <tfoot>
-                                                    {% for movimentacao in listUltimasCompras %}
-                                                        <tr>
-                                                            <td>{{movimentacao.dataCadastro}}</td>
-                                                            <td>{{movimentacao.tipoTransacao}}</td>
-                                                            <td>{{movimentacao.produto}}</td>
-                                                            <td>{{movimentacao.valor}}</td>
-                                                            <td>{{movimentacao.resposavel}}</td>
-                                                        </tr>
-                                                    {% endfor %}
-                                                </tfoot>
-                                            </table>
-                                        </div>
-                                    {% else %}
-                                        <p class="text-muted mt-2 ">Não há compras cadastradas! </p>
-                                    {% endif %}
-                                </div>
-                            </div> 
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Últimas Vendas</h6>
-                                </div>
-                                <div class="card-body">
-                                    {% if listUltimasVendas %}
-                                        <div class="table-responsive">
-                                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Data Movimentação</th>
-                                                        <th>Tipo</th>
-                                                        <th>Produto</th>
-                                                        <th>Valor movimentado</th>
-                                                        <th>Responsável</th>
-                                                        <th>Ver mais</th>
-                                                    </tr>
-                                                </thead>
-                                                <tfoot>
-                                                    {% for movimentacao in listUltimasVendas %}
-                                                        <tr>
-                                                            <td>{{movimentacao.dataCadastro}}</td>
-                                                            <td>{{movimentacao.tipoTransacao}}</td>
-                                                            <td>{{movimentacao.produto}}</td>
-                                                            <td>{{movimentacao.valor}}</td>
-                                                            <td>{{movimentacao.resposavel}}</td>
-                                                        </tr>
-                                                    {% endfor %}
-                                                </tfoot>
-                                            </table>
-                                        </div>
-                                    {% else %}
-                                        <p class="text-muted mt-2 ">Não há vendas cadastradas! </p>
-                                    {% endif %}
-                                </div>
-                            </div> 
+                            {% else %}
+                                <p class="text-muted">Ainda não ocorreu nenhuma movimentação esse mes</p>
+                            {% endif %}
                         </div>
-                    </div>    
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-5">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="m-0 font-weight-bold text-primary">Cotação dos Produtos</h6>
+                        </div>
+                        <div class="card-body">
+                            {% if listProduto %}
+                                <div class="chart-pie pt-4 pb-2">
+                                    <canvas id="productsChart"></canvas>
+                                </div>
+                            {% else %}
+                                <p class="text-muted">Não há produtos cadastrados para mostrar</p>
+                            {% endif %}
+                            <div class="mt-4 text-center small">
+                                <span class="mr-2">
+                                    <i class="fas fa-circle text-primary"></i> Os produtos acima mostra o valor unitário
+                                </span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>  
-</div>
+            <div class="row">
+                <div class="col-lg-12 mb-4">
+                    <div class="col-lg-12 mb-4">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Informações gerais</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="card shadow mb-4">
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-primary">Últimas Movimentações</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        {% if listUltimasMovimentacoes %}
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Data Movimentação</th>
+                                                            <th>Tipo</th>
+                                                            <th>Produto</th>
+                                                            <th>Valor movimentado</th>
+                                                            <th>Responsável</th>
+                                                            <th>Ver mais</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tfoot>
+                                                        {% for movimentacao in listUltimasMovimentacoes %}
+                                                            <tr>
+                                                                <td>{{movimentacao.dataCadastro}}</td>
+                                                                <td>{{movimentacao.tipoTransacao}}</td>
+                                                                <td>{{movimentacao.produto}}</td>
+                                                                <td>{{movimentacao.valor}}</td>
+                                                                <td>{{movimentacao.resposavel}}</td>
+                                                            </tr>
+                                                        {% endfor %}
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        {% else %}
+                                            <p class="text-muted mt-2 ">Não há movimentações cadastradas! </p>
+                                        {% endif %}
+                                    </div>
+                                </div> 
+                                <div class="card shadow mb-4">
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-primary">Últimas Compras</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        {% if listUltimasCompras %}
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Data Movimentação</th>
+                                                            <th>Tipo</th>
+                                                            <th>Produto</th>
+                                                            <th>Valor movimentado</th>
+                                                            <th>Responsável</th>
+                                                            <th>Ver mais</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tfoot>
+                                                        {% for movimentacao in listUltimasCompras %}
+                                                            <tr>
+                                                                <td>{{movimentacao.dataCadastro}}</td>
+                                                                <td>{{movimentacao.tipoTransacao}}</td>
+                                                                <td>{{movimentacao.produto}}</td>
+                                                                <td>{{movimentacao.valor}}</td>
+                                                                <td>{{movimentacao.resposavel}}</td>
+                                                            </tr>
+                                                        {% endfor %}
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        {% else %}
+                                            <p class="text-muted mt-2 ">Não há compras cadastradas! </p>
+                                        {% endif %}
+                                    </div>
+                                </div> 
+                                <div class="card shadow mb-4">
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-primary">Últimas Vendas</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        {% if listUltimasVendas %}
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Data Movimentação</th>
+                                                            <th>Tipo</th>
+                                                            <th>Produto</th>
+                                                            <th>Valor movimentado</th>
+                                                            <th>Responsável</th>
+                                                            <th>Ver mais</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tfoot>
+                                                        {% for movimentacao in listUltimasVendas %}
+                                                            <tr>
+                                                                <td>{{movimentacao.dataCadastro}}</td>
+                                                                <td>{{movimentacao.tipoTransacao}}</td>
+                                                                <td>{{movimentacao.produto}}</td>
+                                                                <td>{{movimentacao.valor}}</td>
+                                                                <td>{{movimentacao.resposavel}}</td>
+                                                            </tr>
+                                                        {% endfor %}
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        {% else %}
+                                            <p class="text-muted mt-2 ">Não há vendas cadastradas! </p>
+                                        {% endif %}
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+        </div>  
+    </div>
+{% endblock %}
 
-<script>
-    var ctx = document.getElementById("productsChart");
-    var names = JSON.parse('{{ nomes|safe }}');
-    var prices = JSON.parse('{{ valorUnitarios|safe }}');
-    // var category = JSON.parse('{{ categorias|safe }}');
-    
-    var productsChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: names,
-            datasets: [{
-                label: 'Produtos',
-                data: prices,
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero:true
-                    }
+{% block scripts %}
+    <script>
+        var ctx = document.getElementById("productsChart");
+        var names = JSON.parse('{{ nomes|safe }}');
+        var prices = JSON.parse('{{ valorUnitarios|safe }}');
+        // var category = JSON.parse('{{ categorias|safe }}');    
+        var productsChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: names,
+                datasets: [{
+                    label: 'Produtos',
+                    data: prices,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
                 }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
             }
-        }
-    });
-    var ctx = document.getElementById("movimentacoes");
-    var names = JSON.parse('{{ compras|safe }}');
-    var prices = JSON.parse('{{ vendas|safe }}');
-    // var category = JSON.parse('{{ categorias|safe }}');
-    
-    var productsChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: names,
-            datasets: [{
-                label: 'Produtos',
-                data: prices,
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero:true
-                    }
+        });
+        var ctx = document.getElementById("movimentacoes");
+        var names = JSON.parse('{{ compras|safe }}');
+        var prices = JSON.parse('{{ vendas|safe }}');
+        // var category = JSON.parse('{{ categorias|safe }}');        
+        var productsChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: names,
+                datasets: [{
+                    label: 'Produtos',
+                    data: prices,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
                 }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
             }
-        }
-    });
+        });
     </script>
 {% endblock %}

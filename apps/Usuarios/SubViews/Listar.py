@@ -38,6 +38,7 @@ def ViewListarMovimentacaoEmpresa(request, id_empresa):
 def ViewListarMovimentacaoVendedor(request, id_vendedor):
     objVendedor = Vendedor.objects.get(pk=id_vendedor)
     listMovimentacoesVendedor = Movimentacao.objects.filter(vendendor=objVendedor)
+    
 
 
 

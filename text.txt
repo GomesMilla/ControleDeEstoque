@@ -1,0 +1,344 @@
+{% extends 'Bases/Base.html' %} 
+
+{% load static %}
+
+{% load bootstrap %}
+
+{% block css %}
+    <!-- Import CSS DatePickerMonthDay -->
+    <link rel="stylesheet" href="{% static 'css/DatePickerMonthDay/bootstrap-material-datetimepicker.css' %}">
+{% endblock %}
+
+{% block conteudo %}
+<!-- TEMPLATE PARA AGENDAR AVALIAÇÃO -->    
+    <div class="container mt-6">
+        <div class="container">
+            <div class="container col-sm-8">
+                {%if not objAtrasado %}
+                    <div class="card" id="form">
+                        <div class="card-header">
+                            <h4 class="text-center">Agendar Avaliação {{ObjAgendamento.servico.nome}}</h4>
+                        </div>
+                        <form method="POST" enctype="multipart/form-data" {% if not isAtendimento %} action="{% url 'ViewCadastrarFilaPaciente' objPacote.id %}" {% endif %}>
+                            {% csrf_token %}
+                            <div class="card-body p-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexSwitchCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Solicitação de atendimento para dependente
+                                    </label>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-11">
+                                        <select id="id_dependente" name="Dependente" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"></select>
+                                    </div>
+                                    <div class="col-1">
+                                        <div class="col-10 mt-0">
+                                            <a class="btn btn-sm" data-bs-toggle="modal" id="AdicionarDependente" data-bs-target="#AdicionarDependent"><i class="material-icons fs-3 text-green-15">add_circle_outline</i></a> 
+                                            <div class="modal fade" id="AdicionarDependent" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <a class="navbar-brand ms-5" href="#">
+                                                                <img src="{% static 'images/unincare.svg'%}" height="60">
+                                                            </a>
+                                                            <button type="button" class="btn-close me-4" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="container">
+                                                                <h3 class="text-center modalS mt-4">Cadastrar Dependente</h3>                                                                                                                                
+                                                                <div class="row">
+                                                                    <hr class="divider">
+                                                                    <div class="mt-4">
+                                                                        <label class="control-label" for="id_nomeDependente">Nome do Paciente</label>
+                                                                        <input type="text" name="nomePaciente" maxlength="30" class=" form-control"  id="id_nomeDependente">
+                                                                    </div>
+                                                                    <div class="mt-2">
+                                                                        <div class="form-group">
+                                                                        <label class="control-label" for="id_periodo">Gênero</label>
+                                                                            <select name="tipo" class=" form-control" id="id_genero">
+                                                                                <option value="" selected="">---------</option>
+                                                                                <option value="M">Masculino</option>
+                                                                                <option value="F">Feminino</option>
+                                                                                <option value="O">Outro</option>
+                                                                                <option value="P">Prefiro não dizer</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="mt-2">
+                                                                        <div class="form-group">
+                                                                        <label class="control-label" for="id_periodo">Tipo dependente</label>
+                                                                            <select name="tipo" class=" form-control" id="id_tipodependente">
+                                                                                <option value="" selected="">---------</option>
+                                                                                <option value="A">Animal</option>
+                                                                                <option value="H">Humano</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="mt-2 cpf">
+                                                                        <label class="control-label" for="id_cpf">CPF</label>
+                                                                        <input type="text" name="cpfPaciente" maxlength="30" class=" form-control"  id="id_cpf">
+                                                                    </div>
+                                                                    <div class="mt-2 rg">
+                                                                        <label class="control-label" for="id_cpf">RG</label>
+                                                                        <input type="text" name="RGpaciente" maxlength="30" class=" form-control"  id="id_rg">
+                                                                    </div>
+                                                                    <div class="mt-2">
+                                                                        <div class="form-group">
+                                                                        <label class="control-label" for="id_dataNascimento">Data Nascimento</label>
+                                                                        <input type="date" name="nascimentoPaciente" maxlength="30" class=" form-control"  id="id_dataNascimento">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>                                                                   
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer mt-5">
+                                                            <button type="button" class="btn btn-light border border-1 px-4 m-1" data-bs-dismiss="modal">Fechar</button>
+                                                            <button id="id_cadastrarDependente" type="button" class="btn btn-danger red-13 px-4" data-bs-dismiss="modal" >Cadastrar Dependente</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3">
+                                        <input id="id_horario" name="HorarioAtendimento" type="text" class="form-control" placeholder="Horário" aria-label="Username" required >
+                                    </div>
+                                    <div class="mt-4">
+                                        <select name="DiaAgendamento" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" {% if isAtendimento %} required {% endif %}>
+                                            <option value="" disabled selected>Selecione um dia</option>
+                                            {% for dia in listDias%}
+                                                <option value="{{dia.dia.id}}">{{dia.dia}}</option>
+                                            {%endfor%}
+                                        </select>
+                                    </div>
+                                </div>
+                                <hr class="divider mt-5">
+                                <div class="">
+                                    {% if not isAtendimento %}
+                                        <div class="text-center">
+                                            <a type="button" class="text-center btn btn-outline-dark btn-md mt-4" data-bs-toggle="modal" data-bs-target="#ModalFila">
+                                                Agendar
+                                            </a>
+                                        </div>
+                                        <div class="modal fade" id="ModalFila" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="btn-close me-2 p-3" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body text-center">
+                                                        <img src="{% static 'images/undraw_Time_management_re_tk5w.svg'%}"  class="rounded me-2" alt="..." style="width: 50%; height: 60%;">
+                                                        <div class="fs-2 mt-2">Recado</div>
+                                                        <div class="p-5">
+                                                            <div class="text-muted mt-2">Infelizmente devido a alguns problemas não foi possivel fazer a sua solicitação!</div>
+                                                            <div class="text-muted mt-2">
+                                                                Isso pode ter ocorrido porque podemos não ter alunos disponível para fazer seu atendimento 
+                                                                ou por estar fora do nosso período letivo!
+                                                            </div>
+                                                            <div class="text-muted mt-2">
+                                                                Mas não se preucupe! Temos uma solução para melhor atendê-los! Sua solicitação será encaminhada 
+                                                                para uma fila de espera e assim que estiver disponível, nossa secretária entrará em contato para agendar seu atendimento!
+                                                            </div>
+                                                        </div>                                                      
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-light border border-1 px-4 m-1" data-bs-dismiss="modal">Fechar</button>
+                                                        <button type="submit" class="btn btn-light border border-1 px-4 m-1">Fila de espera</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {%else%}
+                                        <div class="text-center">
+                                            <a type="button" class="text-center btn btn-outline-dark btn-md mt-4" data-bs-toggle="modal" data-bs-target="#ModalSubmit">
+                                                Agendar
+                                            </a>
+                                        </div>
+                                        <div class="modal fade" id="ModalSubmit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="btn-close me-2 p-3" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="p-3 ">    
+                                                            <div class="text-center">                                                    
+                                                                <i class="material-icons " style="font-size: 115px; color: #699833">task_alt</i>                                                                                                         
+                                                                <div class="fs-2 mt-2 ">Tem certeza?</div>
+                                                                <div class="text-muted mt-2 ">Você está solicitando um agendamento para o pacote '{{objPacote}}'</div>
+                                                                <div class="text-muted mt-2 ">Lembrando que o horário agendado pode ser mudado, então nossa secretaria entrará em contato!</div>
+                                                            </div>
+                                                            <div class="mt-3">
+                                                                <div class="card">
+                                                                    <div class="card-body d-flex justify-content-start">
+                                                                        <div class="">
+                                                                            Estes Termos de Uso estabelecem os termos e condições de acesso e uso do serviço oferecidos pela clínicas da UninCor.
+                                                                            <br>
+                                                                            - A UninCor envidará seus melhores esforços para assegurar e desenvolver a qualidade dos Serviços oferecido por ela.
+                                                                            <br>
+                                                                            - O Usuário garante o pagamento do serviço até o primeiro agendamento para que possa ter acesso ao serviço pedido.
+                                                                            <br>
+                                                                            - O Usuário será sempre o único e exclusivo responsável pela sua conduta e por danos por ela causados no âmbito da prestação do Serviço, 
+                                                                            quanto a ele e quanto a terceiros.
+                                                                            <br>
+                                                                            - O Usuário fica ciente que durante o período de atendimento do procedimento escolhido, não poderá acessar seu celular ou qualquer aparelho tecnológico.
+                                                                            <br>
+                                                                            - O Usuário fica ciente que terá direito a somente dois reagendamentos e a partir disso seu agendamento será dado como falta não podendo assim fazer o reagendamento.
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="card-footer text-muted d-flex justify-content-start">
+                                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
+                                                                        <label class="form-check-label ms-2" for="flexCheckDefault">
+                                                                            Eu li e concordo com os termos de uso.
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-4 text-center">
+                                                            <button type="button" class="btn btn-light border border-1 px-4 m-1" data-bs-dismiss="modal">Cancelar</button>
+                                                            <button type="submit" class="btn text-white light-green-15 px-4"> Agendar </button>
+                                                        </div>                                                   
+                                                    </div> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {%endif%}
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                {%else%}
+                    <div class="container mt-4">
+                        <img class="rounded mx-auto d-block" src="{% static 'images/Tristeza.svg'%}" height="20%" style="width: 60%;">
+                        <p class="text-center mt-5">Infelizmente não poderá fazer o agendamento, porque existe uma fatura em aberto! <br>Por favor, realize o pagamento para que possa poder agendar um atendimento </p>
+                    </div>
+                {%endif%}  
+            </div>
+        </div>
+    </div>
+    
+{% endblock conteudo %}
+
+{% block script %}
+    <!-- Importando DatePickerMonthDay -->
+    <script src="{% static 'js/DatePickerMonthDay/moment-with-locales.min.js' %}"></script>
+    <script src="{% static 'js/DatePickerMonthDay/bootstrap-material-datetimepicker.js' %}"></script>
+    <script>
+        $(document).ready(function() {
+            $("#id_dependente").hide();
+            $("#AdicionarDependente").hide();
+            $(".cpf").hide()
+            $(".rg").hide()
+            Dependente = false
+            $("#flexSwitchCheckDefault").click(function(){
+                if (Dependente == false){
+                    Dependente = true
+                    $.ajax({
+                        url: "{% url 'ViewRetornaDependentes'%}",
+                        dataType: 'json',
+                        success: function (Dependentes) {
+                            $("#id_dependente").show();
+                            $("#AdicionarDependente").show();
+                            $("#id_dependente").attr("required",true)
+                            
+                            var ObjDependente = $("#id_dependente");
+                            //Limpa combo de ObjDependente
+                            ObjDependente.empty();
+                            ObjDependente.append('<option value="" disabled selected> Selecione um dependente</option>')
+                            $.each(Dependentes, function() {
+                                ObjDependente.append('<option value="'+this.pk+'">'+this.fields.nome+'</option>');
+                            });
+                            ObjDependente.trigger("chosen:updated");
+                            ObjDependente.select();
+                        }
+                    });
+
+                }else{
+                    Dependente=false
+                    $("#id_dependente").hide();
+                    $("#AdicionarDependente").hide();
+                    $("#id_dependente").removeAttr("required",false)
+                }
+            });
+            $('#id_horario').bootstrapMaterialDatePicker({ 
+                date: false,
+                format: 'HH:mm',
+            });
+            
+            $("#id_tipodependente").change(function() {
+                var valor  = $('#id_tipodependente').val()
+                    if (valor == "H"){
+                        $(".cpf").show()
+                        $(".rg").show()
+                        $('#id_cpf').mask('000.000.000-00');
+                        $('#id_rg').mask('AA-AA.AAA.AAA');
+                    }
+                    else{
+                        $(".cpf").hide()
+                        $(".rg").hide()
+                    }
+                });
+
+            $( "#id_cadastrarDependente" ).click(function() {
+
+                var nomeDependente = $("#id_nomeDependente").val();
+                var genero = $("#id_genero").val();
+                var tipoDependente = $("#id_tipodependente").val();
+                var dataNascimento = $("#id_dataNascimento").val();
+                var cpf = $("#id_cpf").val();
+                var rg = $("#id_rg").val();
+                
+                $.ajax({
+                    url: "{% url 'AjaxCadastrarDependente' %}",
+
+                    data: {
+                        "nomeDependente":nomeDependente,
+                        "genero":genero,
+                        "tipoDependente":tipoDependente,
+                        "dataNascimento":dataNascimento,
+                        "cpf" : cpf,
+                        "rg" : rg,
+                    },
+
+                    dataType: 'json',
+                    
+                    success: function (listDependentes) {
+                        var ObjDependente = $("#id_dependente");
+
+                        //Limpa combo de ObjDependente
+                        ObjDependente.empty();
+                        
+                        ObjDependente.append('<option selected="" value="">Selecione um Dependente</option>');
+
+                        $.each(listDependentes, function() {
+                            ObjDependente.append('<option value="'+this.pk+'">'+this.fields.nome+'</option>');
+                        }); 
+                        $("#id_dependente").trigger("chosen:updated");
+                        ObjDependente.val()
+                        ObjDependente.select();
+
+                        $("#id_nomeDependente").val("");
+                        $("#id_genero").val("");
+                        $("#id_tipodependente").val("");
+                        $("#id_dataNascimento").val("");
+                        $("#id_cpf").val("");
+                        $("#id_rg").val("");
+                    }
+                });
+            });
+        
+            
+        });
+
+
+    </script>
+
+
+    <script>
+
+    </script>
+<!--  -->
+{% endblock %}

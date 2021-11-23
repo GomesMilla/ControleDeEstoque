@@ -18,10 +18,75 @@
                     {{form.empresa|bootstrap}}
                 </div>
                 <div class="col-1 mt-5">
-                    <a class="btn btn-sm" data-bs-toggle="modal" id="AdicionarDependente" data-bs-target="#AdicionarDependent"><i class="material-icons fs-1 text-primary" style="font-size: 35px;">add_circle_outline</i></a> 
+                    <a type="button" class="btn btn-sm" data-toggle="modal" data-target="#staticBackdrop"><i class="material-icons fs-1 text-primary" style="font-size: 35px;">add_circle_outline</i></a>
+                    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-xl">
+                            <div class="modal-content">
+                                <div class="modal-header bg-primary">
+                                    <div class="sidebar-brand-icon rotate-n-15">
+                                        <i class="fas fa-dolly" style="font-size: 60px; color: white;"></i> 
+                                    </div>
+                                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close" style="font-size: 35px;">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body p-5">
+                                    <div class="d-flex justify-content-center">
+                                        <p class="titulo">Cadastrar Empresa</p>
+                                    </div>
+                                    <form method="POST" enctype="multipart/form-data">
+                                        {% csrf_token %}            
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="nomeEmpresa" id="id_NomeEmpresa" placeholder="Nome">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="EmailEmpresa" placeholder="E-mail">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="ContatoEmpresa" placeholder="Contato">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="CNPJEmpresa" placeholder="CNPJ da Empresa">
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col-4">
+                                                <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">País</label>
+                                                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                                                    <option selected>País</option>
+                                                    {% for pais in listPaises %}
+                                                        <option value="{{pais.id}}">{{pais}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                            <div class="col-4">
+                                                <input type="text" class="form-control" placeholder="Cep">
+                                            </div>
+                                            <div class="col">
+                                                <input type="text" class="form-control" placeholder="Estado">
+                                            </div>
+                                        </div>
+                                        <div class="form-row mt-3">
+                                            <div class="col">
+                                                <input type="text" class="form-control" placeholder="Cidade">
+                                            </div>
+                                            <div class="col-4">
+                                                <input type="text" class="form-control" placeholder="Logradouro">
+                                            </div>
+                                            <div class="col">
+                                                <input type="text" class="form-control" placeholder="Bairro">
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                    <button type="button" class="btn btn-primary" id="btnCadastrarEmpresa">Cadastrar</button>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div> 
-            
+            </div>             
             <div class="form-group mt-3 cadastradoPor">
                 {{form.cadastradoPor|bootstrap}}
             </div>                                                                    
@@ -36,50 +101,11 @@
 <script>
     $( document ).ready(function() {
         $(".cadastradoPor").hide()
-        // Verificar se já existe vendedor cadastrado junto com a empresa
-        $("#id_dependente").hide();
-                // $("#AdicionarDependente").hide();
-                $(".cpf").hide()
-                $(".rg").hide()
-                Dependente = false
-                $("#flexSwitchCheckDefault").click(function(){
-                    if (Dependente == false){
-                        Dependente = true
-                        $.ajax({
-                            
-                            dataType: 'json',
-                            success: function (Dependentes) {
-                                $("#id_dependente").show();
-                                $("#AdicionarDependente").show();
-                                $("#id_dependente").attr("required",true)
-                                
-                                var ObjDependente = $("#id_dependente");
-                                //Limpa combo de ObjDependente
-                                ObjDependente.empty();
-                                ObjDependente.append('<option value="" disabled selected> Selecione um dependente</option>')
-                                $.each(Dependentes, function() {
-                                    ObjDependente.append('<option value="'+this.pk+'">'+this.fields.nome+'</option>');
-                                });
-                                ObjDependente.trigger("chosen:updated");
-                                ObjDependente.select();
-                            }
-                        });
-    
-                    }else{
-                        Dependente=false
-                        $("#id_dependente").hide();
-                        $("#AdicionarDependente").hide();
-                        $("#id_dependente").removeAttr("required",false)
-                    }
-                });
-                $('#id_horario').bootstrapMaterialDatePicker({ 
-                    date: false,
-                    format: 'HH:mm',
-                });
-        // Cadastrar Empresa
-    
-        $( "#id_cadastrarDependente" ).click(function() {
-            var nomeDependente = $("#id_nomeDependente").val();
+            
+        $( "#btnCadastrarEmpresa" ).click(function() {
+            alert("oie")
+            var nomeEmpresa = $("#id_NomeEmpresa").val();
+            alert(nomeEmpresa)
             var genero = $("#id_genero").val();
             var tipoDependente = $("#id_tipodependente").val();
             var dataNascimento = $("#id_dataNascimento").val();
@@ -123,6 +149,48 @@
                 }
             });
         });
+        // Verificar se já existe vendedor cadastrado junto com a empresa
+        $("#id_dependente").hide();
+                // $("#AdicionarDependente").hide();
+                $(".cpf").hide()
+                $(".rg").hide()
+                Dependente = false
+                $("#flexSwitchCheckDefault").click(function(){
+                    if (Dependente == false){
+                        Dependente = true
+                        $.ajax({
+                            
+                            dataType: 'json',
+                            success: function (Dependentes) {
+                                $("#id_dependente").show();
+                                $("#AdicionarDependente").show();
+                                $("#id_dependente").attr("required",true)
+                                
+                                var ObjDependente = $("#id_dependente");
+                                //Limpa combo de ObjDependente
+                                ObjDependente.empty();
+                                ObjDependente.append('<option value="" disabled selected> Selecione um dependente</option>')
+                                $.each(Dependentes, function() {
+                                    ObjDependente.append('<option value="'+this.pk+'">'+this.fields.nome+'</option>');
+                                });
+                                ObjDependente.trigger("chosen:updated");
+                                ObjDependente.select();
+                            }
+                        });
+    
+                    }else{
+                        Dependente=false
+                        $("#id_dependente").hide();
+                        $("#AdicionarDependente").hide();
+                        $("#id_dependente").removeAttr("required",false)
+                    }
+                });
+                $('#id_horario').bootstrapMaterialDatePicker({ 
+                    date: false,
+                    format: 'HH:mm',
+                });
+        // Cadastrar Empresa
+
     });   
     </script>
 {% endblock %}

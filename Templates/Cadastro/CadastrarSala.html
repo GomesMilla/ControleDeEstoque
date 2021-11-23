@@ -1,10 +1,12 @@
 {% extends 'Bases/BaseProjeto.html' %}
 {% load bootstrap %}
+
+
 {% block conteudo %}
 
     <div class="container"> 
         <div class="d-flex justify-content-center">
-            <p class="titulo">Cadastrar Vendedor</p>
+            <p class="titulo">Cadastrar Sala</p>
         </div>
         <form method="POST" class="my-login-validation" novalidate="">
             {% csrf_token %}
@@ -28,11 +30,14 @@
             </div>
         </form>
     </div>
+{% endblock %}
 
-<script>
-$( document ).ready(function() {
-    $(".cadastradoPor").hide()
-        
-    });   
-</script>
+{% block scripts %}
+
+    <script>
+        $( document ).ready(function() {
+            $(".cadastradoPor").hide()  
+            });   
+    </script>
+
 {% endblock %}

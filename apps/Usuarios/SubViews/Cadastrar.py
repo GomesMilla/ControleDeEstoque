@@ -5,6 +5,7 @@ from django.utils import timezone
 from django.contrib.auth import authenticate, login, logout
 
 from Usuarios.forms import PessoaForm, EmpresaForm, VendedorForm
+from Usuarios.models import Pais
 
 
 def ViewCriarConta(request):
@@ -63,6 +64,7 @@ def ViewCadastrarVendedor(request):
     now = timezone.now()
     objUser = request.user
     form = VendedorForm(initial={'cadastradoPor': objUser})
+    listPaises =  Pais.objects.all()
 
     if request.method == "POST":
         form = VendedorForm(request.POST)
@@ -78,6 +80,7 @@ def ViewCadastrarVendedor(request):
     context = {
         "NomePagina" : "Cadastrar Vendedor",
         "form" : form,
+        "listPaises": listPaises,
     }
 
     return render(request, "Cadastro/CadastrarVendedor.html", context)
