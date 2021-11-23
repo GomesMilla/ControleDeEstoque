@@ -1,7 +1,7 @@
 {% extends 'Bases/BaseProjeto.html' %}
 {% block conteudo %}
 {% load static %}
-<div class="col-xl-12 col-md-12 mb-4 mt-5" style="left: -9%;">
+<div class="col-xl-12 col-md-12 mb-4 mt-5" >
     <div class="container-fluid">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
@@ -84,9 +84,13 @@
                         <h6 class="m-0 font-weight-bold text-primary">Movimentação Mensal</h6>
                     </div>
                     <div class="card-body">
-                        <div class="chart-area">
-                            <canvas id="myAreaChart"></canvas>
-                        </div>
+                        {% if qtdMovimentacaoMensal > 0 %}
+                            <div class="chart-pie pt-4 pb-2">
+                                <canvas id="movimentacoes"></canvas>
+                            </div>
+                        {% else %}
+                            <p class="text-muted">Ainda não ocorreu nenhuma movimentação esse mes</p>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -112,216 +116,130 @@
                 </div>
             </div>
         </div>
-    
-        <!-- Content Row -->
         <div class="row">
-    
-            <!-- Content Column -->
-            <div class="col-lg-6 mb-4">
-    
-                <!-- Project Card Example -->
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
-                    </div>
-                    <div class="card-body">
-                        <h4 class="small font-weight-bold">Server Migration <span
-                                class="float-right">20%</span></h4>
-                        <div class="progress mb-4">
-                            <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"
-                                aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="col-lg-12 mb-4">
+                <div class="col-lg-12 mb-4">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Informações gerais</h6>
                         </div>
-                        <h4 class="small font-weight-bold">Sales Tracking <span
-                                class="float-right">40%</span></h4>
-                        <div class="progress mb-4">
-                            <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
-                                aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="card-body">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Últimas Movimentações</h6>
+                                </div>
+                                <div class="card-body">
+                                    {% if listUltimasMovimentacoes %}
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Data Movimentação</th>
+                                                        <th>Tipo</th>
+                                                        <th>Produto</th>
+                                                        <th>Valor movimentado</th>
+                                                        <th>Responsável</th>
+                                                        <th>Ver mais</th>
+                                                    </tr>
+                                                </thead>
+                                                <tfoot>
+                                                    {% for movimentacao in listUltimasMovimentacoes %}
+                                                        <tr>
+                                                            <td>{{movimentacao.dataCadastro}}</td>
+                                                            <td>{{movimentacao.tipoTransacao}}</td>
+                                                            <td>{{movimentacao.produto}}</td>
+                                                            <td>{{movimentacao.valor}}</td>
+                                                            <td>{{movimentacao.resposavel}}</td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    {% else %}
+                                        <p class="text-muted mt-2 ">Não há movimentações cadastradas! </p>
+                                    {% endif %}
+                                </div>
+                            </div> 
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Últimas Compras</h6>
+                                </div>
+                                <div class="card-body">
+                                    {% if listUltimasCompras %}
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Data Movimentação</th>
+                                                        <th>Tipo</th>
+                                                        <th>Produto</th>
+                                                        <th>Valor movimentado</th>
+                                                        <th>Responsável</th>
+                                                        <th>Ver mais</th>
+                                                    </tr>
+                                                </thead>
+                                                <tfoot>
+                                                    {% for movimentacao in listUltimasCompras %}
+                                                        <tr>
+                                                            <td>{{movimentacao.dataCadastro}}</td>
+                                                            <td>{{movimentacao.tipoTransacao}}</td>
+                                                            <td>{{movimentacao.produto}}</td>
+                                                            <td>{{movimentacao.valor}}</td>
+                                                            <td>{{movimentacao.resposavel}}</td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    {% else %}
+                                        <p class="text-muted mt-2 ">Não há compras cadastradas! </p>
+                                    {% endif %}
+                                </div>
+                            </div> 
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Últimas Vendas</h6>
+                                </div>
+                                <div class="card-body">
+                                    {% if listUltimasVendas %}
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Data Movimentação</th>
+                                                        <th>Tipo</th>
+                                                        <th>Produto</th>
+                                                        <th>Valor movimentado</th>
+                                                        <th>Responsável</th>
+                                                        <th>Ver mais</th>
+                                                    </tr>
+                                                </thead>
+                                                <tfoot>
+                                                    {% for movimentacao in listUltimasVendas %}
+                                                        <tr>
+                                                            <td>{{movimentacao.dataCadastro}}</td>
+                                                            <td>{{movimentacao.tipoTransacao}}</td>
+                                                            <td>{{movimentacao.produto}}</td>
+                                                            <td>{{movimentacao.valor}}</td>
+                                                            <td>{{movimentacao.resposavel}}</td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    {% else %}
+                                        <p class="text-muted mt-2 ">Não há vendas cadastradas! </p>
+                                    {% endif %}
+                                </div>
+                            </div> 
                         </div>
-                        <h4 class="small font-weight-bold">Customer Database <span
-                                class="float-right">60%</span></h4>
-                        <div class="progress mb-4">
-                            <div class="progress-bar" role="progressbar" style="width: 60%"
-                                aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <h4 class="small font-weight-bold">Payout Details <span
-                                class="float-right">80%</span></h4>
-                        <div class="progress mb-4">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
-                                aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <h4 class="small font-weight-bold">Account Setup <span
-                                class="float-right">Complete!</span></h4>
-                        <div class="progress">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
-                                aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div>
+                    </div>    
                 </div>
-    
-                
-    
-            <div class="col-lg-6 mb-4">
-    
-                <!-- Illustrations -->
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="text-center">
-                            <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                                src="img/undraw_posting_photo.svg" alt="...">
-                        </div>
-                        <p>Add some quality, svg illustrations to your project courtesy of <a
-                                target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
-                            constantly updated collection of beautiful svg images that you can use
-                            completely free and without attribution!</p>
-                        <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
-                            unDraw &rarr;</a>
-                    </div>
-                </div>
-    
-                <!-- Approach -->
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
-                    </div>
-                    <div class="card-body">
-                        <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce
-                            CSS bloat and poor page performance. Custom CSS classes are used to create
-                            custom components and custom utility classes.</p>
-                        <p class="mb-0">Before working with this theme, you should become familiar with the
-                            Bootstrap framework, especially the utility classes.</p>
-                    </div>
-                </div>
-    
             </div>
         </div>
-    
-    </div>
-</div>
-   
+    </div>  
 </div>
 
-</div>
-    
-    <div class="container top">
-        <div class="mt-5">
-            <div class="accordion" id="accordionPanelsStayOpenExample">
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                            <span class="material-icons text-black d-flex align-items-center pt-1" style="font-size: 25px">add_shopping_cart</span>Últimas Movimentações
-                        </button>
-                    </h2>
-                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
-                        <div class="accordion-body">
-                            {% if listUltimasMovimentacoes %}
-                                <table class="table">
-                                    <thead class="table-secondary">
-                                        <tr>
-                                            <th scope="col">Data Movimentação</th>
-                                            <th scope="col">Tipo</th>
-                                            <th scope="col">Produto</th>
-                                            <th scope="col">Valor Movimentado</th>
-                                            <th scope="col">Responsável</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {% for movimentacao in listUltimasMovimentacoes %}
-                                            <tr>
-                                                <td>{{movimentacao.dataCadastro}}</td>
-                                                <td>{{movimentacao.tipoTransacao}}</td>
-                                                <td>{{movimentacao.produto}}</td>
-                                                <td>{{movimentacao.valor}}</td>
-                                                <td>{{movimentacao.resposavel}}</td>
-                                            </tr>
-                                        {% endfor %}
-                                    </tbody>
-                                </table>
-                            {% else %}
-                                <p class="text-muted mt-2 fs-5">Não movimentações registrado nesse mes ainda!</p>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                            <span class="material-icons text-black d-flex align-items-center pt-1" style="font-size: 25px">production_quantity_limits</span>Últimas Compras
-                        </button>
-                    </h2>
-                    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
-                        <div class="accordion-body">
-                            <div class="accordion-body">
-                                {% if listUltimasCompras %}
-                                    <table class="table">
-                                        <thead class="table-secondary">
-                                            <tr>
-                                                <th scope="col">Data Movimentação</th>
-                                                <th scope="col">Produto</th>
-                                                <th scope="col">Valor Movimentado</th>
-                                                <th scope="col">Responsável</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {% for compra in listUltimasCompras %}
-                                                <tr>
-                                                    <td>{{compra.dataCadastro}}</td>
-                                                    <td>{{compra.produto}}</td>
-                                                    <td>{{compra.valor}}</td>
-                                                    <td>{{compra.responsavel}}</td>
-                                                </tr>
-                                            {% endfor %}
-                                        </tbody>
-                                    </table>
-                                {% else %}
-                                    <p class="text-muted mt-2 fs-5">Não há compras registrado nesse mes ainda!</p>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                            <span class="material-icons text-black d-flex align-items-center pt-1" style="font-size: 25px">attach_money</span>Últimas Vendas
-                        </button>
-                    </h2>
-                    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
-                        <div class="accordion-body">
-                            <div class="accordion-body">
-                                {% if listUltimasVendas %}
-                                    <table class="table">
-                                        <thead class="table-secondary">
-                                            <tr>
-                                                <th scope="col">Data Movimentação</th>
-                                                <th scope="col">Produto</th>
-                                                <th scope="col">Valor Movimentado</th>
-                                                <th scope="col">Responsável</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {% for venda in listUltimasVendas %}
-                                                <tr>
-                                                    <td>{{venda.dataCadastro}}</td>
-                                                    <td>{{venda.produto}}</td>
-                                                    <td>{{venda.valor}}</td>
-                                                    <td>{{venda.responsavel}}</td>
-                                                </tr>
-                                            {% endfor %}
-                                        </tbody>
-                                    </table>
-                                {% else %}
-                                    <p class="text-muted mt-2 fs-5">Não há vendas registrado nesse mes ainda!</p>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    </div>         
-</div>
 <script>
     var ctx = document.getElementById("productsChart");
     var names = JSON.parse('{{ nomes|safe }}');
@@ -329,7 +247,48 @@
     // var category = JSON.parse('{{ categorias|safe }}');
     
     var productsChart = new Chart(ctx, {
-        type: 'pie',
+        type: 'doughnut',
+        data: {
+            labels: names,
+            datasets: [{
+                label: 'Produtos',
+                data: prices,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            }
+        }
+    });
+    var ctx = document.getElementById("movimentacoes");
+    var names = JSON.parse('{{ compras|safe }}');
+    var prices = JSON.parse('{{ vendas|safe }}');
+    // var category = JSON.parse('{{ categorias|safe }}');
+    
+    var productsChart = new Chart(ctx, {
+        type: 'line',
         data: {
             labels: names,
             datasets: [{

@@ -2,34 +2,30 @@
 {% load bootstrap %}
 {% block conteudo %}
 
-<div class="container top">
-    <p class="fs-1 fw-bolder text-muted">Lista de Empresas</p>
+<div class="container">
+    <p class="titulo">Lista de Empresas</p>
     {% if ListEmpresas %}
-        <div class="table-responsive text-center">
-            <table class="table table-hover mt-5 shadow-sm p-3 mb-5 bg-body rounded" id="id_tabelaEmpresas">
-                <thead class="tabela">
-                    <tr class="">
-                        <th scope="col">Código</th>
+        <div class="table-responsive mt-5 col-lg-12 mb-4 text-center">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
                         <th scope="col">Nome</th>
                         <th scope="col">E-mail</th>
-                        <th scope="col">CNPJ</th>
                         <th scope="col">Telefone</th>
                         <th scope="col">Gerenciar</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tfoot>
                     {% for empresa in ListEmpresas %}
                         <tr>
-                            <th scope="row">{{empresa.id}}</th>
                             <td>{{empresa.nome}}</td>
                             <td>{{empresa.email}}</td>
-                            <td>{{empresa.cnpj}}</td>
                             <td>{{empresa.telefone}}</td>
                             <td>
                                 <a class="btn btn-outline-dark" href="{% url 'ViewListarMovimentacaoEmpresa' empresa.id %}">Ver Mais</a>
                                 <a class="btn btn-outline-dark" href="{% url 'ViewEditarEmpresa' empresa.id %}">Editar</a>
-                                <a href="#" class="btn btn-outline-dark" data-bs-toggle="modal"  data-bs-target="#staticBackdrop-{{empresa.id}}">Desativar</a>
-                                <div class="modal fade" id="staticBackdrop-{{empresa.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <a href="#" class="btn btn-outline-dark" data-bs-toggle="modal"  data-bs-target="#Desativar-{{empresa.id}}">Desativar</a>
+                                <div class="modal fade" id="Desativar-{{empresa.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">                                        
                                         <div class="modal-content">
                                             <div class="modal-body">
@@ -49,7 +45,7 @@
                             </td>
                         </tr>
                     {% endfor %}
-                </tbody>
+                </tfoot>
             </table>
         </div>
     {% else %}
@@ -62,10 +58,6 @@
     {% endif %}
 </div>
 <script>
-    $(document).ready(function(){
-        $("#id_pesquisa").on("keyup", function() {
-            Pesquisa("id_tabelaEmpresas tr","id_pesquisa");
-        });
-    });
+    
 </script>
 {% endblock %}

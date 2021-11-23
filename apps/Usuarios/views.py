@@ -47,7 +47,7 @@ def ViewLogin(request):
         user = authenticate(email = request.POST['username'], password = request.POST['password'])
         if user is not None:
             login(request, user)
-            return redirect('ViewListarEmpresas')
+            return redirect('ViewIndex')
         else:
             messages.error(request, "Usuário ou senha inválidos!")
             print("ALGUM DADO ERRADO! PRINCESA")
@@ -61,40 +61,34 @@ def ViewLogin(request):
 def ViewIndex(request): 
     now = timezone.now()  
     mesAtual = now.month
+    listUltimasCompras = []
+    listUltimasVendas = []
     listProduto = Produto.objects.filter(ativo=True)
     nomes = [obj.nome for obj in listProduto]
     valorUnitarios = [int(obj.valorUnitario) for obj in listProduto]
-    # categorias = [int(obj.categoria) for obj in listProduto]
-
-    listCompra = []
-    listVenda = []
-    listUltimasCompras = []
-    listUltimasVendas = []
-    listProdutos = Produto.objects.all()
-    listServicos =  Movimentacao.objects.filter(dataCadastro__month=mesAtual).order_by("-dataCadastro")  
-    ultimasMovimentacoes =  listServicos[:5]
-
-    for servico in listServicos:
-        if servico.tipoTransacao == "E" :
-            listCompra.append(servico)
-            listUltimasCompras = listCompra[:5]
+    listMovimentacoes =  Movimentacao.objects.filter(dataCadastro__month=mesAtual).order_by("-dataCadastro")
+    compras = [obj.tipoTransacao == "E" for obj in listMovimentacoes]
+    saida = [obj.tipoTransacao == "S" for obj in listMovimentacoes]
+    ultimasMovimentacoes = listMovimentacoes[:5]
+    for movimentacao in listMovimentacoes:
+        if movimentacao.tipoTransacao == "E":
+            listUltimasCompras.append(movimentacao)
+            listUltimasCompras[:5]
         else:
-            listVenda.append(servico)
-            listUltimasVendas = listVenda[:5]
-    
+            listUltimasVendas.append(movimentacao)
+            listUltimasVendas[:5]
 
     context = {
         "NomePagina" : "Início",
-        "qtdProdutos" : len(listProdutos),
-        "qtdMovimentacaoMensal" : len(listServicos),
-        "qtdCompra" : len(listCompra),
-        "qtdVendas": len(listVenda),
-        "listUltimasMovimentacoes" : ultimasMovimentacoes,
+        "qtdProdutos" : len(listProduto),
+        "qtdMovimentacaoMensal" : len(listMovimentacoes),
         "listUltimasCompras" : listUltimasCompras,
         "listUltimasVendas" : listUltimasVendas,
         'nomes': json.dumps(nomes),
         'valorUnitarios': json.dumps(valorUnitarios),
-        # 'categorias': json.dumps(categorias),
+        'compras': json.dumps(compras),
+        'vendas': json.dumps(saida),
+        "listUltimasMovimentacoes":ultimasMovimentacoes,
         "listProduto":listProduto,
     }
     return render(request, "Usuarios/Index.html", context)

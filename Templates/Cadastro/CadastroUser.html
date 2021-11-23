@@ -63,11 +63,8 @@
     </div>
 </div>  
 <body>
-    <div class="container top">
-        <!-- <ul>{{FormularioVazio}}</ul> -->
-        <div class="d-flex justify-content-center">
-            <p class="fs-1 fw-bolder text-muted">Cadastrar Usuário</p>
-        </div>
+    <div class="container">
+        <p class="titulo">Cadastrar Usuário</p>
         <form method="POST" class="my-login-validation" novalidate="">
             {% csrf_token %}
                 <div class="form-group">
@@ -176,12 +173,11 @@
                         Li e concordo com os <a href="#staticBackdrop" data-bs-toggle="modal"  data-bs-target="#staticBackdrop">Termos e condições</a> descritos
                     </label>
                 </div>
-                <div class="d-grid gap-2 col-5 mx-auto mb-5 mt-3">
+                <div class="d-flex justify-content-center">
                     <button class="btn btn-outline-primary rounded-pill" id="botao" type="submit">Cadastrar</button>
-                </div>                      
-            </div>                   
+                </div>                                        
         </form>
-    </div>
+    </div> 
 </body>
 
 
