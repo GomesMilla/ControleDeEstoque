@@ -8,6 +8,7 @@ from Usuarios.views import Cadastrar
 from Usuarios.views import Listar
 from Usuarios.views import Editar
 from Usuarios.views import Desativar
+from . import ajax
 
 
 urlpatterns =[
@@ -23,6 +24,10 @@ urlpatterns =[
     path('Desativar-Empresa/<int:id_empresa>/', Desativar.ViewDesativarEmpresa, name="ViewDesativarEmpresa"),
     path('Editar-Empresa/<int:id_empresa>/', Editar.ViewEditarEmpresa, name="ViewEditarEmpresa"),
     path('Movimentacoes-Empresa/<int:id_empresa>/', Listar.ViewListarMovimentacaoEmpresa, name="ViewListarMovimentacaoEmpresa"),
+
+    # AJAX
+    path('Ajax-Cadastrar-Empresa/', ajax.AjaxCadastroEmpresa, name="AjaxCadastroEmpresa"),
+
 
     # VENDEDOR
     path('Cadastrar-Vendedor', Cadastrar.ViewCadastrarVendedor, name="ViewCadastrarVendedor"),

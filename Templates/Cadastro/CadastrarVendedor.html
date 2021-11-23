@@ -40,7 +40,7 @@
                                             <input type="text" class="form-control" name="nomeEmpresa" id="id_NomeEmpresa" placeholder="Nome">
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="EmailEmpresa" placeholder="E-mail">
+                                            <input type="email" class="form-control" id="EmailEmpresa" placeholder="E-mail">
                                         </div>
                                         <div class="form-group">
                                             <input type="text" class="form-control" id="ContatoEmpresa" placeholder="Contato">
@@ -51,7 +51,7 @@
                                         <div class="form-row">
                                             <div class="col-4">
                                                 <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">País</label>
-                                                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                                                <select class="custom-select mr-sm-2" id="PaisEmpresa">
                                                     <option selected>País</option>
                                                     {% for pais in listPaises %}
                                                         <option value="{{pais.id}}">{{pais}}</option>
@@ -59,22 +59,22 @@
                                                 </select>
                                             </div>
                                             <div class="col-4">
-                                                <input type="text" class="form-control" placeholder="Cep">
+                                                <input type="text" class="form-control" id="id_cep" placeholder="Cep">
                                             </div>
                                             <div class="col">
-                                                <input type="text" class="form-control" placeholder="Estado">
+                                                <input type="text" class="form-control" id="id_estado" placeholder="Estado">
                                             </div>
                                         </div>
                                         <div class="form-row mt-3">
                                             <div class="col">
-                                                <input type="text" class="form-control" placeholder="Cidade">
-                                            </div>
-                                            <div class="col-4">
-                                                <input type="text" class="form-control" placeholder="Logradouro">
+                                                <input type="text" class="form-control" id="id_cidade" placeholder="Cidade">
                                             </div>
                                             <div class="col">
-                                                <input type="text" class="form-control" placeholder="Bairro">
+                                                <input type="text" class="form-control" id="id_bairro" placeholder="Bairro">
                                             </div>
+                                            <div class="col-4">
+                                                <input type="text" class="form-control" id="id_logradouro" placeholder="Logradouro">
+                                            </div>                                           
                                         </div>
                                 </div>
                                 <div class="modal-footer">
@@ -101,54 +101,70 @@
 <script>
     $( document ).ready(function() {
         $(".cadastradoPor").hide()
-            
+        $("#id_cep").mask("00000-000");
+        $('#CNPJEmpresa').mask('00.000.000/0000-00', {reverse: true});
+        $('#ContatoEmpresa').mask('(00) 0000-0000');
+        
+        // Pegando informações sobre cidade, estado entre putros por meio do CEP
+        $("#id_cep").focusout(function(){
+            $.ajax({
+                url: 'https://viacep.com.br/ws/'+$(this).val().replace(".","").replace("-","")+'/json/unicode/',
+                dataType: 'json',
+                success: function(resposta){
+                    if (resposta.erro) {
+                        $("#id_cep").removeClass('valid');
+                        $("#id_cep").addClass('invalid');
+                    }
+                    $("#id_logradouro").val(resposta.logradouro);                    
+                    $("#id_bairro").val(resposta.bairro);
+                    $("#id_cidade").val(resposta.localidade);
+                    $("#id_estado").val(resposta.uf);                
+                }
+            });
+        });
+        
+        // Fazendo o cadastro da Empresa
         $( "#btnCadastrarEmpresa" ).click(function() {
             alert("oie")
             var nomeEmpresa = $("#id_NomeEmpresa").val();
-            alert(nomeEmpresa)
-            var genero = $("#id_genero").val();
-            var tipoDependente = $("#id_tipodependente").val();
-            var dataNascimento = $("#id_dataNascimento").val();
-            var cpf = $("#id_cpf").val();
-            var rg = $("#id_rg").val();
+            var EmailEmpresa = $("#EmailEmpresa").val();
+            var ContatoEmpresa = $("#ContatoEmpresa").val();
+            var CNPJEmpresa = $("#CNPJEmpresa").val();
+            var PaisEmpresa = $("#PaisEmpresa").val();
+            var Cep = $("#id_cep").val();
+            var Estado = $("#id_estado").val();
+            var Cidade = $("#id_cidade").val();
+            var Logradouro = $("#id_logradouro").val();
+            var Bairro = $("#id_bairro").val();
+
     
             $.ajax({
-               
+
+                url: "{% url 'AjaxCadastroEmpresa' %}",
+
                 data: {
-                    "nomeDependente":nomeDependente,
-                    "genero":genero,
-                    "tipoDependente":tipoDependente,
-                    "dataNascimento":dataNascimento,
-                    "cpf" : cpf,
-                    "rg" : rg,
+                    "nomeEmpresa" : nomeEmpresa,
+                    "EmailEmpresa" : EmailEmpresa,
+                    "ContatoEmpresa" : ContatoEmpresa,
+                    "CNPJEmpresa" : CNPJEmpresa,
+                    "PaisEmpresa" : PaisEmpresa,
+                    "Cep" : Cep,
+                    "Estado" : Estado,
+                    "Cidade" : Cidade,
+                    "Logradouro" : Logradouro,
+                    "Bairro" : Bairro,
                 },
     
                 dataType: 'json',
                 
-                success: function (listDependentes) {
-                    var ObjDependente = $("#id_dependente");
-    
-                    //Limpa combo de ObjDependente
-                    ObjDependente.empty();
-                    
-                    ObjDependente.append('<option selected="" value="">Selecione um Dependente</option>');
-    
-                    $.each(listDependentes, function() {
-                        ObjDependente.append('<option value="'+this.pk+'">'+this.fields.nome+'</option>');
-                    }); 
-                    $("#id_dependente").trigger("chosen:updated");
-                    ObjDependente.val()
-                    ObjDependente.select();
-    
-                    $("#id_nomeDependente").val("");
-                    $("#id_genero").val("");
-                    $("#id_tipodependente").val("");
-                    $("#id_dataNascimento").val("");
-                    $("#id_cpf").val("");
-                    $("#id_rg").val("");
+                success: function (listEmpresas) {
+                    alert("Empresa cadastrada com sucesso!")
+                    location.reload();
                 }
             });
         });
+
+
         // Verificar se já existe vendedor cadastrado junto com a empresa
         $("#id_dependente").hide();
                 // $("#AdicionarDependente").hide();
