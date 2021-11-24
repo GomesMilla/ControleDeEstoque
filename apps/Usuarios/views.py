@@ -95,3 +95,21 @@ def ViewIndex(request):
 
 
 
+def Viewbase(request):
+    context = {
+        'now' : timezone.now().time(),
+    }
+    area_url = request.META.get('PATH_INFO')
+    if request.user.is_authenticated and not "/admin/" in area_url:
+        ObjUser = request.user
+        context = {
+            'now': timezone.now(),
+            "ObjUser" : ObjUser,
+        }
+    
+    return context
+
+
+
+
+
