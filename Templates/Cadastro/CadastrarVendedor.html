@@ -15,8 +15,104 @@
                     {{form.pessoa|bootstrap}}
                 </div>
                 <div class="col-1 mt-5">
-                    <a type="button" class="btn btn-sm" data-toggle="modal" data-target="#staticBackdrop"><i class="material-icons fs-1 text-primary" style="font-size: 35px;">add_circle_outline</i></a>
-                
+                    <a type="button" class="btn btn-sm" data-toggle="modal" data-target="#CadastrarPessoa"><i class="material-icons fs-1 text-primary" style="font-size: 35px;">add_circle_outline</i></a>
+                    <div class="modal fade" id="CadastrarPessoa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-xl">
+                            <div class="modal-content">
+                                <div class="modal-header bg-primary">
+                                    <div class="sidebar-brand-icon rotate-n-15">
+                                        <i class="fas fa-dolly" style="font-size: 60px; color: white;"></i> 
+                                    </div>
+                                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close" style="font-size: 35px;">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body p-4">
+                                    <div class="d-flex justify-content-center">
+                                        <p class="titulo">Cadastrar Usuário</p>
+                                    </div>
+                                    <form method="POST" enctype="multipart/form-data">
+                                        {% csrf_token %} 
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="NomeUsuario" placeholder="Nome">
+                                            </div>
+                                            <div class="form-group mt-3">
+                                                <input type="email" class="form-control" id="EmailUsuario" placeholder="E-mail">
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-6">
+                                                    <input type="email" class="form-control" id="cpfUsuario" placeholder="CPF">
+                                                </div>
+                                                <div class="form-group col-6">
+                                                    <input type="text" class="form-control" id="CelularUsuario" placeholder="Celular">
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-4">
+                                                    <div class='input-group date' id='datetimepicker1'>
+                                                        <input type='date' class="form-control" id="NascimentoUsuario" placeholder="Nascimento" />                                                    
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Gênero</label>
+                                                    <select class="custom-select mr-sm-2" id="GeneroUsuario">
+                                                        <option selected>Gênero</option>
+                                                        <option value="FEMININO">Feminino</option>
+                                                        <option value="MASCULINO">Masculino</option>
+                                                        <option value="OUTRO">Outro</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-4">
+                                                    <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Escolaridade</label>
+                                                    <select class="custom-select mr-sm-2" id="GeneroUsuario">
+                                                        <option selected>Escolaridade</option>
+                                                        <option value="EFI">Ensino Fundamental Incompleto</option>
+                                                        <option value="EFC">Ensino Fundamental Completo</option>
+                                                        <option value="EMI">Ensino Médio Incompleto</option>
+                                                        <option value="EMC">Ensino Médio Completo</option>
+                                                        <option value="ESI">Ensino Superior Incompleto</option>
+                                                        <option value="ESC">Ensino Superior Incompleto</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col-4">
+                                                    <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">País</label>
+                                                    <select class="custom-select mr-sm-2" id="PaisUsuario">
+                                                        <option selected>País</option>
+                                                        {% for pais in listPaises %}
+                                                            <option value="{{pais.id}}">{{pais}}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                                <div class="col">
+                                                    <input type="text" class="form-control" id="id_cepUsuario" placeholder="Cep">
+                                                </div>
+                                                <div class="col">
+                                                    <input type="text" class="form-control" id="id_estadoUsuario" placeholder="Estado">
+                                                </div>
+                                            </div>
+                                            <div class="form-row mt-3">
+                                                <div class="col">
+                                                    <input type="text" class="form-control" id="id_cidadeUsuario" placeholder="Cidade">
+                                                </div>
+                                                <div class="col">
+                                                    <input type="text" class="form-control" id="id_bairroUsuario" placeholder="Bairro">
+                                                </div>
+                                                <div class="col-4">
+                                                    <input type="text" class="form-control" id="id_logradouroUsuario" placeholder="Logradouro">
+                                                </div>                                           
+                                            </div>      
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                    <button type="button" class="btn btn-primary" id="bntCadastrarUsuario">Cadastrar</button>
+                                </div>
+                            </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -25,8 +121,8 @@
                     {{form.empresa|bootstrap}}
                 </div>
                 <div class="col-1 mt-5">
-                    <a type="button" class="btn btn-sm" data-toggle="modal" data-target="#staticBackdrop"><i class="material-icons fs-1 text-primary" style="font-size: 35px;">add_circle_outline</i></a>
-                    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <a type="button" class="btn btn-sm" data-toggle="modal" data-target="#CadastrarEmpresa"><i class="material-icons fs-1 text-primary" style="font-size: 35px;">add_circle_outline</i></a>
+                    <div class="modal fade" id="CadastrarEmpresa" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog modal-xl">
                             <div class="modal-content">
                                 <div class="modal-header bg-primary">
@@ -109,8 +205,12 @@
     $( document ).ready(function() {
         $(".cadastradoPor").hide()
         $("#id_cep").mask("00000-000");
+        $("#id_cepUsuario").mask("00000-000");
         $('#CNPJEmpresa').mask('00.000.000/0000-00', {reverse: true});
         $('#ContatoEmpresa').mask('(00) 0000-0000');
+        $('#CelularUsuario').mask('(00) 0000-0000');
+        $('#cpfUsuario').mask('000.000.000-00');
+        
         
         // Pegando informações sobre cidade, estado entre putros por meio do CEP
         $("#id_cep").focusout(function(){
@@ -126,6 +226,67 @@
                     $("#id_bairro").val(resposta.bairro);
                     $("#id_cidade").val(resposta.localidade);
                     $("#id_estado").val(resposta.uf);                
+                }
+            });
+        });
+
+        $("#id_cepUsuario").focusout(function(){
+            $.ajax({
+                url: 'https://viacep.com.br/ws/'+$(this).val().replace(".","").replace("-","")+'/json/unicode/',
+                dataType: 'json',
+                success: function(resposta){
+                    if (resposta.erro) {
+                        $("#id_cep").removeClass('valid');
+                        $("#id_cep").addClass('invalid');
+                    }
+                    $("#id_logradouroUsuario").val(resposta.logradouro);                    
+                    $("#id_bairroUsuario").val(resposta.bairro);
+                    $("#id_cidadeUsuario").val(resposta.localidade);
+                    $("#id_estadoUsuario").val(resposta.uf);                
+                }
+            });
+        });
+        
+        
+        
+        //  Fazendo o cadastro do Usuario
+        $( "#bntCadastrarUsuario" ).click(function() {
+            var nomeUsuario = $("#NomeUsuario").val();
+            var EmailUsuario = $("#EmailUsuario").val();
+            var CPFUsuario = $("#cpfUsuario").val();
+            var ContatoUsuario = $("#CelularUsuario").val();
+            var NascimentoUsuario = $("#NascimentoUsuario").val();
+            var GeneroUsuario = $("#GeneroUsuario").val();
+            alert(GeneroUsuario)
+            var PaisUsuario = $("#PaisUsuario").val();
+            var Cep = $("#id_cepUsuario").val();
+            var Estado = $("#id_estadoUsuario").val();
+            var Cidade = $("#id_cidadeUsuario").val();
+            var Logradouro = $("#id_logradouroUsuario").val();
+            var Bairro = $("#id_bairroUsuario").val();
+
+    
+            $.ajax({
+                url: "{% url 'AjaxCadastrarUsuario' %}",
+
+                data: {
+                    "nomeUsuario" : nomeUsuario,
+                    "EmailUsuario" : EmailUsuario,
+                    "ContatoUsuario" : ContatoUsuario,
+                    "NascimentoUsuario" : NascimentoUsuario,
+                    "PaisUsuario" : PaisUsuario,
+                    "Cep" : Cep,
+                    "Estado" : Estado,
+                    "Cidade" : Cidade,
+                    "Logradouro" : Logradouro,
+                    "Bairro" : Bairro,
+                },
+    
+                dataType: 'json',
+                
+                success: function (listEmpresas) {
+                    alert("Pessoa cadastrada com sucesso!")
+                    location.reload();
                 }
             });
         });
@@ -169,50 +330,6 @@
                 }
             });
         });
-
-
-        // Verificar se já existe vendedor cadastrado junto com a empresa
-        $("#id_dependente").hide();
-                // $("#AdicionarDependente").hide();
-                $(".cpf").hide()
-                $(".rg").hide()
-                Dependente = false
-                $("#flexSwitchCheckDefault").click(function(){
-                    if (Dependente == false){
-                        Dependente = true
-                        $.ajax({
-                            
-                            dataType: 'json',
-                            success: function (Dependentes) {
-                                $("#id_dependente").show();
-                                $("#AdicionarDependente").show();
-                                $("#id_dependente").attr("required",true)
-                                
-                                var ObjDependente = $("#id_dependente");
-                                //Limpa combo de ObjDependente
-                                ObjDependente.empty();
-                                ObjDependente.append('<option value="" disabled selected> Selecione um dependente</option>')
-                                $.each(Dependentes, function() {
-                                    ObjDependente.append('<option value="'+this.pk+'">'+this.fields.nome+'</option>');
-                                });
-                                ObjDependente.trigger("chosen:updated");
-                                ObjDependente.select();
-                            }
-                        });
-    
-                    }else{
-                        Dependente=false
-                        $("#id_dependente").hide();
-                        $("#AdicionarDependente").hide();
-                        $("#id_dependente").removeAttr("required",false)
-                    }
-                });
-                $('#id_horario').bootstrapMaterialDatePicker({ 
-                    date: false,
-                    format: 'HH:mm',
-                });
-        // Cadastrar Empresa
-
     });   
     </script>
 {% endblock %}

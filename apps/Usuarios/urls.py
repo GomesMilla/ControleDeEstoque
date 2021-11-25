@@ -14,8 +14,10 @@ from . import ajax
 urlpatterns =[
     # INICIO DO SISTEMA
     path('Início/', ViewIndex, name="ViewIndex"),
+    
     # USUÁRIOS
-    path('Criar-Conta/', Cadastrar.ViewCriarConta, name="ViewCriarConta"),  
+    path('Criar-Conta/', Cadastrar.ViewCriarConta, name="ViewCriarConta"),
+    path('Cadastrar-Pessoa/', ajax.AjaxCadastrarUsuario, name="AjaxCadastrarUsuario"),
     
     
     # EMPRESA

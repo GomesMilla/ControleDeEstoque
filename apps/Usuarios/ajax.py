@@ -6,7 +6,7 @@ from django.core import serializers
 from django.http import HttpResponse
 from django.utils import timezone
 from django.core.mail import send_mail
-from Usuarios.models import Empresa, Pais
+from Usuarios.models import Empresa, Pais, Pessoa
 
 
 
@@ -45,6 +45,52 @@ def AjaxCadastroEmpresa(request):
 
     data = serializers.serialize('json', listEmpresas)
     return HttpResponse(data, content_type="application/json")
+
+
+def AjaxCadastrarUsuario(request):
+    print("chegueiiiiiiiiiiiiiiiiiiiiiiii")
+    now = timezone.now()
+    nomePessoa = request.GET.get('nomeUsuario', None)
+    EmailPessoa = request.GET.get('EmailUsuario', None)
+    cpf = request.GET.get('CPFUsuario', None)
+    ContatoPessoa = request.GET.get('ContatoUsuario', None)
+    DataNascimento = request.GET.get('NascimentoUsuario', None)
+    PaisPessoa = request.GET.get('PaisUsuario', None)
+    Cep = request.GET.get('Cep', None)
+    Estado = request.GET.get('Estado', None)
+    Cidade = request.GET.get('Cidade', None)
+    Logradouro = request.GET.get('Logradouro', None)
+    Bairro = request.GET.get('Bairro', None)
+    objPais =  Pais.objects.get(pk=PaisPessoa)
+    
+    objPessoa = Pessoa()
+    objPessoa.nome = nomePessoa
+    objPessoa.email = EmailPessoa
+    objPessoa.cpf = cpf
+    objPessoa.dataDascimento = DataNascimento
+    objPessoa.telefone = ContatoPessoa
+    objPessoa.pais = objPais
+    objPessoa.cep =  Cep
+    objPessoa.estado = Estado
+    objPessoa.cidade = Cidade
+    objPessoa.bairro = Bairro
+    objPessoa.logradouro = Logradouro
+    objPessoa.cadastradoPor = request.user
+    objPessoa.dataCadastro = now
+    objPessoa.ativo = True
+    objPessoa.save()
+
+    listPessoas = Pessoa.objects.filter(ativo=True)
+
+    data = serializers.serialize('json', listPessoas)
+    return HttpResponse(data, content_type="application/json")
+
+
+
+
+
+
+
 
 
 # def AjaxVerificarEmail(request):
