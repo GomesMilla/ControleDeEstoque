@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'easy_mask',
     'crispy_forms',
     'bootstrapform',
+    'automated_logging'
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -42,7 +43,58 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'automated_logging.middleware.AutomatedLoggingMiddleware'
 ]
+
+
+AUTOMATED_LOGGING = {
+    "globals": {
+        "exclude": {
+            "applications": [
+                "plain:contenttypes",
+                "plain:admin",
+                "plain:basehttp",
+                "glob:session*",
+                "plain:migrations",
+            ]
+        }
+    },
+    "model": {
+        "detailed_message": True,
+        "exclude": {"applications": [], "fields": [], "models": [], "unknown": False},
+        "loglevel": 20,
+        "mask": [],
+        "max_age": None,
+        "performance": False,
+        "snapshot": False,
+        "user_mirror": False,
+    },
+    "modules": ["request", "unspecified", "model"],
+    "request": {
+        "data": {
+            "content_types": ["application/json"],
+            "enabled": [],
+            "ignore": [],
+            "mask": ["password"],
+            "query": False,
+        },
+        "exclude": {
+            "applications": [],
+            "methods": ["GET"],
+            "status": [200],
+            "unknown": False,
+        },
+        "ip": True,
+        "loglevel": 20,
+        "max_age": None,
+    },
+    "unspecified": {
+        "exclude": {"applications": [], "files": [], "unknown": False},
+        "loglevel": 20,
+        "max_age": None,
+    },
+}
+
 
 ROOT_URLCONF = 'main.urls'
 
@@ -72,6 +124,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 
 #Configurações para login declaração de user 
 AUTH_USER_MODEL = "Usuarios.Pessoa" # Declarando nas configurações qual é o novo padrão de User
