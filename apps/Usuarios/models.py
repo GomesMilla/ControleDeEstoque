@@ -73,6 +73,7 @@ class Pessoa(AbstractBaseUser,PermissionsMixin):
     bairro = models.CharField('Bairro',max_length=194, blank=True, null=True)
     logradouro = models.CharField('Logradouro', max_length=194, blank=True, null=True)
     Numero = models.CharField('Número da residencia', max_length=194, blank=True, null=True)
+    idGroup = models.IntegerField(verbose_name = 'Id do grupo', default = 5)
     dataCadastro = models.DateTimeField('Data do cadastro', auto_now_add=True)
     dataDesativacao = models.DateField('Data de nascimento', blank=True, null=True)
     is_active = models.BooleanField(verbose_name="Usuário está ativo",default=True)
@@ -156,6 +157,3 @@ class Vendedor(models.Model):
 
     def __str__(self):
         return str(self.pessoa)
-
-
-# id Group = Gerente, Vendedor e funcionário
