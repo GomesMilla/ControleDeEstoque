@@ -29,6 +29,7 @@ urlpatterns =[
 
     # AJAX
     path('Ajax-Cadastrar-Empresa/', ajax.AjaxCadastroEmpresa, name="AjaxCadastroEmpresa"),
+    path('Ajax-Verificar-Email/', ajax.AjaxVerificarEmail, name="AjaxVerificarEmail"),
 
 
     # VENDEDOR
@@ -37,10 +38,10 @@ urlpatterns =[
     path('Movimentacoes-Vendedor/<int:id_vendedor>/', Listar.ViewListarMovimentacaoVendedor, name="ViewListarMovimentacaoVendedor"),
 
     # REDEFINIÇÃO DE SENHAS
-    path('reset_password/', auth_views.PasswordResetView.as_view(template_name="Logins/forgot.html"), name="reset_password"),
-    path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name="Logins/ResetDone.html"), name="password_reset_done"),
-    path('reset/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(template_name="Logins/reset.html"), name="password_reset_confirm"),
-    path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name="Logins/PasswordResetComplete.html"), name="password_reset_complete"),
+    path('reset_password/', auth_views.PasswordResetView.as_view(template_name="RecuperacaoSenha/forgot.html"), name="reset_password"),
+    path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name="RecuperacaoSenha/ResetDone.html"), name="password_reset_done"),
+    path('reset/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(template_name="RecuperacaoSenha/reset.html"), name="password_reset_confirm"),
+    path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name="RecuperacaoSenha/PasswordResetComplete.html"), name="password_reset_complete"),
 
 
 

@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel&family=Cinzel+Decorative&family=Poppins:wght@300&display=swap');
+
+
 body{
     background-color: #ffffff;
 }
@@ -96,4 +99,13 @@ main {
 
 ::-webkit-scrollbar-thumb:hover {
   background: transparent; 
+}
+
+.Invalid{
+  color: #DC3B56;
+  font-family: 'Poppins', sans-serif;
+}
+.Correct {
+  color: #607A38;
+  font-family: 'Poppins', sans-serif;
 }

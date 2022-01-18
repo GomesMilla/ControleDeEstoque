@@ -7,6 +7,7 @@ from django.http import HttpResponse
 from django.utils import timezone
 from django.core.mail import send_mail
 from Usuarios.models import Empresa, Pais, Pessoa
+from django.http import JsonResponse
 
 
 
@@ -48,7 +49,6 @@ def AjaxCadastroEmpresa(request):
 
 
 def AjaxCadastrarUsuario(request):
-    print("chegueiiiiiiiiiiiiiiiiiiiiiiii")
     now = timezone.now()
     nomePessoa = request.GET.get('nomeUsuario', None)
     EmailPessoa = request.GET.get('EmailUsuario', None)
@@ -86,14 +86,15 @@ def AjaxCadastrarUsuario(request):
     return HttpResponse(data, content_type="application/json")
 
 
+def AjaxVerificarEmail(request):
+    email = request.GET.get('Email', None)
+        
+    data = {
+        'is_taken': Pessoa.objects.filter(email__iexact=email).exists()
+    }
+    if not data['is_taken']:
+        data['error_message'] = 'E-mail não cadastrado!'
 
-
-
-
-
-
-
-# def AjaxVerificarEmail(request):
-#     EmailEmpresa = request.GET.get('EmailEmpresa', None)
+    return JsonResponse(data)
 
 

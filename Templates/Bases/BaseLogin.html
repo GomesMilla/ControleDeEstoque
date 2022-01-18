@@ -8,31 +8,25 @@
     <meta name="theme-color" content="#F2BD24"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.compat.css" />
+    
     <!-- importando arquivos CSS  -->
+    
+    <!-- Importando CSS próprio -->
     <link type="text/css" rel="stylesheet" href="{% static 'CSS/Date.css' %}">
+    
+    <!-- Importando Bootstrap minificado -->
     <link rel="stylesheet" href="{% static 'CSS/Bootstrap/bootstrap.min.css'%}">
+    
+    <!-- Importando Styles pessoal -->
     <link type="text/css" rel="stylesheet" href="{% static 'CSS/Styles/styles.css' %}">
+    
+    <!-- Importando função de carregamento -->
     <link href="{% static 'CSS/HoldOn.min.css'%}" rel="stylesheet">
+    
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
-    <!-- Importando arquivos JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="{% static 'jquery.mask.js' %}"></script>
-    <script type="text/javascript" src="{% static 'JS/jquery.mask.min.js'%}"></script>    
-    <script type="text/javascript" src="{% static 'JS/bootstrap.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'JS/HoldOn.min.js'%}"></script>
-    <script type="text/javascript" src="{% static 'JS/Dinamizar.js'%}"></script>
-    <script type="text/javascript" src="{% static 'JS/Date.min.js'%}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <!-- Bootstrap js -->
-    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <!-- Propeller textfield js --> 
-    <script type="text/javascript" src="dist/js/propeller.min.js"></script>
-    <!-- Datepicker moment with locales -->
-    <script type="text/javascript" language="javascript" src="datetimepicker/js/moment-with-locales.js"></script>
-    <!-- Propeller Bootstrap datetimepicker -->
-    <script type="text/javascript" language="javascript" src="datetimepicker/js/bootstrap-datetimepicker.js"></script>
-    <!-- Importando icones -->
+    
+    <!-- Importando icones e íconess -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -45,14 +39,38 @@
 </head>
 
 <body>  
+    
     <main>        
         {%block conteudo%} 
+        
         {%endblock conteudo%}
     </main>
 
+    <!-- Importando arquivos JavaScript -->
+
+    <!-- "Linkando" com o CDN do jquery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    
+    <!-- Importando arquivo do Jquery Mask -->
+    <script src="{% static 'JS/Jquery/jquery.mask.js' %}"></script>
+    
+    <!-- Importando arquivo JS do Bootstrap -->
+    <script type="text/javascript" src="{% static 'JS/Bootstrap/bootstrap.min.js' %}"></script>
+    
+    <!-- Importando arquivo JS para funções de carregamento -->
+    <script type="text/javascript" src="{% static 'JS/HoldOn/HoldOn.min.js'%}"></script>
+    
+    <!-- Importando arquivo de Styles do novo template -->
+    <script type="text/javascript" src="{% static 'JS/Styles/sb-admin-2.min.js'%}"></script>
+    
+    <!-- Importando icones do font aewsome -->
+    <script src="https://kit.fontawesome.com/2cbdb08e7a.js" crossorigin="anonymous"></script>
+    
+    <!-- Importando charts para funções do grafico -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.js"></script>
+
     <script>
         $(document).ready(function() { 
-            // Função de carregamento
             $(window).bind('beforeunload', function() {
                 var options = {
                     theme: "sk-circle",
@@ -65,10 +83,11 @@
             $(window).load(function() {
                 HoldOn.close();
             });
-            // Fim da função de carregamento         
-    });        
+        });        
     </script>
-    {% block scripts %} 
+    
+    {% block scripts %}
+    
     {% endblock %}
 </body>
 </html>
