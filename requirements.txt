@@ -7,6 +7,7 @@ django-chartjs==2.2.1
 django-crispy-forms==1.12.0
 django-ipware==3.0.7
 django-picklefield==3.0.1
+django-view-breadcrumbs==2.2.7
 easy-mask==1.3.4
 marshmallow==3.14.1
 pkg_resources==0.0.0

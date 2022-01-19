@@ -13,7 +13,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-# Declarando aplicativos
+# Declarando aplicativos internos do Django
 INSTALLED_APPS = [
     'adminlte3',
     'adminlte3_theme',
@@ -23,6 +23,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+]
+
+# Declarando aplicativos externos do Django
+INSTALLED_APPS += [
     'chartjs',
     'Usuarios',
     'Estoque',
@@ -30,8 +34,10 @@ INSTALLED_APPS = [
     'easy_mask',
     'crispy_forms',
     'bootstrapform',
-    'automated_logging'
+    'automated_logging',
+    "view_breadcrumbs",
 ]
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
