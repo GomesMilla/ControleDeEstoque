@@ -10,6 +10,14 @@ from Usuarios.models import Pais
 
 def ViewCriarConta(request):
     FormularioVazio = PessoaForm()
+
+    if request.user.is_authenticated:
+        base_template_name = 'Bases/BaseProjeto.html'
+    else:
+        base_template_name = 'Bases/BaseLogin.html'
+    print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
+    print(base_template_name)
+
     if request.method == 'POST':
         FormularioPreenchido = PessoaForm(request.POST)
         print(FormularioPreenchido)
@@ -23,7 +31,8 @@ def ViewCriarConta(request):
 
     context = {
         "NomePagina" : "Criar Conta",
-        "FormularioVazio" : FormularioVazio
+        "FormularioVazio" : FormularioVazio,
+        'base_template_name': base_template_name,
     }
 
     return render(request, "Cadastro/CadastroUser.html", context)
