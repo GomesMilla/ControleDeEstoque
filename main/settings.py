@@ -117,6 +117,9 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'Usuarios.views.Viewbase'
             ],
+            'libraries':{
+                'templatetag': 'Usuarios.templatetags.usuario_extras',
+            }
         },
     },
 ]

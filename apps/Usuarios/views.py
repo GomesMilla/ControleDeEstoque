@@ -5,8 +5,6 @@ from django.utils import timezone
 from django.contrib.auth import authenticate, login, logout
 import json
 
-
-
 from Usuarios.SubViews import Cadastrar
 from Usuarios.SubViews import Desativar
 from Usuarios.SubViews import Editar
@@ -17,6 +15,10 @@ from Transacao.models import Movimentacao
 
 def ViewInicio(request):
 
+    """
+        View do Inicio do projeto
+    """
+
     context = {
         "NomePagina": "Controle de Estoque"
     }
@@ -25,14 +27,21 @@ def ViewInicio(request):
 
 def ViewObjetivos(request):
 
+    """
+        View para renderizar os objetivos do sistema
+    """
+
     context = {
         "NomePagina": "Objetivos"
     }
 
     return render(request, "Apresentacao/Objetivos.html", context)
 
-
 def ViewPublicoAlvo(request):
+
+    """
+        View para descrever o público alvo do sistema
+    """
 
     context = {
         "NomePagina": "Público Alvo"
@@ -41,6 +50,11 @@ def ViewPublicoAlvo(request):
     return render(request, "Apresentacao/PublicoAlvo.html", context)
 
 def ViewLogin(request):
+
+    """
+        View de Login para logar no sistema
+    """
+
     if request.user.is_authenticated: return redirect('ViewIndex')
     
     if request.method == "POST":
@@ -57,8 +71,12 @@ def ViewLogin(request):
     }
     return render(request, 'Logins/Login.html', context)
 
-
 def ViewIndex(request): 
+
+    """
+        View de Dashboard do projeto para todas as pessoas com as informações mais básicasa
+    """
+
     now = timezone.now()  
     mesAtual = now.month
     listUltimasCompras = []
@@ -93,11 +111,15 @@ def ViewIndex(request):
     }
     return render(request, "Usuarios/Index.html", context)
 
-
-
 def Viewbase(request):
+
+    """
+        View Base para template
+    """
+
     context = {
         'now' : timezone.now().time(),
+        'objUser' : request.user,
     }
     area_url = request.META.get('PATH_INFO')
     if request.user.is_authenticated and not "/admin/" in area_url:

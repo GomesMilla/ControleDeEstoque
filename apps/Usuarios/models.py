@@ -1,22 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import( BaseUserManager, AbstractBaseUser, PermissionsMixin)
 from django.urls import reverse
- 
 
-STATUS_GENERO = [
-    ("FEMININO", "Feminino"),
-    ("MASCULINO", "Masculino"),
-    ("OUTRO", "Outro"),
-]
-
-ESCOLARIDADE = [
-    ("EFI", "Ensino fundamental incompleto"),
-    ("EFC", "Ensino fundamental completo"),
-    ("EMI", "Ensino médio incompleto"),
-    ("EMC", "Ensino médio completo"),
-    ("ESI", "Ensino superior incompleto"),
-    ("ESC", "Ensino superior completo"),
-]
 
 
 class UsuarioManager(BaseUserManager):
@@ -45,6 +30,11 @@ class UsuarioManager(BaseUserManager):
         return usuario
 
 class Pais(models.Model):
+
+    """
+        Models para cadastro de países do mundo
+    """
+
     nome = models.CharField('Nome do país', max_length=194)
     sigla = models.CharField('Sigla do país', max_length=10)
     dataCadastro = models.DateTimeField('Data do cadastro', auto_now_add=True)
@@ -59,6 +49,27 @@ class Pais(models.Model):
         return str(self.nome)
 
 class Pessoa(AbstractBaseUser,PermissionsMixin):
+
+    """
+        Models para cadastro de pessoas com a reescrita do model user padrão do Django
+    """
+
+    STATUS_GENERO = [
+        ("FEMININO", "Feminino"),
+        ("MASCULINO", "Masculino"),
+        ("OUTRO", "Outro"),
+    ]
+
+    ESCOLARIDADE = [
+        ("EFI", "Ensino fundamental incompleto"),
+        ("EFC", "Ensino fundamental completo"),
+        ("EMI", "Ensino médio incompleto"),
+        ("EMC", "Ensino médio completo"),
+        ("ESI", "Ensino superior incompleto"),
+        ("ESC", "Ensino superior completo"),
+    ]
+
+
     nome = models.CharField('Nome completo', max_length=194)
     pais = models.ForeignKey("Pais", on_delete=models.CASCADE, related_name="PaisUsuario", blank=True, null=True)
     escolaridade = models.CharField('Escolaridade', max_length=30, choices=ESCOLARIDADE, blank=True, null=True)
@@ -95,6 +106,11 @@ class Pessoa(AbstractBaseUser,PermissionsMixin):
         return str(self.nome)
 
 class Gerente(models.Model):
+
+    """
+        Models para cadastro de gerentes de cada empresa, será o administrador
+    """
+
     pessoa = models.ForeignKey("Pessoa", on_delete=models.CASCADE, related_name="PessoaGerente")
     cadastradoPor = models.ForeignKey("Pessoa", on_delete=models.CASCADE, related_name="PessoaCadastrouGerente")
     desativadoPor = models.ForeignKey("Pessoa", on_delete=models.CASCADE, related_name="PessoaDesativouGerente")
@@ -113,6 +129,11 @@ class Gerente(models.Model):
         return str(self.pessoa)
 
 class Empresa(models.Model):
+
+    """
+        Models para cadastro de empresas que cedem produtos ou serviços
+    """
+
     nome = models.CharField('Nome da empresa', max_length=194)
     email = models.EmailField('E-mail', unique=True)
     cep = models.CharField('CEP', max_length=194)
@@ -138,8 +159,12 @@ class Empresa(models.Model):
     def __str__(self):
         return str(self.nome)
 
-
 class Vendedor(models.Model):
+
+    """
+        Models para cadastro de vendedor que será vinculado a uma empresa
+    """
+
     pessoa = models.ForeignKey("Pessoa", on_delete=models.CASCADE, related_name="PessoaVendedora")
     empresa = models.ForeignKey("Empresa", on_delete=models.CASCADE, related_name="EmpresaVendedor")
     totalVendido = models.FloatField('Valor comprado do fornecedor', blank=True, null=True)
