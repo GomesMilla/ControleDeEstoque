@@ -70,10 +70,10 @@ class Pessoa(AbstractBaseUser,PermissionsMixin):
     ]
 
 
-    nome = models.CharField('Nome completo', max_length=194)
+    nome = models.CharField('Nome completo', max_length=60)
     pais = models.ForeignKey("Pais", on_delete=models.CASCADE, related_name="PaisUsuario", blank=True, null=True)
-    escolaridade = models.CharField('Escolaridade', max_length=30, choices=ESCOLARIDADE, blank=True, null=True)
-    status = models.CharField('Genero', max_length=10, choices=STATUS_GENERO, blank=True, null=True)
+    escolaridade = models.CharField('Escolaridade', max_length=3, choices=ESCOLARIDADE, blank=True, null=True)
+    genero = models.CharField('Genero', max_length=10, choices=STATUS_GENERO, blank=True, null=True)
     email = models.EmailField('E-mail', unique=True)
     telefoneCelular = models.CharField('Número de telefone', max_length=19, unique=True)
     cpf = models.CharField(verbose_name='CPF', max_length=14, unique=True)
@@ -83,7 +83,7 @@ class Pessoa(AbstractBaseUser,PermissionsMixin):
     cidade = models.CharField('Cidade', max_length=194, blank=True, null=True)
     bairro = models.CharField('Bairro',max_length=194, blank=True, null=True)
     logradouro = models.CharField('Logradouro', max_length=194, blank=True, null=True)
-    Numero = models.CharField('Número da residencia', max_length=194, blank=True, null=True)
+    numero = models.CharField('Número da residencia', max_length=194, blank=True, null=True)
     idGroup = models.IntegerField(verbose_name = 'Id do grupo', default = 5)
     dataCadastro = models.DateTimeField('Data do cadastro', auto_now_add=True)
     dataDesativacao = models.DateField('Data de nascimento', blank=True, null=True)
