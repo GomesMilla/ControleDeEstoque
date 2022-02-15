@@ -8,6 +8,11 @@ from django.contrib.auth import authenticate, login, logout
 
 
 def ViewEditarEmpresa(request, id_empresa):
+
+    """
+        View para editar empresa em especifico
+    """
+
     ObjEmpresa =  Empresa.objects.get(pk=id_empresa)
 
     if request.method == 'POST':

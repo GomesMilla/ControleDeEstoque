@@ -1,0 +1,98 @@
+
+html,body {
+	height: 100%;
+	margin-top: 10px;
+	font-size: 20px;
+}
+
+body.my-login-page {
+	background-image: linear-gradient(to right, rgb(202, 224, 248),rgb(209, 231, 252),rgb(171, 194, 243),rgb(168, 219, 248),rgb(194, 211, 247),rgb(167, 207, 233),rgb(190, 210, 253));
+	font-size: 18px;
+}
+hr.divider {
+	height: 0.2em;
+	max-width: 27rem;
+	margin: 0.6rem auto;
+	background: rgb(184, 131, 32);
+	opacity: 1;
+}
+
+.my-login-page .brand {
+	width: 90px;
+	height: 90px;
+	overflow: hidden;
+	border-radius: 50%;
+	margin: 40px auto;
+	box-shadow: 0 4px 8px rgba(0,0,0,.05);
+	position: relative;
+	z-index: 1;
+}
+
+.my-login-page .brand img {
+	width: 100%;
+}
+
+.my-login-page .card-wrapper {
+	width: 700px;
+}
+
+.my-login-page .card {
+	border-color: transparent;
+	box-shadow: 0 4px 8px rgba(0,0,0,.05);
+}
+
+.my-login-page .card.fat {
+	padding: 20px;
+}
+
+.my-login-page .card .card-title {
+	margin-bottom: 30px;
+}
+
+.my-login-page .form-control {
+	border-width: 3px;
+}
+
+.my-login-page .form-group label {
+	width: 100%;
+}
+
+.my-login-page .btn.btn-block {
+	padding: 12px 10px;
+}
+
+.my-login-page .footer {
+	margin: 40px 0;
+	color: #888;
+	text-align: center;
+}
+
+@media screen and (max-width: 425px) {
+	.my-login-page .card-wrapper {
+		width: 90%;
+		margin: 0 auto;
+	}
+}
+
+@media screen and (max-width: 320px) {
+	.my-login-page .card.fat {
+		padding: 0;
+	}
+
+	.my-login-page .card.fat .card-body {
+		padding: 15px;
+	}
+}
+.Index{
+	text-align: center;
+	font-family: 'Poppins', sans-serif;
+	font-size: 36px;
+	font-weight: 23px;
+}
+hr.divider {
+	height: 0.2em;
+	max-width: 15rem;
+	margin: 0.6rem auto;
+	background: rgb(171, 194, 243);
+	opacity: 1;
+}

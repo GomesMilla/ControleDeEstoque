@@ -6,10 +6,19 @@ from django.contrib.auth import authenticate, login, logout
 
 from Usuarios.forms import PessoaForm, EmpresaForm, VendedorForm
 from Usuarios.models import Pais
+from django.contrib.auth.models import Group
 
 
 def ViewCriarConta(request):
     FormularioVazio = PessoaForm()
+
+    if request.user.is_authenticated:
+        base_template_name = 'Bases/BaseProjeto.html'
+    else:
+        base_template_name = 'Bases/BaseLogin.html'
+    print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
+    print(base_template_name)
+
     if request.method == 'POST':
         FormularioPreenchido = PessoaForm(request.POST)
         print(FormularioPreenchido)
@@ -23,7 +32,8 @@ def ViewCriarConta(request):
 
     context = {
         "NomePagina" : "Criar Conta",
-        "FormularioVazio" : FormularioVazio
+        "FormularioVazio" : FormularioVazio,
+        'base_template_name': base_template_name,
     }
 
     return render(request, "Cadastro/CadastroUser.html", context)
@@ -61,6 +71,7 @@ def ViewCadastrarEmpresa(request):
     return render(request, "Cadastro/CadastrarEmpresa.html", context)
 
 def ViewCadastrarVendedor(request):
+    group = Group.objects.get(name='Vendedor')
     now = timezone.now()
     objUser = request.user
     form = VendedorForm(initial={'cadastradoPor': objUser})
@@ -70,6 +81,7 @@ def ViewCadastrarVendedor(request):
         form = VendedorForm(request.POST)
         if form.is_valid:
             form.save()
+            user.groups.add(group)
             return redirect("ViewListarEmpresas")
         else:
             print(form.errors.as_data()) 

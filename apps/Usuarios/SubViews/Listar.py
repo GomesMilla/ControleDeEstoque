@@ -10,6 +10,10 @@ from Transacao.models import Movimentacao
 
 def ViewListarEmpresas(request):
 
+    """
+        Lista de empresas cadastrado no sistema, filtrando somente aquelas que estão ativas
+    """
+
     ListEmpresas = Empresa.objects.filter(ativo=True)
 
     context = {
@@ -20,6 +24,11 @@ def ViewListarEmpresas(request):
 
 
 def ViewListarMovimentacaoEmpresa(request, id_empresa):
+
+    """
+        Lista de movimentações de cada empresa e lista de vendedores que trabalham para a empresa
+    """
+
     objEmpresa = Empresa.objects.get(pk=id_empresa)
     nome = objEmpresa.nome
     listMovimentacao = Movimentacao.objects.filter(empresaTransacao=objEmpresa).order_by("dataCadastro")
@@ -36,12 +45,14 @@ def ViewListarMovimentacaoEmpresa(request, id_empresa):
 
 
 def ViewListarMovimentacaoVendedor(request, id_vendedor):
+
+    """
+        Lista de movimentações que cada vendedor realizou 
+    """
+
     objVendedor = Vendedor.objects.get(pk=id_vendedor)
     listMovimentacoesVendedor = Movimentacao.objects.filter(vendendor=objVendedor)
     
-
-
-
     context = {
         "NomePagina" : "Movimentações do Vendedor",
         "objVendedor":objVendedor,

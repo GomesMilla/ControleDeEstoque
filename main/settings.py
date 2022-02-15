@@ -1,4 +1,5 @@
 from pathlib import Path
+import django_heroku
 import os, sys
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -9,11 +10,11 @@ sys.path.append(
 )
 
 # Configurações para programador e servidor local
-DEBUG = True
-ALLOWED_HOSTS = []
+DEBUG = Trues
+ALLOWED_HOSTS = ['https://git.heroku.com/inventorycontrolgomesmilla.git']
 
 
-# Declarando aplicativos
+# Declarando aplicativos internos do Django
 INSTALLED_APPS = [
     'adminlte3',
     'adminlte3_theme',
@@ -23,6 +24,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+]
+
+# Declarando aplicativos externos do Django
+INSTALLED_APPS += [
     'chartjs',
     'Usuarios',
     'Estoque',
@@ -30,8 +35,10 @@ INSTALLED_APPS = [
     'easy_mask',
     'crispy_forms',
     'bootstrapform',
-    'automated_logging'
+    'automated_logging',
+    "view_breadcrumbs",
 ]
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
@@ -111,6 +118,9 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'Usuarios.views.Viewbase'
             ],
+            'libraries':{
+                'templatetag': 'Usuarios.templatetags.usuario_extras',
+            }
         },
     },
 ]
@@ -163,19 +173,18 @@ USE_TZ = True
 #Definir a rota dos arquivos estaticos
 
 STATIC_URL = '/static/'
-
-# PROJECT_ROOT = os.path.join(BASE_DIR, 'static')
-
-# STATIC_ROOT = PROJECT_ROOT
-
-
+STATIC_ROOT = os.path.join(BASE_DIR, '' '')
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static")
-] 
+        os.path.join(BASE_DIR, 'static')
+]
+
+MEDIA_URL='/media/'
+MEDIA_ROOT='media/'
+
 
 # Configurações do Django
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+# DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 # Configurações de envio do e-mail
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -193,3 +202,5 @@ EMAIL_HOST_USER = "michel.lemes@unincor.edu.br"
 EMAIL_HOST_PASSWORD = "87028399dd"
 
 # Falta configurar para um email pessoal
+
+django_heroku.settings(locals())

@@ -1,4 +1,9 @@
 {% load static %}
+
+{% load usuario_extras %}
+
+{% load view_breadcrumbs %}
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -124,74 +129,110 @@
             <div class="sidebar-heading">
                 Funcionalidades
             </div>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCadastro"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Cadastrar</span>
-                </a>
-                <div id="collapseCadastro" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Opções:</h6>
-                        <a class="collapse-item" href="{% url 'ViewCriarConta' %}">Cadastrar Usuário</a>
-                        <a class="collapse-item" href="{% url 'ViewCadastrarEmpresa' %}">Cadastrar Empresa</a>
-                        <a class="collapse-item" href="{% url 'ViewCadastrarVendedor' %}">Cadastrar Vendedor</a>
-                        <a class="collapse-item" href="{% url 'ViewCadastrarSala' %}">Cadastrar Sala</a>
-                        <a class="collapse-item" href="{% url 'ViewCriarConta' %}">Cadastrar Produto</a>
-                        <a class="collapse-item" href="{% url 'ViewCadastrarEmpresa' %}">Cadastrar Relatório</a>
+            {% if request.user|has_groups:"Administrador" or request.user|has_groups:"Gerente" %}
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCadastro"
+                        aria-expanded="true" aria-controls="collapseTwo">
+                        <i class="fas fa-fw fa-cog"></i>
+                        <span>Cadastrar</span>
+                    </a>
+                    <div id="collapseCadastro" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Opções:</h6>
+                            <a class="collapse-item" href="{% url 'ViewCriarConta' %}">Cadastrar Usuário</a>
+                            <a class="collapse-item" href="{% url 'ViewCadastrarEmpresa' %}">Cadastrar Empresa</a>
+                            <a class="collapse-item" href="{% url 'ViewCadastrarVendedor' %}">Cadastrar Vendedor</a>
+                            <a class="collapse-item" href="{% url 'ViewCadastrarSala' %}">Cadastrar Sala</a>
+                            <a class="collapse-item" href="{% url 'ViewCriarConta' %}">Cadastrar Produto</a>
+                            <a class="collapse-item" href="{% url 'ViewCadastrarEmpresa' %}">Cadastrar Relatório</a>
+                        </div>
                     </div>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseListar"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Listar</span>
-                </a>
-                <div id="collapseListar" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Opções:</h6>
-                        <a class="collapse-item" href="{% url 'ViewCriarConta' %}">Listar Usuário</a>
-                        <a class="collapse-item" href="{% url 'ViewListarEmpresas' %}">Listar Empresa</a>
-                        <a class="collapse-item" href="#">Listar Vendedor</a>
-                        <a class="collapse-item" href="{% url 'ViewListarEmpresas' %}">Listar Sala</a>
-                        <a class="collapse-item" href="{% url 'ViewListarEmpresas' %}">Listar Produto</a>
-                        <a class="collapse-item" href="{% url 'ViewListarEmpresas' %}">Listar Relatório</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseListar"
+                        aria-expanded="true" aria-controls="collapseTwo">
+                        <i class="fas fa-fw fa-cog"></i>
+                        <span>Listar</span>
+                    </a>
+                    <div id="collapseListar" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Opções:</h6>
+                            <a class="collapse-item" href="{% url 'ViewCriarConta' %}">Listar Usuário</a>
+                            <a class="collapse-item" href="{% url 'ViewListarEmpresas' %}">Listar Empresa</a>
+                            <a class="collapse-item" href="#">Listar Vendedor</a>
+                            <a class="collapse-item" href="{% url 'ViewListarEmpresas' %}">Listar Sala</a>
+                            <a class="collapse-item" href="{% url 'ViewListarEmpresas' %}">Listar Produto</a>
+                            <a class="collapse-item" href="{% url 'ViewListarEmpresas' %}">Listar Relatório</a>
+                        </div>
                     </div>
+                </li>
+            {% endif %}
+            {% if not request.user|has_groups:"Usuário" or request.user|has_groups:"Vendedor" %}
+                <hr class="sidebar-divider">
+                <div class="sidebar-heading">
+                    Financeiro e Logistíca
                 </div>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFinanceiro"
+                        aria-expanded="true" aria-controls="collapseTwo">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>Financeiro</span>
+                    </a>
+                    <div id="collapseFinanceiro" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Opções:</h6>
+                            <a class="collapse-item" href="{% url 'ViewCriarConta' %}">Relatório Financeiro</a>
+                            <a class="collapse-item" href="{% url 'ViewListarEmpresas' %}">Movimentações</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLogistica"
+                        aria-expanded="true" aria-controls="collapseTwo">
+                        <i class="fas fa-fw fa-table"></i>
+                        <span>Logistíca</span>
+                    </a>
+                    <div id="collapseLogistica" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Opções:</h6>
+                            <a class="collapse-item" href="{% url 'ViewListarEmpresas' %}">Relatório Transação</a>
+                            <a class="collapse-item" href="{% url 'ViewListarEmpresas' %}">PDFs</a>
+                        </div>
+                    </div>
+                </li>
+            {% endif %}
+            {% if request.user|has_groups:"Vendedor" %}
             <hr class="sidebar-divider">
             <div class="sidebar-heading">
-                Financeiro e Logistíca
+                Vendedor
             </div>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFinanceiro"
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVendedor"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Financeiro</span>
+                    <span>Listar</span>
                 </a>
-                <div id="collapseFinanceiro" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseVendedor" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções:</h6>
-                        <a class="collapse-item" href="{% url 'ViewCriarConta' %}">Relatório Financeiro</a>
-                        <a class="collapse-item" href="{% url 'ViewListarEmpresas' %}">Movimentações</a>
+                        <a class="collapse-item" href="{% url 'ViewCriarConta' %}">Produtos em Falta</a>
                     </div>
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLogistica"
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVendedorCadastro"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Logistíca</span>
+                    <span>Cadastro</span>
                 </a>
-                <div id="collapseLogistica" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseVendedorCadastro" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções:</h6>
-                        <a class="collapse-item" href="{% url 'ViewListarEmpresas' %}">Relatório Transação</a>
-                        <a class="collapse-item" href="{% url 'ViewListarEmpresas' %}">PDFs</a>
+                        <a class="collapse-item" href="{% url 'ViewListarEmpresas' %}">Solicitação de Venda</a>
                     </div>
                 </div>
             </li>
+        {% endif %}
             <hr class="sidebar-divider d-none d-md-block">
             <!-- <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
@@ -390,76 +431,54 @@
                     </ul>
                 </nav>
                 <!-- fim da nav -->
-                <!-- Conyeudo diversos -->
+                
+                <!-- Conteúdos para colocar os caminhos onde o usuário percorreu -->
                 <div class="container-fluid">
-                    <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">
+                            {% block breadcrumbs %}
+                                {% render_breadcrumbs %} aaaa {% render_breadcrumbs "view_breadcrumbs/bootstrap5.html" %}
+                            {% endblock %}</h1>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-                    </div> -->
+                    </div>
                     <div class="row">
-                        {%block conteudo%} 
+                        {%block conteudo%}
+                    
                         {%endblock conteudo%}   
                     </div>  
                 </div>
+                <!-- Fim -->
             </div>
+
             <!-- Footer -->
             <footer class="sticky-footer bg-gradient">
                 <footer class=" sticky-footer text-center text-black bg-light mt-5">
                     <div class="container pt-4">
                         <section class="mb-4">
-                            <a
-                                class="btn btn-link btn-floating btn-lg text-dark m-1 bg-light"
-                                href="#!"
-                                role="button"
-                                data-mdb-ripple-color="dark"
-                                ><i class="fab fa-facebook-f text-black"></i
-                                >
+                            <a class="btn btn-link btn-floating btn-lg text-dark m-1 bg-light" href="#!" role="button" data-mdb-ripple-color="dark">
+                                <i class="fab fa-facebook-f text-black"></i>
                             </a>
-                            <a
-                                class="btn btn-link btn-floating btn-lg text-dark m-1 bg-light"
-                                href="#!"
-                                role="button"
-                                data-mdb-ripple-color="dark"
-                                ><i class="fab fa-twitter text-black"></i
-                                >
+                            <a class="btn btn-link btn-floating btn-lg text-dark m-1 bg-light" href="#!" role="button" data-mdb-ripple-color="dark">
+                                <i class="fab fa-twitter text-black"></i>
                             </a>
-                            <a
-                                class="btn btn-link btn-floating btn-lg text-dark m-1 bg-light"
-                                href="#!"
-                                role="button"
-                                data-mdb-ripple-color="dark"
-                                ><i class="fab fa-google text-black"></i
-                                >
+                            <a class="btn btn-link btn-floating btn-lg text-dark m-1 bg-light" href="#!" role="button" data-mdb-ripple-color="dark">
+                                <i class="fab fa-google text-black"></i>
                             </a>
-                            <a
-                                class="btn btn-link btn-floating btn-lg text-dark m-1 bg-light"
-                                href="#!"
-                                role="button"
-                                data-mdb-ripple-color="dark"
-                                ><i class="fab fa-instagram text-black"></i
-                                >
+                            <a class="btn btn-link btn-floating btn-lg text-dark m-1 bg-light" href="#!" role="button" data-mdb-ripple-color="dark">
+                                <i class="fab fa-instagram text-black"></i>
                             </a>
-                            <a
-                                class="btn btn-link btn-floating btn-lg text-dark m-1 bg-light"
-                                href="#!"
-                                role="button"
-                                data-mdb-ripple-color="dark"
-                                ><i class="fab fa-linkedin text-black"></i
-                                >
+                            <a class="btn btn-link btn-floating btn-lg text-dark m-1 bg-light" href="#!" role="button" data-mdb-ripple-color="dark">
+                                <i class="fab fa-linkedin text-black"></i>
                             </a>
-                            <a
-                                class="btn btn-link btn-floating btn-lg text-dark m-1 bg-light"
-                                href="#!"
-                                role="button"
-                                data-mdb-ripple-color="dark"
-                                ><i class="fab fa-github text-black"></i
-                                >
+                            <a class="btn btn-link btn-floating btn-lg text-dark m-1 bg-light" href="#!" role="button" data-mdb-ripple-color="dark">
+                                <i class="fab fa-github text-black"></i>
                             </a>
                         </section>
                     </div>
                 </footer>
             </footer>
+            <!-- Fim do Footer -->
         </div>
     </div>
     <a class="scroll-to-top rounded" href="#page-top">
@@ -532,6 +551,7 @@
     </script>
 
     {% block scripts %} 
+    
     {% endblock %}
     
     </body>

@@ -1,22 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import( BaseUserManager, AbstractBaseUser, PermissionsMixin)
 from django.urls import reverse
- 
 
-STATUS_GENERO = [
-    ("FEMININO", "Feminino"),
-    ("MASCULINO", "Masculino"),
-    ("OUTRO", "Outro"),
-]
-
-ESCOLARIDADE = [
-    ("EFI", "Ensino fundamental incompleto"),
-    ("EFC", "Ensino fundamental completo"),
-    ("EMI", "Ensino médio incompleto"),
-    ("EMC", "Ensino médio completo"),
-    ("ESI", "Ensino superior incompleto"),
-    ("ESC", "Ensino superior completo"),
-]
 
 
 class UsuarioManager(BaseUserManager):
@@ -45,6 +30,11 @@ class UsuarioManager(BaseUserManager):
         return usuario
 
 class Pais(models.Model):
+
+    """
+        Models para cadastro de países do mundo
+    """
+
     nome = models.CharField('Nome do país', max_length=194)
     sigla = models.CharField('Sigla do país', max_length=10)
     dataCadastro = models.DateTimeField('Data do cadastro', auto_now_add=True)
@@ -59,10 +49,31 @@ class Pais(models.Model):
         return str(self.nome)
 
 class Pessoa(AbstractBaseUser,PermissionsMixin):
-    nome = models.CharField('Nome completo', max_length=194)
+
+    """
+        Models para cadastro de pessoas com a reescrita do model user padrão do Django
+    """
+
+    STATUS_GENERO = [
+        ("FEMININO", "Feminino"),
+        ("MASCULINO", "Masculino"),
+        ("OUTRO", "Outro"),
+    ]
+
+    ESCOLARIDADE = [
+        ("EFI", "Ensino fundamental incompleto"),
+        ("EFC", "Ensino fundamental completo"),
+        ("EMI", "Ensino médio incompleto"),
+        ("EMC", "Ensino médio completo"),
+        ("ESI", "Ensino superior incompleto"),
+        ("ESC", "Ensino superior completo"),
+    ]
+
+
+    nome = models.CharField('Nome completo', max_length=60)
     pais = models.ForeignKey("Pais", on_delete=models.CASCADE, related_name="PaisUsuario", blank=True, null=True)
-    escolaridade = models.CharField('Escolaridade', max_length=30, choices=ESCOLARIDADE, blank=True, null=True)
-    status = models.CharField('Genero', max_length=10, choices=STATUS_GENERO, blank=True, null=True)
+    escolaridade = models.CharField('Escolaridade', max_length=3, choices=ESCOLARIDADE, blank=True, null=True)
+    genero = models.CharField('Genero', max_length=10, choices=STATUS_GENERO, blank=True, null=True)
     email = models.EmailField('E-mail', unique=True)
     telefoneCelular = models.CharField('Número de telefone', max_length=19, unique=True)
     cpf = models.CharField(verbose_name='CPF', max_length=14, unique=True)
@@ -72,7 +83,8 @@ class Pessoa(AbstractBaseUser,PermissionsMixin):
     cidade = models.CharField('Cidade', max_length=194, blank=True, null=True)
     bairro = models.CharField('Bairro',max_length=194, blank=True, null=True)
     logradouro = models.CharField('Logradouro', max_length=194, blank=True, null=True)
-    Numero = models.CharField('Número da residencia', max_length=194, blank=True, null=True)
+    numero = models.CharField('Número da residencia', max_length=194, blank=True, null=True)
+    idGroup = models.IntegerField(verbose_name = 'Id do grupo', default = 5)
     dataCadastro = models.DateTimeField('Data do cadastro', auto_now_add=True)
     dataDesativacao = models.DateField('Data de nascimento', blank=True, null=True)
     is_active = models.BooleanField(verbose_name="Usuário está ativo",default=True)
@@ -94,6 +106,11 @@ class Pessoa(AbstractBaseUser,PermissionsMixin):
         return str(self.nome)
 
 class Gerente(models.Model):
+
+    """
+        Models para cadastro de gerentes de cada empresa, será o administrador
+    """
+
     pessoa = models.ForeignKey("Pessoa", on_delete=models.CASCADE, related_name="PessoaGerente")
     cadastradoPor = models.ForeignKey("Pessoa", on_delete=models.CASCADE, related_name="PessoaCadastrouGerente")
     desativadoPor = models.ForeignKey("Pessoa", on_delete=models.CASCADE, related_name="PessoaDesativouGerente")
@@ -112,6 +129,11 @@ class Gerente(models.Model):
         return str(self.pessoa)
 
 class Empresa(models.Model):
+
+    """
+        Models para cadastro de empresas que cedem produtos ou serviços
+    """
+
     nome = models.CharField('Nome da empresa', max_length=194)
     email = models.EmailField('E-mail', unique=True)
     cep = models.CharField('CEP', max_length=194)
@@ -137,8 +159,12 @@ class Empresa(models.Model):
     def __str__(self):
         return str(self.nome)
 
-
 class Vendedor(models.Model):
+
+    """
+        Models para cadastro de vendedor que será vinculado a uma empresa
+    """
+
     pessoa = models.ForeignKey("Pessoa", on_delete=models.CASCADE, related_name="PessoaVendedora")
     empresa = models.ForeignKey("Empresa", on_delete=models.CASCADE, related_name="EmpresaVendedor")
     totalVendido = models.FloatField('Valor comprado do fornecedor', blank=True, null=True)
@@ -156,6 +182,3 @@ class Vendedor(models.Model):
 
     def __str__(self):
         return str(self.pessoa)
-
-
-# id Group = Gerente, Vendedor e funcionário
