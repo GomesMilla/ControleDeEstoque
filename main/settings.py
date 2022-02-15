@@ -1,4 +1,5 @@
 from pathlib import Path
+import django_heroku
 import os, sys
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -9,7 +10,7 @@ sys.path.append(
 )
 
 # Configurações para programador e servidor local
-DEBUG = False
+DEBUG = Trues
 ALLOWED_HOSTS = ['https://git.heroku.com/inventorycontrolgomesmilla.git']
 
 
@@ -201,3 +202,5 @@ EMAIL_HOST_USER = "michel.lemes@unincor.edu.br"
 EMAIL_HOST_PASSWORD = "87028399dd"
 
 # Falta configurar para um email pessoal
+
+django_heroku.settings(locals())
