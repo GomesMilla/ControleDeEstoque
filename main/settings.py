@@ -178,8 +178,8 @@ STATICFILES_DIRS = [
         os.path.join(BASE_DIR, 'static')
 ]
 
-MEDIA_URL='/media/'
-MEDIA_ROOT='media/'
+MEDIA_URL='/imagens/'
+MEDIA_ROOT='imagens/'
 
 
 # Configurações do Django
