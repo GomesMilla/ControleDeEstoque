@@ -9,8 +9,8 @@ sys.path.append(
 )
 
 # Configurações para programador e servidor local
-DEBUG = True
-ALLOWED_HOSTS = []
+DEBUG = False
+ALLOWED_HOSTS = ['https://git.heroku.com/inventorycontrolgomesmilla.git']
 
 
 # Declarando aplicativos internos do Django
@@ -172,22 +172,18 @@ USE_TZ = True
 #Definir a rota dos arquivos estaticos
 
 STATIC_URL = '/static/'
-
-# PROJECT_ROOT = os.path.join(BASE_DIR, 'static')
-
-# STATIC_ROOT = PROJECT_ROOT
-
-
+STATIC_ROOT = os.path.join(BASE_DIR, '' '')
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "staticFile")
-] 
+        os.path.join(BASE_DIR, 'static')
+]
 
 MEDIA_URL='/media/'
 MEDIA_ROOT='media/'
 
+
 # Configurações do Django
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+# DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 # Configurações de envio do e-mail
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
