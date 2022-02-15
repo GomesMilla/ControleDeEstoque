@@ -173,7 +173,7 @@ USE_TZ = True
 #Definir a rota dos arquivos estaticos
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, '' '')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
         os.path.join(BASE_DIR, 'static')
 ]
