@@ -165,6 +165,9 @@ USE_TZ = True
 #Definir a rota dos arquivos estaticos
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticFiles')
+STATICFILES_DIRS = [ 
+    os.path.join(BASE_DIR, 'static'),
+]
 
 MEDIA_URL='/imagens/'
 MEDIA_ROOT='imagens/'
