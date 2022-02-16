@@ -25,3 +25,8 @@ class Movimentacao(models.Model):
 
     def __str__(self):
         return self.produto
+
+# class SolicitacaoVenda(models.Model):
+    # Classe criada para fazer uma solicitação de venda
+
+

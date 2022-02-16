@@ -1,5 +1,4 @@
 from pathlib import Path
-import django_heroku
 import os, sys
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -10,8 +9,8 @@ sys.path.append(
 )
 
 # Configurações para programador e servidor local
-DEBUG = Trues
-ALLOWED_HOSTS = ['https://git.heroku.com/inventorycontrolgomesmilla.git']
+DEBUG = False
+ALLOWED_HOSTS = ['*'] # Domínio é o gratúito do Heroku por isso colocou como *, mas se fosse um domínio fixo colocava o domínio alí.
 
 
 # Declarando aplicativos internos do Django
@@ -44,6 +43,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', # Arquivos estáticos
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -54,53 +54,48 @@ MIDDLEWARE = [
 ]
 
 
-AUTOMATED_LOGGING = {
-    "globals": {
-        "exclude": {
-            "applications": [
-                "plain:contenttypes",
-                "plain:admin",
-                "plain:basehttp",
-                "glob:session*",
-                "plain:migrations",
-            ]
-        }
-    },
-    "model": {
-        "detailed_message": True,
-        "exclude": {"applications": [], "fields": [], "models": [], "unknown": False},
-        "loglevel": 20,
-        "mask": [],
-        "max_age": None,
-        "performance": False,
-        "snapshot": False,
-        "user_mirror": False,
-    },
-    "modules": ["request", "unspecified", "model"],
-    "request": {
-        "data": {
-            "content_types": ["application/json"],
-            "enabled": [],
-            "ignore": [],
-            "mask": ["password"],
-            "query": False,
-        },
-        "exclude": {
-            "applications": [],
-            "methods": ["GET"],
-            "status": [200],
-            "unknown": False,
-        },
-        "ip": True,
-        "loglevel": 20,
-        "max_age": None,
-    },
-    "unspecified": {
-        "exclude": {"applications": [], "files": [], "unknown": False},
-        "loglevel": 20,
-        "max_age": None,
-    },
-}
+# AUTOMATED_LOGGING = {
+#     "globals": {
+#         "exclude": {
+#             "applications": [
+#                 "plain:contenttypes",
+#                 "plain:admin",
+#                 "plain:basehttp",
+#                 "glob:session*",django_heroku.settings(locals())
+#         "detailed_message": True,
+#         "exclude": {"applications": [], "fields": [], "models": [], "unknown": False},
+#         "loglevel": 20,
+#         "mask": [],
+#         "max_age": None,
+#         "performance": False,
+#         "snapshot": False,
+#         "user_mirror": False,
+#     },
+#     "modules": ["request", "unspecified", "model"],
+#     "request": {
+#         "data": {
+#             "content_types": ["application/json"],
+#             "enabled": [],
+#             "ignore": [],
+#             "mask": ["password"],
+#             "query": False,
+#         },
+#         "exclude": {
+#             "applications": [],
+#             "methods": ["GET"],
+#             "status": [200],
+#             "unknown": False,
+#         },
+#         "ip": True,
+#         "loglevel": 20,
+#         "max_age": None,
+#     },
+#     "unspecified": {
+#         "exclude": {"applications": [], "files": [], "unknown": False},
+#         "loglevel": 20,
+#         "max_age": None,
+#     },
+# }
 
 
 ROOT_URLCONF = 'main.urls'
@@ -161,22 +156,15 @@ AUTH_PASSWORD_VALIDATORS = [
 # Configurações básicas
 
 LANGUAGE_CODE = 'pt-br'
-
 TIME_ZONE = 'America/Sao_Paulo'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
-#Definir a rota dos arquivos estaticos
 
+#Definir a rota dos arquivos estaticos
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, 'static')
-]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticFiles')
 
 MEDIA_URL='/imagens/'
 MEDIA_ROOT='imagens/'
@@ -203,4 +191,3 @@ EMAIL_HOST_PASSWORD = "87028399dd"
 
 # Falta configurar para um email pessoal
 
-django_heroku.settings(locals())
