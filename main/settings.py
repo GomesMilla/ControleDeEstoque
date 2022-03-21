@@ -196,4 +196,6 @@ EMAIL_HOST_PASSWORD = "87028399dd"
 
 # Falta configurar para um email pessoal
 
-# django_on_heroku.settings(locals())
+django_on_heroku.settings(locals())
+
+# git push heroku HEAD:master
