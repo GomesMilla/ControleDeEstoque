@@ -1,8 +1,11 @@
+# Settings para configurar o Heroku para programar na maquina localmente
+
 from pathlib import Path
 import os, sys
-import django_on_heroku
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+print(BASE_DIR)
 SECRET_KEY = 'django-insecure-6w23%li%v2=dkbe_#sahsag0zw*p96-o3nt4t@$_x$5$vgd-ak'
 
 sys.path.append(
@@ -10,8 +13,8 @@ sys.path.append(
 )
 
 # Configurações para programador e servidor local
-DEBUG = False
-ALLOWED_HOSTS = ['*'] # Domínio é o gratúito do Heroku por isso colocou como *, mas se fosse um domínio fixo colocava o domínio alí.
+DEBUG = True
+ALLOWED_HOSTS = []
 
 
 # Declarando aplicativos internos do Django
@@ -53,50 +56,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'automated_logging.middleware.AutomatedLoggingMiddleware'
 ]
-
-
-# AUTOMATED_LOGGING = {
-#     "globals": {
-#         "exclude": {
-#             "applications": [
-#                 "plain:contenttypes",
-#                 "plain:admin",
-#                 "plain:basehttp",
-#                 "glob:session*",django_heroku.settings(locals())
-#         "detailed_message": True,
-#         "exclude": {"applications": [], "fields": [], "models": [], "unknown": False},
-#         "loglevel": 20,
-#         "mask": [],
-#         "max_age": None,
-#         "performance": False,
-#         "snapshot": False,
-#         "user_mirror": False,
-#     },
-#     "modules": ["request", "unspecified", "model"],
-#     "request": {
-#         "data": {
-#             "content_types": ["application/json"],
-#             "enabled": [],
-#             "ignore": [],
-#             "mask": ["password"],
-#             "query": False,
-#         },
-#         "exclude": {
-#             "applications": [],
-#             "methods": ["GET"],
-#             "status": [200],
-#             "unknown": False,
-#         },
-#         "ip": True,
-#         "loglevel": 20,
-#         "max_age": None,
-#     },
-#     "unspecified": {
-#         "exclude": {"applications": [], "files": [], "unknown": False},
-#         "loglevel": 20,
-#         "max_age": None,
-#     },
-# }
 
 
 ROOT_URLCONF = 'main.urls'
@@ -169,6 +128,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticFiles')
 STATICFILES_DIRS = [ 
     os.path.join(BASE_DIR, 'static'),
 ]
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
 MEDIA_URL='/imagens/'
@@ -196,6 +156,5 @@ EMAIL_HOST_PASSWORD = "87028399dd"
 
 # Falta configurar para um email pessoal
 
-django_on_heroku.settings(locals())
 
 # git push heroku HEAD:master
