@@ -1,5 +1,6 @@
 from pathlib import Path
 import os, sys
+import django_on_heroku
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-6w23%li%v2=dkbe_#sahsag0zw*p96-o3nt4t@$_x$5$vgd-ak'
@@ -195,3 +196,4 @@ EMAIL_HOST_PASSWORD = "87028399dd"
 
 # Falta configurar para um email pessoal
 
+django_on_heroku.settings(locals())
