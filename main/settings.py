@@ -1,5 +1,5 @@
 from pathlib import Path
-import django_heroku
+# import django_heroku
 import os, sys
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -10,8 +10,8 @@ sys.path.append(
 )
 
 # Configurações para programador e servidor local
-DEBUG = Trues
-ALLOWED_HOSTS = ['https://git.heroku.com/inventorycontrolgomesmilla.git']
+DEBUG = True
+# ALLOWED_HOSTS = ['https://git.heroku.com/inventorycontrolgomesmilla.git']
 
 
 # Declarando aplicativos internos do Django
@@ -172,12 +172,12 @@ USE_TZ = True
 
 #Definir a rota dos arquivos estaticos
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
         os.path.join(BASE_DIR, 'static')
 ]
-
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL='/media/'
 MEDIA_ROOT='media/'
 
@@ -203,4 +203,4 @@ EMAIL_HOST_PASSWORD = "87028399dd"
 
 # Falta configurar para um email pessoal
 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
